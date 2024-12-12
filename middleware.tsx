@@ -40,7 +40,7 @@ export async function middleware(request: NextRequest) {
 
             const response = NextResponse.next();
 
-            const newExpiresAt = now + 30 * 60 * 1000; // Prolonge de 30 minutes
+            const newExpiresAt = now + (2 * 60) * 60 * 1000; // Prolonge de 2 heures
 
             const newAccessToken = Buffer.from(JSON.stringify({...accessToken,expiresAt:newExpiresAt})).toString('base64')
             
