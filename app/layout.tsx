@@ -10,6 +10,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
   return (
     <html lang="fr">
       <head>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
       </head>
       <body>

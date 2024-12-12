@@ -1,6 +1,6 @@
 "use client"
 
-import Link from 'next/link'
+
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
@@ -11,7 +11,7 @@ export default function Body() {
   return (
     <section className="mt-9 mb-3">
 
-      <div className="bg-gradient-to-b from-[#ddeef5] to-gray-100 p-8 rounded-xl drop-shadow-md mb-3 w-full max-w-[1300px] mx-auto">
+      <div className="bg-gradient-to-b from-[#ddeef5] to-gray-100 p-8 rounded-xl drop-shadow-md mb-3 w-full max-w-[1100px] mx-auto">
 
         <div className="flex items-center justify-center mb-3">
           <img src="/images/meeting-logo-1.png" alt="logo" width={75} className=""/>
@@ -29,11 +29,6 @@ export default function Body() {
         <p className="text-center font-semibold mt-5 mb-2 text-lg">Réservez votre salle de réunion et vos équipements de travail en toute rapidité et simplicité !</p>
 
         <div className="my-4 text-center">
-          {/* <Link href={"/login"} type="button" 
-            className="py-[10px] px-5 rounded-[8px] text-white bg-blue-500 hover:bg-blue-600 hover:text-white shadow-md"
-          >
-            Ouvrir ma session
-          </Link> */}
           <button onClick={() => router.push("/login")} type="button" 
             className="py-[10px] px-5 rounded-[8px] text-white bg-blue-500 hover:bg-blue-600 hover:text-white shadow-md"
           >

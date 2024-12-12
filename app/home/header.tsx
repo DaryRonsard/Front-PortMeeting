@@ -9,11 +9,11 @@ export default function Header() {
   const router = useRouter()
 
   return (
-    <header className="backdrop-blur-sm fixed z-50 top-0 left-0 right-0 w-full flex items-center justify-between py-2 px-6 border-b-[1.6px] border-gray-200">
+    <header className="w-full flex flex-col gap-y-3 sm:flex-row items-center justify-between backdrop-blur-sm fixed z-50 top-0 left-0 right-0 py-2 px-6 border-b-[1.6px] border-gray-200 bg-[#ddeef566]">
 
       <div className="flex items-center gap-x-2">
         <img src='/images/meeting-logo-1.png' width={60}/>
-        <h3 className="font-medium text-2xl text-blue-500 uppercase"
+        <h3 className="font-medium text-2xl text-blue-500 uppercase select-none"
           style={{textShadow:"0px 0px 2px blue"}}
         >
           Metting
@@ -31,7 +31,6 @@ export default function Header() {
         
         <button type="button"  
           className="py-[10px] px-5 rounded-[8px] text-white bg-green-500 hover:bg-green-600 hover:text-white shadow-md " 
-          // style={{boxShadow:"0px 0px 3px green"}}
         >
           {/* Inscrivez-vous */}
           Créer un compte

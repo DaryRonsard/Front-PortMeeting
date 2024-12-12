@@ -1,15 +1,18 @@
 
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function SideBar() {
+
+
   return (
-    <aside className="fixed top-0 lef-0 h-full w-full max-w-[270px]">
 
-        <div className="bg-[#ffffff] rounded-sm border-[0.2px] border-gray-200 h-full py-3">
+    <aside className="fixed z-20 top-0 lef-0 h-full w-full max-w-[270px]">
 
-            <div className="flex items-center gap-x-3 mb-2 px-3">
+        <div className="bg-[#ffffff] rounded-sm border-r-[0.2px] border-gray-200 h-full py-3">
+
+            <div className="flex items-center gap-x-3 mb-2 px-3 pb-2 ">
                 <img src="/images/meeting-logo-1.png" alt="logo" width={60} className=""/>
                 <h3 className="font-medium text-2xl text-blue-500 uppercase"
                 style={{textShadow:"0px 0px 2px blue"}}
@@ -39,5 +42,7 @@ export default function SideBar() {
         </div>
 
     </aside>
+
   )
+
 }

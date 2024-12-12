@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { login } from '@/utils/fetchApi'
+import { login } from '@/utils/handlerApi'
 
 
 
