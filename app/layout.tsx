@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import "@/styles/globals.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Meeting",
   description: "Gestion des salles de réunion",
 };
 
-export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="fr">
       <head>

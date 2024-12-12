@@ -147,7 +147,6 @@ export default function loginPage() {
           <div className="input-container my-2">
             <label htmlFor="pseudo" className="text-[#5b9bb7] font-medium my-1 block">Nom utilisateur</label>
             <input type="text" placeholder="example: username123" name="pseudo" id="pseudo"
-              // className="border-[2px] border-gray-400 outline-none rounded-[3px] py-[5px] px-2 w-full"
               className="border-[2px] border-[#82c7e4] text-blue-400 focus:border-blue-400 focus:shadow-md outline-none rounded-[3px] py-[7px] px-2 w-full text-[17px]"
               onChange={(e) => setForm({ ...form, pseudo: e.target.value })}
               value={form.pseudo}
@@ -164,8 +163,7 @@ export default function loginPage() {
           <div className="input-container my-2">
             <label htmlFor="password" className="text-[#5b9bb7] font-medium my-1 block">Mot de passe</label>
             <input type="password" placeholder="example: password123" name="password" id="password"
-              // className="border-[2px] border-gray-400 outline-none rounded-[3px] py-[5px] px-2 w-full"
-              className="border-[2px] border-[#82c7e4] text-blue-400 focus:border-blue-400 focus:shadow-md outline-none rounded-[3px] py-[7px] px-2 w-full text-[17px]"
+              className="w-full text-blue-400 text-[17px] border-[2px] border-[#82c7e4] focus:border-blue-400 focus:shadow-md outline-none rounded-[3px] py-[7px] px-2"
               onChange={(e) => setForm({ ...form, password: e.target.value })}
               value={form.password}
               required
@@ -187,7 +185,11 @@ export default function loginPage() {
               disabled={loading}
               className={`${loading ? "bg-gray-700" : "bg-blue-600 hover:bg-blue-700 hover:active:bg-gradient-to-r hover:active:from-blue-500 hover:active:to-blue-600"} transition-colors duration-100 rounded-[30px] py-[10px] px-3 w-full text-white font-medium`}
             >
-              {loading ? "Connexion en cours ..." : "Se connecter"}
+              {loading ? 
+                <span className="spinner block mx-auto border-2 border-r-transparent w-[24px] h-[24px] rounded-full"></span> 
+              : 
+                "Se connecter" 
+              }
             </button>
           </div>
 

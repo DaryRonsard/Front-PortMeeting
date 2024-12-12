@@ -23,16 +23,14 @@ export default function Header() {
       <div className="flex items-center gap-x-3">
         <button type="button" 
           onClick={() => router.push("/login")}
-          className="py-[10px] px-5 rounded-[8px] text-white bg-blue-500 hover:bg-blue-600 hover:text-white shadow-md" 
-          // style={{boxShadow:"0px 0px 3px blue"}}
+          className="py-[10px] px-5 rounded-[8px] text-white hover:text-white bg-blue-500 hover:bg-blue-600 hover:active:bg-blue-700 shadow-md select-none" 
         >
           Se connecter
         </button>
         
         <button type="button"  
-          className="py-[10px] px-5 rounded-[8px] text-white bg-green-500 hover:bg-green-600 hover:text-white shadow-md " 
+          className="py-[10px] px-5 rounded-[8px] text-white hover:text-white bg-green-500 hover:bg-green-600 shadow-md select-none" 
         >
-          {/* Inscrivez-vous */}
           Créer un compte
         </button>
       </div>

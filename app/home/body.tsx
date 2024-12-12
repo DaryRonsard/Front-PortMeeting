@@ -14,8 +14,8 @@ export default function Body() {
       <div className="bg-gradient-to-b from-[#ddeef5] to-gray-100 p-8 rounded-xl drop-shadow-md mb-3 w-full max-w-[1100px] mx-auto">
 
         <div className="flex items-center justify-center mb-3">
-          <img src="/images/meeting-logo-1.png" alt="logo" width={75} className=""/>
-          <h3 className="text-center font-medium text-2xl text-blue-500 uppercase"
+          <img src="/images/meeting-logo-1.png" alt="logo" width={75}/>
+          <h3 className="text-center font-medium text-2xl text-blue-500 uppercase select-none"
             style={{textShadow:"0px 0px 2px blue"}}
           >
             Metting
@@ -26,11 +26,11 @@ export default function Body() {
         
         {/* <p className="text-center font-semibold mt-5 mb-2 text-lg">Désormais, vous avez la possibilité de réserver vos salles de réunion et équipements en toute rapidité et simplicité !</p> */}
         
-        <p className="text-center font-semibold mt-5 mb-2 text-lg">Réservez votre salle de réunion et vos équipements de travail en toute rapidité et simplicité !</p>
+        <p className="text-center mt-5 mb-2 text-lg">Réservez votre salle de réunion et vos équipements de travail en toute rapidité et simplicité !</p>
 
         <div className="my-4 text-center">
           <button onClick={() => router.push("/login")} type="button" 
-            className="py-[10px] px-5 rounded-[8px] text-white bg-blue-500 hover:bg-blue-600 hover:text-white shadow-md"
+            className="py-[10px] px-5 rounded-[8px] text-white bg-blue-500 hover:bg-blue-600 hover:active:bg-blue-700 hover:text-white shadow-md select-none"
           >
             Ouvrir ma session
           </button>

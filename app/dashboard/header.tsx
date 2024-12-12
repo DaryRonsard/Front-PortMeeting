@@ -1,15 +1,13 @@
 "use client"
 
+import React, { useEffect } from 'react'
 import { logout } from '@/utils/handlerApi'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+
 
 export default function Header() {
 
     const router = useRouter()
-
-    const [mode,setMode] = useState<boolean>(false)
-
 
     // Déconnexion
     const onLogout = async () => {
@@ -39,12 +37,14 @@ export default function Header() {
 
     useEffect(() => {
         handleEvent()        
-    },[]);
+    },[])
 
 
     return (
-        <header className="fixed bg-white z-10 top-0 left-0 right-0 w-full flex justify-between items-center px-8 py-2">
+        <header className={`fixed bg-white z-10 top-0 left-0 right-0 w-full flex justify-between items-center px-8 py-2`}>
+
             <div></div>
+
             <div className="main-wrapper flex items-center gap-x-2">
                 <div className="relative rounded-full w-[45px] h-[45px]" >
                     <img 
@@ -71,13 +71,9 @@ export default function Header() {
                         </ul>
                     </div>
                 </div>
-                <span className="select-none">Hien Dary</span>
-                <div className="w-[25px] flex justify-center items-center">
-                    <button onClick={() => setMode(!mode)}>
-                        <i className={`${!mode ? "fa-solid fa-moon" : "fa-solid fa-sun text-[#007bff]"} text-xl mt-1`}></i>
-                    </button>
-                </div>
+                <span className={``}>Hien Dary</span>
             </div>
+
         </header>
     )
 }
