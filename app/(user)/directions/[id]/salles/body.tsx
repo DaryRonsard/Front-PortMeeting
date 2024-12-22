@@ -35,7 +35,7 @@ export default function Body() {
                             className="grid-item flex flex-col justify-between p-3 bg-white rounded-md shadow-md"
                         >
                             <div className="relative img-container h-full rounded-md overflow-hidden  group">
-                                <img src={item.image} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                <img src={item.images[0].name} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                             </div>
                             <div className="my-1 w-full flex flex-col justify-between gap-y-3">
                                 <div className="relative">
