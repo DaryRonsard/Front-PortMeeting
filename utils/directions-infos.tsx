@@ -46,14 +46,20 @@ export const RoomsByDirectionList = [
         id_room:1,
         name:"DG",
         description:"Salle de réunion 1",
-        image:"https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid"
+        images:[
+            {name:"https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid",is_active:true},
+            {name:"https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid",is_active:false},
+        ]
     },
     {
         id_direction:2,
         id_room:1,
         name:"DSIN",
         description:"Salle de réunion 1",
-        image:"https://cms.weka.ch/fileadmin_personal_schweiz/USERDATA/Direction_d_entreprise_nouveau.jpg"
+        images:[
+            {name:"https://cms.weka.ch/fileadmin_personal_schweiz/USERDATA/Direction_d_entreprise_nouveau.jpg",is_active:true},
+            {name:"https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid",is_active:false},
+        ]
     },
     {
         id_direction:2,
@@ -122,10 +128,12 @@ export const RoomsByDirectionList = [
 
 
 export const BookingHoursList = [
-    {heure_debut:"10:00",heure_fin:"11:00"},
-    {heure_debut:"11:30",heure_fin:"12:00"},
-    {heure_debut:"12:30",heure_fin:"13:00"},
-    {heure_debut:"13:30",heure_fin:"14:00"},
-    {heure_debut:"14:30",heure_fin:"15:00"},
-    {heure_debut:"15:30",heure_fin:"16:00"},
+    {date:new Date().toLocaleDateString(),begin_hour:"10:00",end_hour:"11:00",is_busy:true},
+    {date:new Date().toLocaleDateString(),begin_hour:"11:30",end_hour:"12:00",is_busy:true},
+    {date:new Date().toLocaleDateString(),begin_hour:"12:30",end_hour:"13:00",is_busy:true},
+    {date:new Date().toLocaleDateString(),begin_hour:"13:30",end_hour:"14:00",is_busy:false},
+    {date:new Date().toLocaleDateString(),begin_hour:"14:30",end_hour:"15:00",is_busy:false},
+    {date:new Date().toLocaleDateString(),begin_hour:"15:30",end_hour:"16:00",is_busy:false},
+    {date:new Date().toLocaleDateString(),begin_hour:"16:30",end_hour:"17:00",is_busy:false},
+    {date:new Date().toLocaleDateString(),begin_hour:"17:30",end_hour:"18:00",is_busy:false},
 ]

@@ -1,4 +1,5 @@
 
+import "./style.css"
 import React from 'react'
 import SideBar from '@/components/user/sidebar'
 import Body from './body'
@@ -6,7 +7,6 @@ import Body from './body'
 export default async function Page({params}:{params:Promise<{id?:string,id_salle?:string}>}) {
 
   const {id:id_direction,id_salle} = await params
-
 
   return (
     <>

@@ -34,9 +34,8 @@ export default function Body() {
                             key={index} 
                             className="grid-item flex flex-col justify-between p-3 bg-white rounded-md shadow-md"
                         >
-                            <div className="relative img-container h-full">
-                                <img src={item.image} alt="software-img" className="h-full rounded-md w-full"/>
-                                {/* <span className="absolute top-2 right-2 bg-gray-300 opacity-50 rounded-full p-1 text-sm font-medium select-none border-2 border-gray-600">10:30</span> */}
+                            <div className="relative img-container h-full rounded-md overflow-hidden  group">
+                                <img src={item.image} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                             </div>
                             <div className="my-1 w-full flex flex-col justify-between gap-y-3">
                                 <div className="relative">
@@ -56,20 +55,21 @@ export default function Body() {
                                         </div>
                                     </div>
                                     
-                                    <button 
+                                    {/* <button 
                                         className={`${index == 0 || index == 3 || index == 4 ? "bg-green-600" : "bg-red-600"} text-white rounded-[20px] font-medium py-1 my-2 px-4 text-[13px]`}
                                     >
                                         {index ==  0 || index == 3 || index == 4 ? "Disponible" : "Réservé"}
-                                    </button>
+                                    </button> */}
+
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <button 
                                         onClick={() => router.push(`/directions/${id}/salles/${item.id_room}`)}  
-                                        className="bg-blue-600 text-white px-3 py-1 rounded-[5px]"
+                                        className="bg-blue-500 hover:bg-blue-600 hover:focus:bg-blue-500 text-white px-3 py-1.5 rounded-[5px]"
                                     >
                                         Détails
                                     </button>
-                                    <button  className="bg-green-600 text-white px-3 py-1 rounded-[5px]">Réserver</button>
+                                    {/* <button  className="bg-green-600 text-white px-3 py-1 rounded-[5px]">Réserver</button> */}
                                 </div>
                             </div>
                         </div>
