@@ -18,7 +18,7 @@ export default function Body() {
           <h3 className="text-center font-medium text-2xl text-blue-500 uppercase select-none"
             style={{textShadow:"0px 0px 2px blue"}}
           >
-            Metting
+            Meeting
           </h3>
         </div>
 

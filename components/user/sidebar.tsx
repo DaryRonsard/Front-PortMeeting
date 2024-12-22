@@ -2,17 +2,33 @@
 "use client"
 
 import { logout } from '@/utils/handlerApi'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 
-export default function SideBar() {
+
+type sideBarType = {
+    location?:string
+}
+
+
+export default function SideBar(props:sideBarType) {
+        
 
     const router = useRouter()
+    const pathname = usePathname()
 
     const onLogout = async () => {
         const response = await logout()
-        if(response.success) router.push("/home")
+        if(response?.success) 
+        {
+            localStorage.removeItem("access_token")
+            localStorage.removeItem("refresh_token")
+            return router.push("/home")
+        }
     }
+
+
 
   return (
 
@@ -25,7 +41,7 @@ export default function SideBar() {
                 <h3 className="font-medium text-2xl text-blue-500 uppercase"
                 style={{textShadow:"0px 0px 2px blue"}}
                 >
-                    Meetting
+                    Meeting
                 </h3>
             </div>
 
@@ -33,17 +49,36 @@ export default function SideBar() {
                 <div className="h-full">
                     <ul className="list-none py-3 px-2">
                         <li className="my-1">
-                            <a href="" className="bg-[#ebf5fa] flex items-center gap-x-2 p-2 text-center rounded-lg text-blue-700 font-medium">
-                                <i className="fa-solid fa-gauge text-[17px] bg-blue-500 text-white p-[6px] rounded-full"></i>
+                            <Link href="/dashboard" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/dashboard") ? "bg-[#ebf5fa] text-blue-700 font-medium " : ""} `}>
+                                <i className={`fa-solid fa-gauge text-[17px] p-[6px] rounded-full ${pathname.startsWith("/dashboard") ? " bg-blue-500 text-white " : "text-white bg-blue-500" }`}></i>
                                 Tableau de bord
-                            </a>
+                            </Link>
                         </li>
                         <li className="my-1">
-                            <a href="" className="flex items-center gap-x-2 p-2 text-center rounded-lg">
+                            <Link href="/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/directions") ? "bg-[#ebf5fa] text-blue-700 font-medium " : ""}`}>
+                                <i className={`fa-solid fa-door-open text-[15.3px]  p-[6px] rounded-full ${pathname.startsWith("/directions") ? " bg-blue-500 text-white " : "text-white bg-blue-500" }`}></i>
+                                Directions
+                            </Link>
+                        </li>
+                        <li className="my-1">
+                            <Link href="" className="flex items-center gap-x-2 p-2 text-center rounded-lg">
         
                                 <i className="fa-solid fa-door-open text-[20px]  text-gray-500 p-[6px] rounded-full"></i>
-                                Salles de réunion
-                            </a>
+                                Réservations
+                            </Link>
+                        </li>
+                        <li className="my-1">
+                            <Link href="" className="flex items-center gap-x-2 p-2 text-center rounded-lg">
+        
+                                <i className="fa-solid fa-door-open text-[20px]  text-gray-500 p-[6px] rounded-full"></i>
+                                Chat
+                            </Link>
+                        </li>
+                        <li className="my-1">
+                            <Link href="" className="flex items-center gap-x-2 p-2 text-center rounded-lg">
+                                <i className="fa-solid fa-door-open text-[20px]  text-gray-500 p-[6px] rounded-full"></i>
+                                Vidéo conférence
+                            </Link>
                         </li>
                         
                     </ul>

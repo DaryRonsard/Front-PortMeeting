@@ -49,10 +49,13 @@ export default function loginPage() {
           text:"Connexion réussie avec succes !",
           isConnected:true,
         })
-        setTimeout(() => {
+        // setTimeout(() => {
+          localStorage.setItem("access_token",response.access)
+          localStorage.setItem("refresh_token",response.refresh)
           router.push("/dashboard")
-        },1000);
+        // },500);
       }
+      /*
       // Invalid username
       else if(!response?.success && response?.invalid_username) 
       {
@@ -93,6 +96,7 @@ export default function loginPage() {
           })
         },2000);
       }
+      */
       // Server error
       else
       {

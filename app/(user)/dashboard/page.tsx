@@ -1,7 +1,6 @@
 
 import React from 'react'
-import Header from './header'
-import SideBar from './sidebar'
+import SideBar from '@/components/user/sidebar'
 import Body from './body'
 
 export default async function Dashboard() {

@@ -1,4 +1,3 @@
-import SideBar from "@/components/user/sidebar";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 

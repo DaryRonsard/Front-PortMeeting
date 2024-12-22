@@ -16,7 +16,7 @@ export default function Header() {
         <h3 className="font-medium text-2xl text-blue-500 uppercase select-none"
           style={{textShadow:"0px 0px 2px blue"}}
         >
-          Metting
+          Meeting
         </h3>
       </div>
 

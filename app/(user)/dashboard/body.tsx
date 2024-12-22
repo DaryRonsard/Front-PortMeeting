@@ -1,8 +1,12 @@
 "use client"
 
-import React from 'react'
+import apiClient from '@/app/api-client'
+import axios from 'axios'
+import React, { useEffect } from 'react'
+
 
 export default function Body() {
+
     return (
         <section className="pl-[300px]">
             <div className="bg-gradient-to-b from-[#ddeef5] to-gray-100 p-5 rounded-xl drop-shadow-md">
