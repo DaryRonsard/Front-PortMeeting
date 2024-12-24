@@ -54,14 +54,14 @@ export default function loginPage() {
         localStorage.setItem("refresh_token",response.refresh)
         setCookie(null,"access_token",response.access,{
           path:"/",
-          httpOnly:false,
+          // httpOnly:false,
           secure:true,
           sameSite:"lax",
-          maxAge:3600
+          // maxAge:3600
         })
         setCookie(null,"refresh_token",response.refresh,{
           path:"/",
-          httpOnly:false,
+          // httpOnly:false,
           secure:true,
           sameSite:"lax"
         })
@@ -74,17 +74,9 @@ export default function loginPage() {
           ...message,
           type:"error",
           invalid_password:true,
-          text:"Nom utilisateur ou mot de passe invalid !"
+          text:"Nom utilisateur ou mot de passe incorrect !"
         })
-        setTimeout(() => {
-          setMessage({
-            ...message,
-            text:"",
-            invalid_username:false,
-            invalid_password:false
-          })
-          setForm({...form,pseudo:"",password:""})
-        },2000);
+        setForm({...form,pseudo:"",password:""})
       }
         
     }

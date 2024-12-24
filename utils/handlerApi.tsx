@@ -1,5 +1,5 @@
-import apiClient from "@/app/api-client";
 import axios from "axios";
+import apiClient from "@/utils/api-client";
 import { jwtDecode } from "jwt-decode";
 import { parseCookies,setCookie,destroyCookie} from "nookies";
 
@@ -10,9 +10,9 @@ export async function login(form:{pseudo:string,password:string}){
     {
         // DJANGO API
         const data = {username: form.pseudo, password: form.password}
-        const response = await apiClient.post("http://localhost:8000/generate_token/",data) 
+        const response = await axios.post("http://localhost:8000/generate_token/",data) 
 
-        console.log(response.data)
+        // console.log(response.data)
         
         if(!response.data?.access)
         {

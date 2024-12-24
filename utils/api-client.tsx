@@ -1,5 +1,6 @@
 import axios from "axios";
-import { destroyCookie } from "nookies";
+import { useRouter } from "next/navigation";
+import { destroyCookie, setCookie } from "nookies";
 
 
 const apiClient = axios.create({
@@ -50,15 +51,47 @@ apiClient.interceptors.response.use(
 
         try 
         {
+
           const refresh_token = localStorage.getItem("refresh_token");
-          const response = await apiClient.post("http://localhost:8000/token/refresh/",{refresh:refresh_token});
-          if (response.status === 200) {
-            console.log("Access Token refreshed successfully!");
-            localStorage.setItem("access_token", response?.data?.access);
-            localStorage.setItem("refresh_token", response?.data?.refresh);
-            apiClient.defaults.headers.common["Authorization"] = `Bearer ${response.data.access}`;
-            processQueue(null,response.data.access);
+
+          if(refresh_token)
+          {
+
+            const response = await apiClient.post("http://localhost:8000/token/refresh/",{refresh:refresh_token});
+
+            if (response.status == 200) {
+              console.log("Access Token refreshed successfully!");
+              localStorage.setItem("access_token", response?.data?.access);
+              localStorage.setItem("refresh_token", response?.data?.refresh);
+              setCookie(null,"access_token",response.data?.access,{
+                path:"/",
+                // httpOnly:false,
+                secure:true,
+                sameSite:"lax",
+                // maxAge:3600
+              })
+              setCookie(null,"refresh_token",response.data?.refresh,{
+                path:"/",
+                // httpOnly:false,
+                secure:true,
+                sameSite:"lax"
+              })
+              apiClient.defaults.headers.common["Authorization"] = `Bearer ${response.data?.access}`;
+              processQueue(null,response.data?.access);
+            }
+
           }
+          else
+          {
+            const router = useRouter()
+            destroyCookie(null,"access_token")
+            destroyCookie(null,"refresh_token")
+            localStorage.removeItem("access_token")
+            localStorage.removeItem("refresh_token")
+            router.replace("/home")
+            
+          }
+
         } 
         catch (err) 
         {
@@ -66,11 +99,11 @@ apiClient.interceptors.response.use(
           processQueue(err, null);
           destroyCookie(null,"access_token")
           destroyCookie(null,"refresh_token")
-          localStorage.removeItem("access_token");
-          localStorage.removeItem("refresh_token");
+          localStorage.removeItem("access_token")
+          localStorage.removeItem("refresh_token")
           // const response = await apiClient.post("http://localhost:8000/api/logout");
           // console.log(response)
-          // window.location.href = "/login";
+          window.location.href = "/home";
         } 
         finally {
           isRefreshing = false;
@@ -79,7 +112,7 @@ apiClient.interceptors.response.use(
 
       return new Promise((resolve, reject) => {
         failedQueue.push({
-          resolve: (token:any) => {
+          resolve: (token:string) => {
             originalRequest.headers["Authorization"] = `Bearer ${token}`;
             resolve(apiClient(originalRequest));
           },

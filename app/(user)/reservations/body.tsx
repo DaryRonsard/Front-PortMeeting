@@ -1,6 +1,6 @@
 "use client"
 
-import apiClient from '@/app/api-client';
+import apiClient from '@/utils/api-client';
 import React, { useEffect } from 'react'
 import { directionsList, RoomsByDirectionList } from '@/utils/directions-infos'
 import Link from 'next/link'

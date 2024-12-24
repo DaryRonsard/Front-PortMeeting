@@ -33,6 +33,9 @@ export async function middleware(request: NextRequest) {
         else 
         {
 
+            const decoded = jwtDecode(accessToken)
+            // console.log(decoded)
+
             if (url.pathname === '/login' || url.pathname == "/home") {
                 url.pathname = "/dashboard";
                 return NextResponse.redirect(url);
