@@ -13,7 +13,7 @@ export default function Body() {
             const response = await apiClient.get("http://localhost:8000/accounts/")
             console.log(response.data)
         }
-        loading()
+        // loading()
     },[])
 
     return (
