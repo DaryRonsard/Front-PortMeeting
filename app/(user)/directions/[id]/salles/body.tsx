@@ -34,7 +34,7 @@ export default function Body() {
                             key={index} 
                             className="grid-item flex flex-col justify-between p-3 bg-white rounded-md shadow-md"
                         >
-                            <div className="relative img-container h-full rounded-md overflow-hidden  group">
+                            <div className="relative img-container h-[175px] rounded-md overflow-hidden  group">
                                 <img src={item.images[0].name} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                             </div>
                             <div className="my-1 w-full flex flex-col justify-between gap-y-3">
@@ -53,23 +53,19 @@ export default function Body() {
                                             <i className="fa-solid fa-tv text-green-500"></i>
                                             <span className="text-gray-600">Écran</span>
                                         </div>
+                                        <div className="flex items-center gap-x-2 my-1">
+                                            <i className="fa-solid fa-mobile-screen text-blue-500"></i>
+                                            <span className="text-gray-600">Tablette</span>
+                                        </div>
                                     </div>
-                                    
-                                    {/* <button 
-                                        className={`${index == 0 || index == 3 || index == 4 ? "bg-green-600" : "bg-red-600"} text-white rounded-[20px] font-medium py-1 my-2 px-4 text-[13px]`}
-                                    >
-                                        {index ==  0 || index == 3 || index == 4 ? "Disponible" : "Réservé"}
-                                    </button> */}
-
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <button 
                                         onClick={() => router.push(`/directions/${id}/salles/${item.id_room}`)}  
-                                        className="bg-blue-500 hover:bg-blue-600 hover:focus:bg-blue-500 text-white px-3 py-1.5 rounded-[5px]"
+                                        className="bg-blue-500 hover:bg-blue-600 hover:active:bg-blue-500 text-white px-3 py-1.5 rounded-[5px]"
                                     >
                                         Détails
                                     </button>
-                                    {/* <button  className="bg-green-600 text-white px-3 py-1 rounded-[5px]">Réserver</button> */}
                                 </div>
                             </div>
                         </div>
