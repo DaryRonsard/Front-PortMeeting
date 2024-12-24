@@ -50,68 +50,23 @@ export default function loginPage() {
           text:"Connexion réussie avec succes !",
           isConnected:true,
         })
-        // setTimeout(() => {
-          localStorage.setItem("access_token",response.access)
-          localStorage.setItem("refresh_token",response.refresh)
-          setCookie(null,"access_token",response.access,{
-            path:"/",
-            httpOnly:false,
-            secure:true,
-            sameSite:"lax",
-            maxAge:3600
-          })
-          setCookie(null,"refresh_token",response.refresh,{
-            path:"/",
-            httpOnly:false,
-            secure:true,
-            sameSite:"lax"
-          })
-          router.push("/dashboard")
-        // },500);
-      }
-      /*
-      // Invalid username
-      else if(!response?.success && response?.invalid_username) 
-      {
-        setMessage({
-          ...message,
-          type:"error",
-          invalid_username:true,
-          text:"Nom d'utilisateur incorrect !"
+        localStorage.setItem("access_token",response.access)
+        localStorage.setItem("refresh_token",response.refresh)
+        setCookie(null,"access_token",response.access,{
+          path:"/",
+          httpOnly:false,
+          secure:true,
+          sameSite:"lax",
+          maxAge:3600
         })
-        setForm({...form,pseudo:"",password:""})
-        setLoading(false)
-        setTimeout(() => {
-          setMessage({
-            ...message,text:"",
-            invalid_username:false,
-            invalid_password:false
-          })
-        },2000);
-
-      }
-      // Invalid password
-      else if(!response?.success && response?.invalid_password)
-      {
-        setMessage({
-          ...message,
-          type:"error",
-          invalid_password:true,
-          text:"Mot de passe incorrect !"
+        setCookie(null,"refresh_token",response.refresh,{
+          path:"/",
+          httpOnly:false,
+          secure:true,
+          sameSite:"lax"
         })
-        setForm({...form,password:""})
-        setLoading(false)
-        setTimeout(() => {
-          setMessage({
-            ...message,
-            text:"",
-            invalid_username:false,
-            invalid_password:false
-          })
-        },2000);
+        router.push("/dashboard") // Navigation vers la page (Dashboard)
       }
-      */
-      // Server error
       else
       {
         setLoading(false)
@@ -119,7 +74,7 @@ export default function loginPage() {
           ...message,
           type:"error",
           invalid_password:true,
-          text:"Désolé, le serveur a rencontré un problème !"
+          text:"Nom utilisateur ou mot de passe invalid !"
         })
         setTimeout(() => {
           setMessage({

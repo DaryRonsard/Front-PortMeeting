@@ -8,15 +8,17 @@ import React, { useState } from 'react'
 export default function Body({id_direction,id_salle}:{id_direction?:string,id_salle?:string}) {
 
     const currentDate = new Date().toLocaleDateString("fr-FR") // 22/12/2024
-    const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // 16:00
-    // const currentHour = "07:00" // 16:00
+    const currentHour = "07:00" // heure définie par défaut au chargement de la page à titre d'exemple
+    // const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // 16:00
 
+    // Récupération des images de la salle sélectionnée
     const getRoomImages = RoomsByDirectionList.filter((item:any) => {
         return item.id_direction == id_direction && item.id_room == id_salle
     }).map((item:any) => item )
 
+    // Récupération de la liste des heures disponibles de réservation de la salle sélectionnée
     const getBookingHoursList = BookingHoursList.filter((item) => {
-        return item.date == currentDate && item.begin_hour >= currentHour && !item.is_busy
+        return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
     })
 
     const [activeHour,setActiveHour] = useState<number|null>(null)
@@ -34,25 +36,28 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
         {
             setActiveHour(null) // Réinitialisation de l'heure de réservation sélectionnée
             const currentDate = new Date().toLocaleDateString("fr-FR") // 22/12/2024
-            // const currentHour = "12:30" // 16:00
-            const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // 16:00
+            const currentHour = "07:00" // heure définie par défaut à la recherche à titre d'exemple
+            // const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // Exemple(16:00)
             const newBookingHoursList = BookingHoursList.filter((item) => {
-                return item.date == currentDate && item.begin_hour >= currentHour && !item.is_busy
+                return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
             })
+            setBookingHours(newBookingHoursList)
+            console.log(newBookingHoursList,currentDate,currentHour)
+        }
+        else
+        {
+            setActiveHour(null) // Réinitialisation de l'heure de réservation sélectionnée
+            const currentDate = new Date(bookingDate).toLocaleDateString("fr-FR") // 22/12/2024
+            const currentHour = "07:00" // heure définie par défaut à la recherche à titre d'exemple
+            // const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // Exemple(16:00)
+            const newBookingHoursList = BookingHoursList.filter((item) => {
+                return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
+            })
+    
             setBookingHours(newBookingHoursList)
             // console.log(newBookingHoursList,currentDate,currentHour)
         }
 
-        setActiveHour(null) // Réinitialisation de l'heure de réservation sélectionnée
-        const currentDate = new Date(bookingDate).toLocaleDateString("fr-FR") // 22/12/2024
-        // const currentHour = "12:30" // 16:00
-        const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // 16:00
-        const newBookingHoursList = BookingHoursList.filter((item) => {
-            return item.date == currentDate && item.begin_hour >= currentHour && !item.is_busy
-        })
-
-        setBookingHours(newBookingHoursList)
-        // console.log(newBookingHoursList,currentDate,currentHour)
     }
 
 
@@ -149,7 +154,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                                         >
                                             <i className={`fa-regular fa-clock ${activeHour == index ? "text-white" : "text-gray-400"} `}></i>
                                             <div className="flex gap-x-1">
-                                                <span className={`font-medium ${activeHour == index ? "text-white" : "text-blue-500"} `}>{item.begin_hour}</span>
+                                                <span className={`font-medium ${activeHour == index ? "text-white" : "text-blue-500"} `}>{item.start_hour}</span>
                                                 <span className="text-gray-400">-</span>                                    
                                                 <span className={`font-medium ${activeHour == index ? "text-white" : "text-blue-500"}`}>{item.end_hour}</span>
                                             </div>
