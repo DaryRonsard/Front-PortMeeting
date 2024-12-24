@@ -12,7 +12,8 @@ export async function middleware(request: NextRequest) {
     let accessToken:any = request.cookies.get('access_token')?.value
     let refreshToken:any = request.cookies.get('refresh_token')?.value
 
-    /*
+
+    // /*
  
         if(!accessToken) 
         {
@@ -41,7 +42,7 @@ export async function middleware(request: NextRequest) {
             
         }
 
-    */
+    // */
 
 }
 

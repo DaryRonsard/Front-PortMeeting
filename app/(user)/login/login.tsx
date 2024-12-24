@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { login } from '@/utils/handlerApi'
+import { setCookie } from 'nookies'
 
 
 
@@ -52,6 +53,19 @@ export default function loginPage() {
         // setTimeout(() => {
           localStorage.setItem("access_token",response.access)
           localStorage.setItem("refresh_token",response.refresh)
+          setCookie(null,"access_token",response.access,{
+            path:"/",
+            httpOnly:false,
+            secure:true,
+            sameSite:"lax",
+            maxAge:3600
+          })
+          setCookie(null,"refresh_token",response.refresh,{
+            path:"/",
+            httpOnly:false,
+            secure:true,
+            sameSite:"lax"
+          })
           router.push("/dashboard")
         // },500);
       }

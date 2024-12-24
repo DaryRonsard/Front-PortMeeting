@@ -1,10 +1,11 @@
 import axios from "axios";
+import { destroyCookie } from "nookies";
 
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8000/",
   // headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}`},
-  withCredentials:true // Accès au cookie généré par le serveur (accessToken)
+  // withCredentials:true // Accès au cookie généré par le serveur (accessToken)
 });
 
 
@@ -47,12 +48,10 @@ apiClient.interceptors.response.use(
       {
         isRefreshing = true;
 
-        const refresh_token = localStorage.getItem("refresh_token");
-        const data = { refresh: refresh_token };
-
         try 
         {
-          const response = await apiClient.post("http://localhost:8000/api/token/refresh",data);
+          const refresh_token = localStorage.getItem("refresh_token");
+          const response = await apiClient.post("http://localhost:8000/token/refresh/",{refresh:refresh_token});
           if (response.status === 200) {
             console.log("Access Token refreshed successfully!");
             localStorage.setItem("access_token", response?.data?.access);
@@ -65,11 +64,12 @@ apiClient.interceptors.response.use(
         {
           console.error("Token refresh failed:", err);
           processQueue(err, null);
-          // localStorage.removeItem("access_token");
-          // localStorage.removeItem("refresh_token");
-          const response = await apiClient.post("http://localhost:8000/api/logout");
-          console.log(response)
-          // Rediriger l'utilisateur vers la page de connexion
+          destroyCookie(null,"access_token")
+          destroyCookie(null,"refresh_token")
+          localStorage.removeItem("access_token");
+          localStorage.removeItem("refresh_token");
+          // const response = await apiClient.post("http://localhost:8000/api/logout");
+          // console.log(response)
           // window.location.href = "/login";
         } 
         finally {

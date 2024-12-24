@@ -4,6 +4,7 @@
 import { logout } from '@/utils/handlerApi'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { destroyCookie } from 'nookies'
 import React from 'react'
 
 
@@ -19,13 +20,11 @@ export default function SideBar(props:sideBarType) {
     const pathname = usePathname()
 
     const onLogout = async () => {
-        const response = await logout()
-        if(response?.success) 
-        {
-            localStorage.removeItem("access_token")
-            localStorage.removeItem("refresh_token")
-            return router.push("/home")
-        }
+        destroyCookie(null,"access_token")
+        destroyCookie(null,"refresh_token")
+        localStorage.removeItem("access_token")
+        localStorage.removeItem("refresh_token")
+        return router.push("/home")
     }
 
 
