@@ -22,6 +22,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
     })
 
     const [activeHour,setActiveHour] = useState<number|null>(null)
+    const [BookingHourListSelected,setBookingHourListSelected] = useState<any>([])
     const [activeRoomImage,setActiveRoomImage] = useState<any>(getRoomImages[0]?.images[0]?.name || null)
     const [roomImageList,setRoomImageList] = useState<any>(getRoomImages || [])
     const [bookingDate,setBookingDate] = useState<string>("")
@@ -36,7 +37,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
         {
             setActiveHour(null) // Réinitialisation de l'heure de réservation sélectionnée
             const currentDate = new Date().toLocaleDateString("fr-FR") // 22/12/2024
-            const currentHour = "07:00" // heure définie par défaut à la recherche à titre d'exemple
+            // const currentHour = "07:00" // heure définie par défaut à la recherche à titre d'exemple
             // const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // Exemple(16:00)
             const newBookingHoursList = BookingHoursList.filter((item) => {
                 return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
@@ -58,6 +59,23 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
             // console.log(newBookingHoursList,currentDate,currentHour)
         }
 
+    }
+
+
+    const selectBookingHandler = (bookingHour:string) => {
+
+        // console.log(bookingHour)
+
+        if(BookingHourListSelected.includes(bookingHour))
+        {
+            setBookingHourListSelected(BookingHourListSelected.filter((item:string) => item != bookingHour))
+        }
+        else
+        {
+            setBookingHourListSelected([...BookingHourListSelected,bookingHour])
+            console.log([...BookingHourListSelected,bookingHour])
+        }
+        
     }
 
 
@@ -148,15 +166,17 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                                     {bookingHours && bookingHours.length > 0 && bookingHours.map((item:any,index:number) => (
     
                                         <button 
-                                            onClick={() => setActiveHour(index)}
+                                            // onClick={() => setActiveHour(index)}
+                                            onClick={() => selectBookingHandler(item.start_hour + " - " + item.end_hour)}
                                             key={index}
-                                            className={`${activeHour == index ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600 "} border-[1.6px] shadow-md rounded-[4px] p-1 flex items-center justify-center gap-x-2`}
+                                            // className={`${activeHour == index ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600 "} border-[1.6px] shadow-md rounded-[4px] p-1 flex items-center justify-center gap-x-2 ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
+                                            className={`border-[1.6px] shadow-md rounded-[4px] p-1 flex items-center justify-center gap-x-2 ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
                                         >
-                                            <i className={`fa-regular fa-clock ${activeHour == index ? "text-white" : "text-gray-400"} `}></i>
+                                            <i className={`fa-regular fa-clock ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-gray-400"} `}></i>
                                             <div className="flex gap-x-1">
-                                                <span className={`font-medium ${activeHour == index ? "text-white" : "text-blue-500"} `}>{item.start_hour}</span>
+                                                <span className={`font-medium ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-blue-500"} `}>{item.start_hour}</span>
                                                 <span className="text-gray-400">-</span>                                    
-                                                <span className={`font-medium ${activeHour == index ? "text-white" : "text-blue-500"}`}>{item.end_hour}</span>
+                                                <span className={`font-medium ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-blue-500"}`}>{item.end_hour}</span>
                                             </div>
                                         </button>
             

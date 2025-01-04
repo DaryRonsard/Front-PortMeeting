@@ -138,7 +138,7 @@ export default function loginPage() {
                 {message.text}
               </p> 
             }
-          </div>
+          </div> 
 
           <div className="text-right">
             <Link href={""} className="text-red-500 font-medium">Mot de passe oublié !</Link>

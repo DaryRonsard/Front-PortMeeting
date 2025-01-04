@@ -55,6 +55,7 @@ export const config = {
     matcher: [
         '/home', 
         '/dashboard', 
+        '/directions/:path*', 
         // '/user/:path*', // User protected routes
         // '/admin/:path*', // Admin protected routes
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'
