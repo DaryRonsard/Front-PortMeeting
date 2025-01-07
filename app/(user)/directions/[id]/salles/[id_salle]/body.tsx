@@ -5,6 +5,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { ToastContainer, toast,Bounce } from 'react-toastify';
 import Swal from 'sweetalert2'
+import Slider from "react-slick";
 
 
 export default function Body({id_direction,id_salle}:{id_direction?:string,id_salle?:string}) {
@@ -212,6 +213,14 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
     }
 
 
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
+
     return (
         <section className="pl-[300px]">
 
@@ -223,10 +232,56 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                     Réservation de la salle
                 </h3>
             </div>
+
+            
          
             <div className="wrapper w-full flex flex-col gap-4 lg:flex-col xl:flex-row mt-4">
 
                 {/* Left */}
+                {/* {roomImageList && roomImageList.length > 0 &&
+
+                    roomImageList.map((room:any,index:number) => (
+
+                        <div
+                            key={index} 
+                            className="flex flex-col justify-between p-3 bg-white rounded-md shadow-md max-w-[500px] w-full"
+                        >
+                            <Slider {...settings}>
+                                {room.images && room.images.length > 0 && 
+                                    room.images.map((image:any,index:number) => (
+                                        <div key={index}>
+                                            <div className="img-container h-[280px] w-full">
+                                                <img src={image.name} alt="software-img" className="h-full rounded-md w-full object-cover cursor-pointer" />
+                                            </div>
+                                            <div className="name-container my-2">
+                                                <h3 className="text-blue-500 font-medium overflow-hidden text-nowrap text-ellipsis">
+                                                    {room.description}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </Slider>
+
+                            <div className="my-2 w-full flex gap-2">
+                                {room.images && room.images.length > 0 && 
+                                    room.images.map((image:any,index:number) => (
+                                        <div key={index} 
+                                            onClick={() => setActiveRoomImage(image.name)}
+                                            className={`img-container w-[50px] h-[50px] ${activeRoomImage == image.name ? "border-[2px] border-blue-600" : ""}  rounded-md bg-orange-500 cursor-pointer`} 
+                                            style={{background:`url('${image.name}') center/cover no-repeat`}}
+                                        />
+                                    ))
+                                }
+                            </div>
+
+                        </div>
+
+                    ))
+                        
+                } */}
+
+                {/* (Old Version)*/}
                 {roomImageList && roomImageList.length > 0 &&
 
                     roomImageList.map((room:any,index:number) => (
@@ -256,18 +311,13 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                                         />
                                     ))
                                 }
-                                {/* <div className="img-container w-[50px] h-[50px] rounded-md bg-orange-500" style={{background:"url('https://cms.weka.ch/fileadmin_personal_schweiz/USERDATA/Direction_d_entreprise_nouveau.jpg') center/cover no-repeat"}}/>
-                                <div className="img-container w-[50px] h-[50px] rounded-md bg-orange-500" style={{background:"url('https://img.freepik.com/photos-premium/immeuble-bureaux-londres-angleterre-royaume-uni_117856-436.jpg') center/cover no-repeat"}}/>
-                                <div className="img-container w-[50px] h-[50px] rounded-md bg-orange-500" style={{background:"url('https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid') center/cover no-repeat"}}/>
-                                <div className="img-container w-[50px] h-[50px] rounded-md bg-orange-500" style={{background:"url('https://cms.weka.ch/fileadmin_personal_schweiz/USERDATA/Direction_d_entreprise_nouveau.jpg') center/cover no-repeat"}}/>
-                                <div className="img-container w-[50px] h-[50px] rounded-md bg-orange-500" style={{background:"url('https://img.freepik.com/photos-premium/immeuble-bureaux-londres-angleterre-royaume-uni_117856-436.jpg') center/cover no-repeat"}}/>
-                                <div className="img-container w-[50px] h-[50px] rounded-md bg-orange-500" style={{background:"url('https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid') center/cover no-repeat"}}/> */}
                             </div>
 
                         </div>
 
                     ))
-                }
+                } 
+               
 
                 {/* Right */}
                 {roomImageList && roomImageList.length > 0 &&
@@ -387,8 +437,6 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
 
             </div>
 
-            <ToastContainer/>
-            
         </section>
     )
 }

@@ -1,5 +1,6 @@
 import Sidebar from '@/components/user/sidebar';
 import type { Metadata } from "next";
+import { ToastContainer } from 'react-toastify';
 
 
 export const metadata: Metadata = {
@@ -11,6 +12,7 @@ export default function DirectionsLayout({ children }: { children: React.ReactNo
   return (
     <div className="app">
       <Sidebar />
+      <ToastContainer/>
       {children}
     </div>
   );

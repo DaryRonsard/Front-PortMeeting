@@ -5,11 +5,78 @@ import React, { useEffect } from 'react'
 import { directionsList, RoomsByDirectionList } from '@/utils/directions-infos'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
+import { Bounce, toast } from 'react-toastify';
 
 
 export default function Body() {
     
     const router = useRouter()
+
+    const onCancelBooking = async () => {
+
+        Swal.fire({
+            title: "Êtes-vous sûr de vouloir annuler cette réservation ?",
+            text: "",
+            icon: "warning",
+            confirmButtonText: "Oui",
+            confirmButtonColor: "#22c55e",
+            cancelButtonColor: "#d33",
+            showCancelButton: true,
+            cancelButtonText:"Non"
+        })
+        .then((result) => {
+
+            if(result.isConfirmed)
+            {
+               toast.success(`Réservation annulée avec success !`, {
+                    position: "top-right",
+                    autoClose:2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition:Bounce,
+                });
+            }
+           
+        });
+    }
+
+    const onFreeUpRoom = async () => {
+
+        Swal.fire({
+            title: "Êtes-vous sûr de vouloir libérer cette salle ?",
+            text: "",
+            icon: "warning",
+            confirmButtonText: "Oui",
+            confirmButtonColor: "#22c55e",
+            cancelButtonColor: "#d33",
+            showCancelButton: true,
+            cancelButtonText:"Non"
+        })
+        .then((result) => {
+
+            if(result.isConfirmed)
+            {
+               toast.success(`Salle libérée avec success !`, {
+                    position: "top-right",
+                    autoClose:2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition:Bounce,
+                });
+            }
+           
+        });
+
+    }
 
     return (
         <section className="pl-[300px]">
@@ -77,6 +144,7 @@ export default function Body() {
                                                 En cours 
                                             </button>
                                             <button
+                                                onClick={() => onCancelBooking()}
                                                 className="bg-red-500 hover:bg-red-600 hover:active:bg-red-500 text-white px-3 py-1.5 rounded-[5px] w-full"
                                             >
                                                 Annuler
@@ -85,6 +153,7 @@ export default function Body() {
                                     : 
                                         <>
                                             <button
+                                                onClick={() => onFreeUpRoom()}
                                                 className="bg-green-500 hover:bg-green-600 hover:active:bg-green-500 text-white px-3 py-1.5 rounded-[5px] w-full"
                                             >
                                                 Libérer
