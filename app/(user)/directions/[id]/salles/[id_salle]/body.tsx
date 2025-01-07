@@ -3,6 +3,8 @@
 import {directionsList,RoomsByDirectionList,BookingHoursList} from '@/utils/directions-infos'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { ToastContainer, toast,Bounce } from 'react-toastify';
+import Swal from 'sweetalert2'
 
 
 export default function Body({id_direction,id_salle}:{id_direction?:string,id_salle?:string}) {
@@ -21,23 +23,37 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
         return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
     })
 
+    // Récupération de la liste des heures disponibles de réservation de la salle sélectionnée
+    /*
+        const getBookingHoursList = BookingHoursList.filter((item) => {
+            return ![
+                {start_hour:"10:00",end_hour:"11:00"},
+                {start_hour:"11:30",end_hour:"12:00"},
+                {start_hour:"12:00",end_hour:"14:00"},
+            ].some((item2) =>  item.start_hour <= item2.end_hour )
+        }) 
+    */
+
     const [activeHour,setActiveHour] = useState<number|null>(null)
-    const [BookingHourListSelected,setBookingHourListSelected] = useState<any>([])
+    const [bookingHourListSelected,setBookingHourListSelected] = useState<any>([])
+    const [toolsListSelected,setToolsListSelected] = useState<any>([])
     const [activeRoomImage,setActiveRoomImage] = useState<any>(getRoomImages[0]?.images[0]?.name || null)
     const [roomImageList,setRoomImageList] = useState<any>(getRoomImages || [])
     const [bookingDate,setBookingDate] = useState<string>("")
     const [bookingHours,setBookingHours] = useState<any>(getBookingHoursList || [])
 
 
-    const onSearchBookingDate = () => {
+    const onSearchBookingHour = () => {
 
         // console.log(bookingDate)
+
+        setBookingHourListSelected([])
 
         if(bookingDate == "")
         {
             setActiveHour(null) // Réinitialisation de l'heure de réservation sélectionnée
             const currentDate = new Date().toLocaleDateString("fr-FR") // 22/12/2024
-            // const currentHour = "07:00" // heure définie par défaut à la recherche à titre d'exemple
+            const currentHour = "07:00" // heure définie par défaut à la recherche à titre d'exemple
             // const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // Exemple(16:00)
             const newBookingHoursList = BookingHoursList.filter((item) => {
                 return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
@@ -61,21 +77,138 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
 
     }
 
-
     const selectBookingHandler = (bookingHour:string) => {
 
         // console.log(bookingHour)
 
-        if(BookingHourListSelected.includes(bookingHour))
+        if(bookingHourListSelected.includes(bookingHour))
         {
-            setBookingHourListSelected(BookingHourListSelected.filter((item:string) => item != bookingHour))
+            setBookingHourListSelected(bookingHourListSelected.filter((item:string) => item != bookingHour))
         }
         else
         {
-            setBookingHourListSelected([...BookingHourListSelected,bookingHour])
-            console.log([...BookingHourListSelected,bookingHour])
+            setBookingHourListSelected([...bookingHourListSelected,bookingHour])
+            console.log("Booking hours List :",[...bookingHourListSelected,bookingHour])
         }
         
+    }
+
+    const selectToolsHandler = (toolId:number) => {
+
+        // console.log(toolId)
+
+        if(toolsListSelected.includes(toolId))
+        {
+            setToolsListSelected(toolsListSelected.filter((item:number) => item != toolId))
+        }
+        else
+        {
+            setToolsListSelected([...toolsListSelected,toolId])
+            console.log("Tool ID :",[...toolsListSelected,toolId])
+        }
+        
+    }
+
+    const onSendBooking =  async () => {
+
+        let bookingHourTab:any = []
+        
+        if(bookingHourListSelected.length > 0 && toolsListSelected.length > 0)
+        {
+            bookingHourListSelected.forEach((element:string) => {
+                bookingHourTab.push(element.split("-")[0].trim())
+                bookingHourTab.push(element.split("-")[1].trim())
+            });
+    
+            const bookingHourSorted:any = bookingHourTab.sort((a:string,b:string) => {
+                return a < b ? -1 : a > b ? 1 : 0 
+            })
+    
+            const lastIndex = bookingHourSorted.length - 1 
+            const getBookingHours = bookingHourSorted[0]+" - "+bookingHourSorted[lastIndex]
+            // console.log(getBookingHours)
+            // alert(`Réservation de salle pour ${getBookingHours}`)
+
+            toast.success(`Réservation envoyé avec success !`, {
+                position: "bottom-right",
+                autoClose:2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition:Bounce,
+            });
+
+        }
+        else if(bookingHourListSelected.length == 0)
+        {
+            // alert("Veuillez sélectionner l'heure de réservation SVP !")
+
+            Swal.fire({
+                title: "Veuillez sélectionner l'heure de réservation SVP !",
+                text: "",
+                icon: "warning",
+                confirmButtonText: "D'accord",
+                confirmButtonColor: "#22c55e",
+            })
+
+        }
+        else
+        {
+
+            /*
+                const result = confirm("Avez-vous besoin d'équipement pour la réunion ?")
+
+                if(!result)
+                {
+                    toast.success(`Réservation envoyé avec success !`, {
+                        position: "bottom-right",
+                        autoClose:2500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition:Bounce,
+                    });
+                }
+            */
+
+            Swal.fire({
+                title: "Avez-vous besoin d'équipement pour la réunion ?",
+                text: "",
+                icon: "warning",
+                confirmButtonText: "Bien sûr",
+                confirmButtonColor: "#22c55e",
+                cancelButtonColor: "#d33",
+                showCancelButton: true,
+                cancelButtonText:"Non"
+            })
+            .then((result:any) => {
+                if (result.isConfirmed)
+                {
+                    return null
+                }
+                else
+                {
+                    toast.success(`Réservation envoyé avec success !`, {
+                        position: "bottom-right",
+                        autoClose:2500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition:Bounce,
+                    });
+                }
+            });
+            
+        }
     }
 
 
@@ -151,7 +284,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                                         className="w-full py-1 px-2 rounded-[4px] outline-none border-2 border-gray-400  focus-within:border-blue-400" 
                                     />
                                     <button 
-                                        onClick={() => onSearchBookingDate()}
+                                        onClick={() => onSearchBookingHour()}
                                         className="bg-blue-500 hover:bg-blue-600 hover:active:bg-blue-500  rounded-[5px] px-7 text-white"
                                     >
                                         Recherche
@@ -169,14 +302,14 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                                             // onClick={() => setActiveHour(index)}
                                             onClick={() => selectBookingHandler(item.start_hour + " - " + item.end_hour)}
                                             key={index}
-                                            // className={`${activeHour == index ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600 "} border-[1.6px] shadow-md rounded-[4px] p-1 flex items-center justify-center gap-x-2 ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
-                                            className={`border-[1.6px] shadow-md rounded-[4px] p-1 flex items-center justify-center gap-x-2 ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
+                                            // className={`${activeHour == index ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600 "} border-[1.6px] shadow-md rounded-[4px] p-1 flex items-center justify-center gap-x-2 ${bookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
+                                            className={`border-[1.6px] shadow-md rounded-[4px] p-1 flex items-center justify-center gap-x-2 ${bookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
                                         >
-                                            <i className={`fa-regular fa-clock ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-gray-400"} `}></i>
+                                            <i className={`fa-regular fa-clock ${bookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-gray-400"} `}></i>
                                             <div className="flex gap-x-1">
-                                                <span className={`font-medium ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-blue-500"} `}>{item.start_hour}</span>
+                                                <span className={`font-medium ${bookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-blue-500"} `}>{item.start_hour}</span>
                                                 <span className="text-gray-400">-</span>                                    
-                                                <span className={`font-medium ${BookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-blue-500"}`}>{item.end_hour}</span>
+                                                <span className={`font-medium ${bookingHourListSelected.includes(item.start_hour + " - " + item.end_hour) ? "text-white" : "text-blue-500"}`}>{item.end_hour}</span>
                                             </div>
                                         </button>
             
@@ -199,26 +332,29 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                             <div className="h-full">
 
                                 <div className="mt-3 bg-[#3f6fe0] py-1 px-2 rounded-[4px]">
-                                    <h3 className="text-md text-white">Équipements disponibles</h3>
+                                    <h3 className="text-md text-white">Choisir des équipements</h3>
                                 </div>
         
                                 <div className="date-day-container flex gap-3 flex-wrap mt-4">
                                     <button 
-                                        className={`bg-[#ffffff] border-gray-400 hover:border-blue-600 border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3`}
+                                        onClick={() => selectToolsHandler(1)}
+                                        className={`border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3 ${toolsListSelected.includes(1) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
                                     >
-                                        <i className="fa-solid fa-video text-red-500"></i>
+                                        <i className={`fa-solid fa-video ${toolsListSelected.includes(1) ? "text-white" : "text-red-500" }`}></i>
                                         <span>Projecteur</span>
                                     </button>
                                     <button 
-                                        className={`bg-[#ffffff] border-gray-400 hover:border-blue-600 border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3`}
+                                        onClick={() => selectToolsHandler(2)}
+                                        className={`border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3 ${toolsListSelected.includes(2) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
                                     >
-                                        <i className="fa-solid fa-tv text-green-500"></i>
+                                        <i className={`fa-solid fa-tv ${toolsListSelected.includes(2) ? "text-white" : "text-green-500" }`}></i>
                                         <span>Écran</span>
                                     </button>
                                     <button 
-                                        className={`bg-[#ffffff] border-gray-400 hover:border-blue-600 border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3`}
+                                        onClick={() => selectToolsHandler(3)}
+                                        className={`border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3 ${toolsListSelected.includes(3) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
                                     >
-                                        <i className="fa-solid fa-mobile-screen text-blue-500"></i>
+                                        <i className={`fa-solid fa-mobile-screen ${toolsListSelected.includes(3) ? "text-white" : "text-blue-500" } `}></i>
                                         <span>Tablette</span>
                                     </button>
                                 </div>
@@ -226,7 +362,13 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                             </div>
     
                             <div className="mt-6">
-                                <button className="bg-green-500 hover:bg-green-600 hover:active:bg-green-500  rounded-[5px] py-[10px] px-7 text-white w-full">Réserver cette salle</button>
+                                <button 
+                                    onClick={onSendBooking}
+                                    type="button" 
+                                    className="bg-green-500 hover:bg-green-600 hover:active:bg-green-500  rounded-[5px] py-[10px] px-7 text-white w-full"
+                                >
+                                    Réserver cette salle
+                                </button>
                             </div>
 
                         </div>
@@ -244,6 +386,8 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                 }
 
             </div>
+
+            <ToastContainer/>
             
         </section>
     )

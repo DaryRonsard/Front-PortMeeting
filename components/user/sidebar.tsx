@@ -28,7 +28,6 @@ export default function SideBar(props:sideBarType) {
     }
 
 
-
   return (
 
     <aside className={`fixed z-20 top-0 left-0 h-full w-full max-w-[270px]`}>
@@ -65,6 +64,12 @@ export default function SideBar(props:sideBarType) {
                             <Link href="/chat" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/chat") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
                                 <i className={`fa-solid fa-message text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full ${pathname.startsWith("/chat") ? " bg-[#3182c7] text-white " : "text-white bg-[#3182c7] pt-2" }`}></i>
                                 Chat
+                                <span 
+                                    style={{fontSize:"14px"}}
+                                    className="absolute right-[15px] bg-[#ff0000] rounded-[20px] py-[1.5px] px-[8px] text-white font-medium"
+                                >
+                                    2
+                                </span>
                             </Link>
                         </li>
                         <li className="my-1">
@@ -97,8 +102,8 @@ export default function SideBar(props:sideBarType) {
 
                 <div className="border-t-[1.55px] flex items-center justify-between gap-3 px-2 hover:bg-[#f0f0ef]">
                     <button className="w-full py-1">
-                        <div className="flex items-center gap-4 ">
-                            <div className="relative rounded-full w-[50px] h-[37px] ">
+                        <div className="flex items-center">
+                            <div className="relative rounded-full w-[37px] h-[37px] mr-2">
                                 <img 
                                     src="/images/sofware-enginer.jpg" alt="avatar" 
                                     className="w-full h-full rounded-full border-2 border-blue-300 cursor-pointer"
@@ -107,7 +112,7 @@ export default function SideBar(props:sideBarType) {
                             </div>
                             <div className="w-full max-w-[150px] text-center">
                                 <p className="overflow-hidden text-ellipsis text-nowrap text-gray-800">Hien Dary</p>
-                                <span className="text-sm text-gray-600">hiendary@gmail.com</span>
+                                <span className="overflow-hidden text-ellipsis text-sm text-gray-600">hiendary@gmail.com</span>
                             </div>
                         </div>
                     </button>

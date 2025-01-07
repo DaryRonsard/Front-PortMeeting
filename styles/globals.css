@@ -21,3 +21,10 @@ span.spinner{
     transform: rotate(360deg);
   }
 }
+
+
+
+/* Mise en forme du MODAL */
+h2.swal2-title{
+  font-size:20px;
+}

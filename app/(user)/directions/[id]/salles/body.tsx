@@ -39,24 +39,28 @@ export default function Body() {
                             </div>
                             <div className="my-1 w-full flex flex-col justify-between gap-y-3">
                                 <div className="relative">
-                                    <h3 className="text-blue-500 font-medium overflow-hidden text-nowrap text-ellipsis">{item.description}</h3>
+                                    <h3 className="text-blue-500 font-medium overflow-hidden text-nowrap text-ellipsis">
+                                        {item.description}
+                                    </h3>
                                     <div className="my-2">
                                         <div className="flex items-center gap-x-2 my-1">
                                             <i className="fa-solid fa-users text-blue-500"></i>
-                                            <span className="text-blue-600">5-7 Participants</span>
+                                            <span className="text-blue-600">7 Participants</span>
                                         </div>
                                         <div className="flex items-center gap-x-2 my-1">
                                             <i className="fa-solid fa-video text-red-500"></i>
-                                            <span className="text-gray-600">Projecteur</span>
+                                            <i className="fa-solid fa-tv text-green-500"></i>
+                                            <i className="fa-solid fa-mobile-screen text-blue-500"></i>
+                                            {/* <span className="text-gray-600">Projecteur</span> */}
                                         </div>
-                                        <div className="flex items-center gap-x-2 my-1">
+                                        {/* <div className="flex items-center gap-x-2 my-1">
                                             <i className="fa-solid fa-tv text-green-500"></i>
                                             <span className="text-gray-600">Écran</span>
                                         </div>
                                         <div className="flex items-center gap-x-2 my-1">
                                             <i className="fa-solid fa-mobile-screen text-blue-500"></i>
                                             <span className="text-gray-600">Tablette</span>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-1">
