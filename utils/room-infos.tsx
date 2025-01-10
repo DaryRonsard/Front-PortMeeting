@@ -1,46 +1,4 @@
 
-
-export const directionsList = [
-    {
-        id:1,
-        name:"DG",
-        description:"Direction Générale",
-        image:"https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid"
-    },
-    {
-        id:2,
-        name:"DSIN",
-        description:"Direction du système de l'information numérique",
-        image:"https://cms.weka.ch/fileadmin_personal_schweiz/USERDATA/Direction_d_entreprise_nouveau.jpg"
-    },
-    {
-        id:3,
-        name:"DL",
-        description:"Direction du système d'information",
-        image:"https://img.freepik.com/photos-premium/immeuble-bureaux-londres-angleterre-royaume-uni_117856-436.jpg"
-    },
-    {
-        id:4,
-        name:"DOMSE",
-        description:"Direction des Opérations Maritimes, de la Sécurité et de l'Environnement",
-        image:"https://cms.weka.ch/fileadmin_personal_schweiz/USERDATA/Direction_d_entreprise_nouveau.jpg"
-    },
-    {
-        id:5,
-        name:"DCMC",
-        description:"Direction Commercial, Marketing et de la Communication",
-        image:"https://img.freepik.com/photos-premium/immeuble-bureaux-londres-angleterre-royaume-uni_117856-436.jpg"
-    },
-    {
-        id:6,
-        name:"DEESP",
-        description:"Direction des Etudes Economiques, de la Stratégie et de la Planification",
-        image:"https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid"
-    },
-]
-
-
-/*
 export const RoomsByDirectionList = [
     {
         id_direction:1,
@@ -149,15 +107,9 @@ export const RoomsByDirectionList = [
 ]
 
 
-export const BookingHoursList = [
-    {date:new Date().toLocaleDateString(),start_hour:"10:00",end_hour:"11:00",is_busy:false},
-    {date:new Date().toLocaleDateString(),start_hour:"11:30",end_hour:"12:00",is_busy:false},
-    {date:new Date().toLocaleDateString(),start_hour:"12:30",end_hour:"13:00",is_busy:false},
-    {date:new Date().toLocaleDateString(),start_hour:"13:30",end_hour:"14:00",is_busy:false},
-    {date:new Date().toLocaleDateString(),start_hour:"14:30",end_hour:"15:00",is_busy:false},
-    {date:new Date().toLocaleDateString(),start_hour:"15:30",end_hour:"16:00",is_busy:false},
-    {date:new Date().toLocaleDateString(),start_hour:"16:30",end_hour:"17:00",is_busy:false},
-    {date:new Date().toLocaleDateString(),start_hour:"17:30",end_hour:"18:00",is_busy:false},
+export const RoomTools = [
+    {nom:"Projecteur",status:"disponible",isDelete:false},
+    {nom:"Ecran",status:"disponible",isDelete:false},
+    {nom:"Tablette",status:"disponible",isDelete:false},
+    {nom:"Micro",status:"indisponible",isDelete:false},
 ]
-
-*/

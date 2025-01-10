@@ -2,10 +2,10 @@
 
 import apiClient from '@/utils/api-client';
 import React, { useEffect } from 'react'
-import { directionsList, RoomsByDirectionList } from '@/utils/directions-infos'
+import {RoomsByDirectionList, RoomTools } from '@/utils/room-infos'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';	
 import { Bounce, toast } from 'react-toastify';
 
 
@@ -43,10 +43,12 @@ export default function Body() {
             }
            
         });
+        
     }
 
     const onFreeUpRoom = async () => {
 
+        
         Swal.fire({
             title: "Êtes-vous sûr de vouloir libérer cette salle ?",
             text: "",
@@ -122,14 +124,23 @@ export default function Body() {
                                             <i className="fa-solid fa-users text-blue-500"></i>
                                             <span className="text-blue-600">7 Participants</span>
                                         </div>
-                                        {/* <div className="flex items-center gap-x-2 my-1">
-                                            <i className="fa-solid fa-tools text-blue-500"></i>
-                                            <span className="text-blue-600">Equipements</span>
-                                        </div> */}
                                         <div className="flex items-center gap-x-2 my-1">
-                                            <i className="fa-solid fa-video text-red-500"></i>
-                                            <i className="fa-solid fa-tv text-green-500"></i>
-                                            <i className="fa-solid fa-mobile-screen text-blue-500"></i>
+                                            {RoomTools && RoomTools.length > 0 && 
+                                                RoomTools.map((item:any,index:number) => (
+                                                    item.nom == "Projecteur" ? 
+                                                        <i className="fa-solid fa-video text-red-500" key={index}></i>
+                                                    :
+                                                    item.nom == "Ecran" ? 
+                                                        <i className="fa-solid fa-tv text-green-500" key={index}></i>
+                                                    :
+                                                    item.nom == "Tablette" ? 
+                                                        <i className="fa-solid fa-mobile-screen text-blue-500" key={index}></i>
+                                                    :
+                                                    item.nom == "Micro" &&
+                                                        <i className="fa-solid fa-video text-gray-500" key={index}></i>
+                                                    
+                                                ))
+                                            }
                                         </div>
                                     </div>
                                 </div>

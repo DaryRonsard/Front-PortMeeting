@@ -1,6 +1,9 @@
 "use client"
 
-import {directionsList,RoomsByDirectionList,BookingHoursList} from '@/utils/directions-infos'
+// import {directionsList,RoomsByDirectionList,BookingHoursList} from '@/utils/directions-infos'
+import {RoomsByDirectionList} from '@/utils/room-infos'
+import {BookingHoursList,BookingHoursSaving} from '@/utils/booking-infos'
+import { RoomTools } from '@/utils/room-infos'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { ToastContainer, toast,Bounce } from 'react-toastify';
@@ -11,29 +14,25 @@ import Slider from "react-slick";
 export default function Body({id_direction,id_salle}:{id_direction?:string,id_salle?:string}) {
 
     const currentDate = new Date().toLocaleDateString("fr-FR") // 22/12/2024
-    const currentHour = "07:00" // heure définie par défaut au chargement de la page à titre d'exemple
-    // const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // 16:00
+    // const currentHour = "07:00" // heure définie par défaut au chargement de la page à titre d'exemple
+    const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // 16:00
 
     // Récupération des images de la salle sélectionnée
     const getRoomImages = RoomsByDirectionList.filter((item:any) => {
         return item.id_direction == id_direction && item.id_room == id_salle
     }).map((item:any) => item )
 
-    // Récupération de la liste des heures disponibles de réservation de la salle sélectionnée
-    const getBookingHoursList = BookingHoursList.filter((item) => {
-        return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
-    })
 
     // Récupération de la liste des heures disponibles de réservation de la salle sélectionnée
     /*
-        const getBookingHoursList = BookingHoursList.filter((item) => {
-            return ![
-                {start_hour:"10:00",end_hour:"11:00"},
-                {start_hour:"11:30",end_hour:"12:00"},
-                {start_hour:"12:00",end_hour:"14:00"},
-            ].some((item2) =>  item.start_hour <= item2.end_hour )
-        }) 
+    const getBookingHoursList = BookingHoursList.filter((item) => {
+        return !BookingHoursSaving.some((item2) => item2.date == currentDate && item.start_hour <= item2.end_hour )
+    }) 
     */
+
+    const getBookingHoursList = BookingHoursList.filter((item) => {
+        return !BookingHoursSaving.some((item2) => item2.date == currentDate && item.start_hour >= currentHour && currentHour <= item2.end_hour )
+    }) 
 
     const [activeHour,setActiveHour] = useState<number|null>(null)
     const [bookingHourListSelected,setBookingHourListSelected] = useState<any>([])
@@ -56,11 +55,14 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
             const currentDate = new Date().toLocaleDateString("fr-FR") // 22/12/2024
             const currentHour = "07:00" // heure définie par défaut à la recherche à titre d'exemple
             // const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // Exemple(16:00)
-            const newBookingHoursList = BookingHoursList.filter((item) => {
-                return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
+
+            const getCurrentBookingHoursList = BookingHoursList.filter((item) => item.start_hour >= currentHour );
+
+            const newBookingHoursList = getCurrentBookingHoursList.filter((item) => {
+                return !BookingHoursSaving.some((item2) => item2.date == currentDate && item.start_hour <= item2.end_hour )
             })
             setBookingHours(newBookingHoursList)
-            console.log(newBookingHoursList,currentDate,currentHour)
+            // console.log(newBookingHoursList,currentDate)
         }
         else
         {
@@ -68,12 +70,14 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
             const currentDate = new Date(bookingDate).toLocaleDateString("fr-FR") // 22/12/2024
             const currentHour = "07:00" // heure définie par défaut à la recherche à titre d'exemple
             // const currentHour = new Date().toLocaleString("fr-FR",{hour:"2-digit",minute:"2-digit"}) // Exemple(16:00)
-            const newBookingHoursList = BookingHoursList.filter((item) => {
-                return item.date == currentDate && item.start_hour >= currentHour && !item.is_busy
+            const getCurrentBookingHoursList = BookingHoursList.filter((item) => item.start_hour >= currentHour );
+            
+            const newBookingHoursList = getCurrentBookingHoursList.filter((item) => {
+                return !BookingHoursSaving.some((item2) => item2?.date == currentDate && item?.start_hour <= item2?.end_hour )
             })
     
             setBookingHours(newBookingHoursList)
-            // console.log(newBookingHoursList,currentDate,currentHour)
+            // console.log(newBookingHoursList,currentDate)
         }
 
     }
@@ -130,6 +134,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
             // console.log(getBookingHours)
             // alert(`Réservation de salle pour ${getBookingHours}`)
 
+            
             toast.success(`Réservation envoyé avec success !`, {
                 position: "bottom-right",
                 autoClose:2500,
@@ -141,6 +146,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                 theme: "light",
                 transition:Bounce,
             });
+            
 
         }
         else if(bookingHourListSelected.length == 0)
@@ -156,60 +162,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
             })
 
         }
-        else
-        {
-
-            /*
-                const result = confirm("Avez-vous besoin d'équipement pour la réunion ?")
-
-                if(!result)
-                {
-                    toast.success(`Réservation envoyé avec success !`, {
-                        position: "bottom-right",
-                        autoClose:2500,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                        transition:Bounce,
-                    });
-                }
-            */
-
-            Swal.fire({
-                title: "Avez-vous besoin d'équipement pour la réunion ?",
-                text: "",
-                icon: "warning",
-                confirmButtonText: "Bien sûr",
-                confirmButtonColor: "#22c55e",
-                cancelButtonColor: "#d33",
-                showCancelButton: true,
-                cancelButtonText:"Non"
-            })
-            .then((result:any) => {
-                if (result.isConfirmed)
-                {
-                    return null
-                }
-                else
-                {
-                    toast.success(`Réservation envoyé avec success !`, {
-                        position: "bottom-right",
-                        autoClose:2500,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                        transition:Bounce,
-                    });
-                }
-            });
-            
-        }
+       
     }
 
 
@@ -222,6 +175,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
     };
 
     return (
+        
         <section className="pl-[300px]">
 
             <div className="p-1 px-1 mb-5">
@@ -281,7 +235,6 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                         
                 } */}
 
-                {/* (Old Version)*/}
                 {roomImageList && roomImageList.length > 0 &&
 
                     roomImageList.map((room:any,index:number) => (
@@ -318,7 +271,7 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                     ))
                 } 
                
-
+                 
                 {/* Right */}
                 {roomImageList && roomImageList.length > 0 &&
 
@@ -382,31 +335,49 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                             <div className="h-full">
 
                                 <div className="mt-3 bg-[#3f6fe0] py-1 px-2 rounded-[4px]">
-                                    <h3 className="text-md text-white">Choisir des équipements</h3>
+                                    <h3 className="text-md text-white">Liste des équipements </h3>
                                 </div>
         
                                 <div className="date-day-container flex gap-3 flex-wrap mt-4">
-                                    <button 
-                                        onClick={() => selectToolsHandler(1)}
-                                        className={`border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3 ${toolsListSelected.includes(1) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
-                                    >
-                                        <i className={`fa-solid fa-video ${toolsListSelected.includes(1) ? "text-white" : "text-red-500" }`}></i>
-                                        <span>Projecteur</span>
-                                    </button>
-                                    <button 
-                                        onClick={() => selectToolsHandler(2)}
-                                        className={`border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3 ${toolsListSelected.includes(2) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
-                                    >
-                                        <i className={`fa-solid fa-tv ${toolsListSelected.includes(2) ? "text-white" : "text-green-500" }`}></i>
-                                        <span>Écran</span>
-                                    </button>
-                                    <button 
-                                        onClick={() => selectToolsHandler(3)}
-                                        className={`border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3 ${toolsListSelected.includes(3) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
-                                    >
-                                        <i className={`fa-solid fa-mobile-screen ${toolsListSelected.includes(3) ? "text-white" : "text-blue-500" } `}></i>
-                                        <span>Tablette</span>
-                                    </button>
+
+                                    {RoomTools && RoomTools.length > 0 &&
+
+                                        RoomTools.map((item:any,index:number) => (
+
+                                            <button 
+                                                key={index}
+                                                className={`border-[1.6px] shadow-md rounded-[4px] p-1 px-3 flex items-center gap-3 ${toolsListSelected.includes(1) ? "bg-[#3f6fe0] text-white border-[#3f6fe0]" : "bg-[#ffffff] border-gray-400 hover:border-blue-600"}`}
+                                            >
+                                                {item.nom == "Projecteur" &&
+                                                    <>
+                                                        <i className={`fa-solid fa-video text-red-500`}></i>
+                                                        <span>Projecteur</span>
+                                                    </>
+                                                }
+                                                {item.nom == "Ecran" &&
+                                                    <>
+                                                        <i className={`fa-solid fa-tv text-green-500`}></i>
+                                                        <span>Ecran</span>
+                                                    </>
+                                                }
+                                                {item.nom == "Tablette" &&
+                                                    <>
+                                                        <i className={`fa-solid fa-mobile-screen text-blue-500`}></i>
+                                                        <span>Tablette</span>
+                                                    </>
+                                                }
+                                                {item.nom == "Micro" &&
+                                                    <>
+                                                        <i className={`fa-solid fa-microphone text-gray-500`}></i>
+                                                        <span>Micro</span>
+                                                    </>
+                                                }
+                                            </button>
+
+                                        ))
+                                    
+                                    }
+
                                 </div>
 
                             </div>
@@ -431,7 +402,6 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                             </div>
                         </div> */}
                         
-
                     </div>
                 }
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4f148a34-f892-4e52-a6f4-66a69ebaf2a5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/(user)/directions/[id]/salles/[id_salle]/body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(user)/directions/[id]/salles/[id_salle]/body.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(user)/directions/[id]/salles/body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(user)/directions/[id]/salles/body.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(user)/reservations/body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(user)/reservations/body.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/middleware.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/directions-infos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/utils/directions-infos.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2rRaS1lcEarebPpGKgEISZEgDyV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/RONSARD HIEN/Desktop/PortMeeting/Front-PortMeeting",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4f148a34-f892-4e52-a6f4-66a69ebaf2a5" name="Changes" comment="" />
+      <created>1736524374099</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736524374099</updated>
+      <workItem from="1736524375481" duration="181000" />
+      <workItem from="1736524593330" duration="102000" />
+      <workItem from="1736534720869" duration="577000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

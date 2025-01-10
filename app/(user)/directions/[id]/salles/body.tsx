@@ -1,6 +1,8 @@
 "use client"
 
-import { directionsList,RoomsByDirectionList } from '@/utils/directions-infos'
+import { directionsList} from '@/utils/directions-infos'
+import {RoomsByDirectionList } from '@/utils/room-infos'
+import { RoomTools } from '@/utils/room-infos'
 import Link from 'next/link'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
@@ -16,7 +18,6 @@ export default function Body() {
     return (
         <section className="pl-[300px]">
             <div className="p-1 px-1 mb-5">
-                {/* <h3 className="font-medium text-xl text-gray-600">Salles de réunions (DSIN)</h3> */}
                 <h3 className="font-medium text-xl text-blue-500 flex items-center gap-x-3"> 
                     <button onClick={() => history.back()}>
                         <i className="fa-solid fa-arrow-left text-blue-500"></i> 
@@ -48,10 +49,23 @@ export default function Body() {
                                             <span className="text-blue-600">7 Participants</span>
                                         </div>
                                         <div className="flex items-center gap-x-2 my-1">
-                                            <i className="fa-solid fa-video text-red-500"></i>
-                                            <i className="fa-solid fa-tv text-green-500"></i>
-                                            <i className="fa-solid fa-mobile-screen text-blue-500"></i>
-                                            {/* <span className="text-gray-600">Projecteur</span> */}
+                                            {RoomTools && RoomTools.length > 0 && 
+                                                RoomTools.map((item:any,index:number) => (
+                                                    item.nom == "Projecteur" ? 
+                                                        <i className="fa-solid fa-video text-red-500" key={index}></i>
+                                                    :
+                                                    item.nom == "Ecran" ? 
+                                                        <i className="fa-solid fa-tv text-green-500" key={index}></i>
+                                                    :
+                                                    item.nom == "Tablette" ? 
+                                                        <i className="fa-solid fa-mobile-screen text-blue-500" key={index}></i>
+                                                    :
+                                                    item.nom == "Micro" &&
+                                                        <i className="fa-solid fa-microphone text-gray-500" key={index}></i>
+                                                    
+                                                ))
+                                            }
+                                            
                                         </div>
                                         {/* <div className="flex items-center gap-x-2 my-1">
                                             <i className="fa-solid fa-tv text-green-500"></i>

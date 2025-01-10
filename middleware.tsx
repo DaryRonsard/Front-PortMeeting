@@ -53,9 +53,11 @@ export async function middleware(request: NextRequest) {
 // Configuration du matcher dans le middleware, pour spécifier les pages protégées
 export const config = {
     matcher: [
-        '/home', 
-        '/dashboard', 
+        '/home:path*', 
+        '/dashboard:path*', 
         '/directions/:path*', 
+        '/chat/:path*', 
+        '/video/:path*', 
         // '/user/:path*', // User protected routes
         // '/admin/:path*', // Admin protected routes
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'
