@@ -36,7 +36,7 @@ export default function SideBar(props:sideBarType) {
 
             <div className="flex items-center gap-x-2 mb-2 px-3 pb-2 ">
                 <img src="/images/meeting-logo-1.png" alt="logo" width={50}/>
-                <h3 className="font-medium text-xl text-blue-500 uppercase"style={{textShadow:"0px 0px 2px blue"}}>Meeting</h3>
+                <h3 className="font-medium text-xl text-blue-500 uppercase"style={{textShadow:"0px 0px 2px blue"}}>Meeting AD</h3>
             </div>
 
             <div className="h-full flex flex-col justify-between">

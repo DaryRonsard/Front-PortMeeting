@@ -7,7 +7,6 @@ export async function middleware(request: NextRequest) {
     // Clonage de l'url de la page en cours
     const url = request.nextUrl.clone();
 
-
     // Récupération du token depuis un cookie
     let accessToken:any = request.cookies.get('access_token')?.value
     let refreshToken:any = request.cookies.get('refresh_token')?.value

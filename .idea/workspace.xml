@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f148a34-f892-4e52-a6f4-66a69ebaf2a5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/(user)/directions/[id]/salles/[id_salle]/body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(user)/directions/[id]/salles/[id_salle]/body.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(user)/directions/[id]/salles/body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(user)/directions/[id]/salles/body.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(user)/reservations/body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(user)/reservations/body.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/middleware.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/directions-infos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/utils/directions-infos.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="4f148a34-f892-4e52-a6f4-66a69ebaf2a5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +46,7 @@
       <updated>1736524374099</updated>
       <workItem from="1736524375481" duration="181000" />
       <workItem from="1736524593330" duration="102000" />
-      <workItem from="1736534720869" duration="577000" />
+      <workItem from="1736534720869" duration="979000" />
     </task>
     <servers />
   </component>

@@ -36,33 +36,45 @@ export default function SideBar(props:sideBarType) {
 
             <div className="flex items-center gap-x-2 mb-2 px-3 pb-2 ">
                 <img src="/images/meeting-logo-1.png" alt="logo" width={50}/>
-                <h3 className="font-medium text-xl text-blue-500 uppercase"style={{textShadow:"0px 0px 2px blue"}}>Meeting</h3>
+                <h3 className="font-medium text-xl text-blue-500 uppercase"style={{textShadow:"0px 0px 2px blue"}}>Meeting S ADMIN</h3>
             </div>
 
             <div className="h-full flex flex-col justify-between">
                 <div className="h-full">
                     <ul className="list-none py-3 px-2">
                         <li className="my-1">
-                            <Link href="/dashboard" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/dashboard") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"} `}>
-                                <i className={`fa-solid fa-gauge text-[16px] py-[7px] px-[7px] rounded-full ${pathname.startsWith("/dashboard") ? " bg-[#dfbd08e8] text-white " : "text-white bg-[#dfbd08e8]" }`}></i>
+                            <Link href="/admin/dashboard" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/dashboard") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"} `}>
+                                <i className={`fa-solid fa-gauge text-[16px] py-[7px] px-[7px] rounded-full ${pathname.startsWith("/admin/dashboard") ? " bg-[#dfbd08e8] text-white " : "text-white bg-[#dfbd08e8]" }`}></i>
                                 Tableau de bord
                             </Link>
                         </li>
                         <li className="my-1">
-                            <Link href="/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/directions") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
-                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/directions") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
+                            <Link href="/admin/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/directions") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-user text-[15.3px] py-[7px] px-[8px] rounded-full ${pathname.startsWith("/admin/directions") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
+                                Utilisateurs
+                            </Link>
+                        </li>
+                        <li className="my-1">
+                            <Link href="/admin/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/directions") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/directions") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
                                 Directions
                             </Link>
                         </li>
                         <li className="my-1">
-                            <Link href="/reservations" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/reservations") ? "bg-[#ebf5fa] text-blue-500 font-medium" : "text-gray-800"}`}>
-                                <i className={`fa-solid fa-calendar-days text-[15.5px] py-[7px] px-[8px] rounded-full ${pathname.startsWith("/reservations") ? " bg-[#74c042] text-white " : "text-white bg-[#74c042]" }`}></i>
+                            <Link href="/admin/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/directions") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/directions") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
+                                Salles
+                            </Link>
+                        </li>
+                        <li className="my-1">
+                            <Link href="/admin/reservations" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/reservations") ? "bg-[#ebf5fa] text-blue-500 font-medium" : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-calendar-days text-[15.5px] py-[7px] px-[8px] rounded-full ${pathname.startsWith("/admin/reservations") ? " bg-[#74c042] text-white " : "text-white bg-[#74c042]" }`}></i>
                                 Réservations
                             </Link> 
                         </li>
                         <li className="my-1">
-                            <Link href="/chat" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/chat") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
-                                <i className={`fa-solid fa-message text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full ${pathname.startsWith("/chat") ? " bg-[#3182c7] text-white " : "text-white bg-[#3182c7] pt-2" }`}></i>
+                            <Link href="/admin/chat" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/chat") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-message text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full ${pathname.startsWith("/admin/chat") ? " bg-[#3182c7] text-white " : "text-white bg-[#3182c7] pt-2" }`}></i>
                                 Chat
                                 <span 
                                     style={{fontSize:"14px"}}
@@ -73,8 +85,8 @@ export default function SideBar(props:sideBarType) {
                             </Link>
                         </li>
                         <li className="my-1">
-                            <Link href="/video" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/video") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
-                                <i className={`fa-solid fa-video text-[15.3px] text-gray-500 py-[7px] px-[6px] rounded-full ${pathname.startsWith("/video") ? " bg-[#c81f27] text-white " : "text-white bg-[#c81f27]" }`}></i>
+                            <Link href="/admin/video" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/video") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-video text-[15.3px] text-gray-500 py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/video") ? " bg-[#c81f27] text-white " : "text-white bg-[#c81f27]" }`}></i>
                                 Vidéo conférence
                             </Link>
                         </li>
@@ -103,12 +115,12 @@ export default function SideBar(props:sideBarType) {
                 {/* <div className="border-t-[1.55px] flex items-center justify-between gap-3 px-2 hover:bg-[#f0f0ef]"> */}
 
                 <div className="border-t-[1.55px] flex items-center justify-between gap-3 px-2">
-                    <button className="w-full py-1">
+                    <button className="w-full py-1 cursor-default">
                         <div className="flex items-center">
                             <div className="relative rounded-full w-[37px] h-[37px] mr-2">
                                 <img 
                                     src="/images/sofware-enginer.jpg" alt="avatar" 
-                                    className="w-full h-full rounded-full border-2 border-blue-300 cursor-pointer"
+                                    className="w-full h-full rounded-full border-2 border-blue-300 cursor-pointer "
                                     id="user-profil"
                                 />
                             </div>
