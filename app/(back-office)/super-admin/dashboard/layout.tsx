@@ -1,4 +1,4 @@
-import Sidebar from '@/components/admin/sidebar';
+import Sidebar from '@/components/super-admin/sidebar';
 import type { Metadata } from "next";
 
 

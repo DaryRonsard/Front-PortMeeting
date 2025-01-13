@@ -3,6 +3,10 @@ import { useRouter } from "next/navigation";
 import { destroyCookie, setCookie } from "nookies";
 
 
+export const apiBaseURL = "http://localhost:8000/"
+export const imageURL = "https://res.cloudinary.com/dqwr1xunf"
+
+
 const apiClient = axios.create({
   baseURL: "http://localhost:8000/",
   // headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}`},
@@ -89,12 +93,14 @@ apiClient.interceptors.response.use(
             localStorage.removeItem("access_token")
             localStorage.removeItem("refresh_token")
             router.replace("/home")
+            // window.location.reload()
             
           }
 
         } 
         catch (err) 
         {
+          const router = useRouter()
           console.error("Token refresh failed:", err);
           processQueue(err, null);
           destroyCookie(null,"access_token")
@@ -103,6 +109,7 @@ apiClient.interceptors.response.use(
           localStorage.removeItem("refresh_token")
           // const response = await apiClient.post("http://localhost:8000/api/logout");
           // console.log(response)
+          // router.replace("/home")
           window.location.href = "/home";
         } 
         finally {

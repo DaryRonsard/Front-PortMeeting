@@ -9,7 +9,9 @@ import React from 'react'
 
 
 type sideBarType = {
-    location?:string
+    location?:string,
+    username?:string,
+    email?:string
 }
 
 
@@ -113,8 +115,10 @@ export default function SideBar(props:sideBarType) {
                                 />
                             </div>
                             <div className="w-full max-w-[150px] text-center">
-                                <p className="overflow-hidden text-ellipsis text-nowrap text-gray-800">Hien Dary</p>
-                                <span className="overflow-hidden text-ellipsis text-sm text-gray-600">hiendary@gmail.com</span>
+                                {/* <p className="overflow-hidden text-ellipsis text-nowrap text-gray-800">Hien Dary</p> */}
+                                {/* <span className="overflow-hidden text-ellipsis text-sm text-gray-600">hiendary@gmail.com</span> */}
+                                <p className="overflow-hidden text-ellipsis text-nowrap text-gray-800">Utilisateur</p>
+                                <span className="overflow-hidden text-ellipsis text-sm text-gray-600">{props?.email || "hiendary@gmail.com"}</span>
                             </div>
                         </div>
                     </button>

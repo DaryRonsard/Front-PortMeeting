@@ -104,7 +104,6 @@ export default function Body() {
             else if(e.target != show_booking_cancel_modal_btn)
             {
                 setShowModal(false)
-
             }
 
         })
@@ -127,7 +126,7 @@ export default function Body() {
                     className="relative"
                 >
 
-                    <i className={`fa-solid fa-clock text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full text-white bg-[#3182c7] pt-2 pointer-events-none`}></i>
+                    <i className={`fa-solid fa-bell text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full text-white bg-[#3182c7] pt-2 pointer-events-none`}></i>
 
                     <span 
                         style={{fontSize:"13px"}}

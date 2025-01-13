@@ -16,7 +16,7 @@ export const directionsList = [
     {
         id:3,
         name:"DL",
-        description:"Direction du système d'information",
+        description:"Direction de la logistique",
         image:"https://img.freepik.com/photos-premium/immeuble-bureaux-londres-angleterre-royaume-uni_117856-436.jpg"
     },
     {
