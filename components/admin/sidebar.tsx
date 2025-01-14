@@ -37,7 +37,7 @@ export default function SideBar(props:sideBarType) {
 
             <div className="flex items-center gap-x-2 mb-2 px-3 pb-2 ">
                 <img src="/images/meeting-logo-1.png" alt="logo" width={50}/>
-                <h3 className="font-medium text-xl text-blue-500 uppercase text-white"style={{textShadow:"0px 0px 2px blue"}}>Meeting S ADMIN</h3>
+                <h3 className="font-medium text-xl text-blue-500 uppercase text-white"style={{textShadow:"0px 0px 2px blue"}}>Meeting GEST</h3>
             </div>
 
             <div className="h-full flex flex-col justify-between">
@@ -49,18 +49,12 @@ export default function SideBar(props:sideBarType) {
                                 Tableau de bord
                             </Link>
                         </li>
-                        <li className="my-1">
-                            <Link href="/admin/utilisateurs" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/utilisateurs") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
-                                <i className={`fa-solid fa-user text-[15.3px] py-[7px] px-[8px] rounded-full ${pathname.startsWith("/admin/utilisateurs") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
-                                Utilisateurs
-                            </Link>
-                        </li>
-                        <li className="my-1">
+                        {/* <li className="my-1">
                             <Link href="/admin/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/directions") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
                                 <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/directions") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
                                 Directions
                             </Link>
-                        </li>
+                        </li> */}
                         <li className="my-1">
                             <Link href="/admin/salles" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/salles") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
                                 <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>

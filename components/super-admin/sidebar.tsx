@@ -33,11 +33,11 @@ export default function SideBar(props:sideBarType) {
     <aside className={`fixed z-20 top-0 left-0 h-full w-full max-w-[270px]`}>
 
         {/* <div className="h-full flex flex-col bg-[#ffffff] rounded-sm border-r-[0.2px] border-gray-200 py-3"> */}
-        <div className="h-full flex flex-col bg-[#11538c] rounded-sm border-r-[0.2px] border-gray-200 py-3">
+        <div className="h-full flex flex-col bg-[#d62727] rounded-sm border-r-[0.2px] border-gray-200 py-3">
 
             <div className="flex items-center gap-x-2 mb-2 px-3 pb-2 ">
                 <img src="/images/meeting-logo-1.png" alt="logo" width={50}/>
-                <h3 className="font-medium text-xl text-blue-500 uppercase text-white"style={{textShadow:"0px 0px 2px blue"}}>Meeting S ADMIN</h3>
+                <h3 className="font-medium text-xl text-blue-500 uppercase text-white"style={{textShadow:"0px 0px 2px blue"}}>Meeting ADMIN</h3>
             </div>
 
             <div className="h-full flex flex-col justify-between">

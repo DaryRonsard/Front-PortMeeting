@@ -31,7 +31,7 @@ export default function Body() {
     return (
         <section className="pl-[300px]">
             <div className="flex items-center justify-between p-1 px-1 mb-5">
-                <h3 className="font-medium text-xl text-blue-500">Liste des salles (6)</h3>
+                <h3 className="font-medium text-xl text-blue-500">Liste des salles (2)</h3>
                 <button className="flex items-center gap-x-1 bg-green-500 rounded-md px-3 py-1 text-white">
                     <i className="fa-solid fa-plus text-white pointer-events-none"></i>
                     Ajouter une salle
@@ -49,7 +49,13 @@ export default function Body() {
                         >
                             <div className="relative img-container h-[175px] rounded-md overflow-hidden  group">
                                 {/* <img src={item?.images[0]?.name || ""} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/> */}
-                                <img src={"/images/preparer-sa-salle.JPG"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                {index == 0 ?
+                                    <img src={"/images/rooms/preparer-sa-salle.JPG"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                : index == 1 ? 
+                                    <img src={"/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.JPG"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                :
+                                    <img src={"/images/rooms/preparer-sa-salle.JPG"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                }
                             </div>
                             <div className="my-1 w-full flex flex-col justify-between gap-y-3">
                                 <div className="relative">

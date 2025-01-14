@@ -11,7 +11,7 @@ export default function Body() {
     return (
         <section className="pl-[300px]">
             <div className="flex items-center justify-between p-1 px-1 mb-5">
-                <h3 className="font-medium text-xl text-blue-500">Liste des directions (6)</h3>
+                <h3 className="font-medium text-xl text-blue-500">Liste des directions (14)</h3>
                 <button className="flex items-center gap-x-1 bg-green-500 rounded-md px-3 py-1 text-white">
                     <i className="fa-solid fa-plus text-white pointer-events-none"></i>
                     Ajouter une direction

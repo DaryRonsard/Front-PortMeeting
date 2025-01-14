@@ -1,6 +1,6 @@
 "use client"
 
-import "@/styles/reservation.css"
+import "@/styles/super-admin/reservation.css"
 import apiClient from '@/utils/api-client';
 import React, { useEffect, useState } from 'react'
 import {RoomsByDirectionList, RoomTools } from '@/utils/room-infos'

@@ -37,88 +37,69 @@ export default function Body() {
                     Ajouter une salle
                 </button>
             </div>
-            <div className="grid-wrapper grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-2 gap-x-4 mt-4">
+            
+            <div className="table-wrapper">
 
-                {roomsList && roomsList.length > 0 &&
+                <table className="w-full text-center border border-gray-300">
+                    <thead className="bg-gray-200 h-[40px]">
+                        <tr>
+                            <th className="text-center font-medium border-gray-400 border-r">
+                                ID
+                            </th>
+                            <th className="text-center font-medium border-gray-400 border-r">
+                                Nom salle
+                            </th>
+                            <th className="text-center font-medium border-gray-400 border-r"> 
+                                Localisation
+                            </th>
+                            <th className="text-center font-medium border-gray-400 border-r">
+                                Capacite
+                            </th>
+                            <th className="text-center font-medium border-gray-400 border-r">
+                                Direction
+                            </th>
+                            <th className="text-center font-medium">
+                                Option
+                            </th>
+                        </tr>
+                    </thead>
 
-                    roomsList?.map((item:any,index:number) =>  (
-
-                        <div
-                            key={index} 
-                            className="grid-item flex flex-col justify-between p-3 bg-white rounded-md shadow-md"
-                        >
-                            <div className="relative img-container h-[175px] rounded-md overflow-hidden  group">
-                                {/* <img src={item?.images[0]?.name || ""} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/> */}
-                                <img src={"/images/preparer-sa-salle.JPG"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
-                            </div>
-                            <div className="my-1 w-full flex flex-col justify-between gap-y-3">
-                                <div className="relative">
-                                    <h3 className="text-blue-500 font-medium overflow-hidden text-nowrap text-ellipsis">
-                                        {item?.localisation}
-                                    </h3>
-                                    <div className="my-2">
-                                        <div className="flex items-center gap-x-2 my-1">
-                                            <i className="fa-solid fa-users text-blue-500"></i>
-                                            {/* <span className="text-blue-600">7 Participants</span> */}
-                                            <span className="text-blue-600">
-                                                {item?.capacite && item?.capacite > 1 ? ` ${item?.capacite} Participants` : `${item?.capacite} Participant`}
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center gap-x-2 my-1">
-                                            {/* {RoomTools && RoomTools?.length > 0 && 
-                                                RoomTools.map((item:any,index:number) => (
-                                                    item?.nom == "Projecteur" ? 
-                                                        <i className="fa-solid fa-video text-red-500" key={index}></i>
-                                                    :
-                                                    item.nom == "Ecran" ? 
-                                                        <i className="fa-solid fa-tv text-green-500" key={index}></i>
-                                                    :
-                                                    item.nom == "Tablette" ? 
-                                                        <i className="fa-solid fa-mobile-screen text-blue-500" key={index}></i>
-                                                    :
-                                                    item.nom == "Micro" &&
-                                                        <i className="fa-solid fa-microphone text-gray-500" key={index}></i>
-                                                    
-                                                ))
-                                            } */}
-                                            
-                                        </div>
-                                        {/* <div className="flex items-center gap-x-2 my-1">
-                                            <i className="fa-solid fa-tv text-green-500"></i>
-                                            <span className="text-gray-600">Écran</span>
-                                        </div>
-                                        <div className="flex items-center gap-x-2 my-1">
-                                            <i className="fa-solid fa-mobile-screen text-blue-500"></i>
-                                            <span className="text-gray-600">Tablette</span>
-                                        </div> */}
-                                    </div>
-                                </div>
-                                <div className="flex flex-col gap-1">
+                    <tbody>
+                        {Array.from([1,2,3,5,6].map((_,index:number) => (
+                            <tr 
+                                key={index} 
+                                className={`${index % 2 == 0 ? "bg-blue-200" : "bg-white"} h-[40px]`}
+                            >
+                                <td className="border-gray-400 border-r">{++index}</td>
+                                <td className="border-gray-400 border-r">Salle de reunion DG</td>
+                                <td className="border-gray-400 border-r">Nouvelle Direction 5 ieme etage</td>
+                                <td className="border-gray-400 border-r">5</td>
+                                <td className="border-gray-400 border-r">DG</td>
+                                <td className="">
                                     <button 
-                                        onClick={() => router.push(`/directions/${id}/salles/${item?.id_room}`)}  
-                                        className="bg-blue-500 hover:bg-blue-600 hover:active:bg-blue-500 text-white px-3 py-1.5 rounded-[5px]"
+                                        onClick={() => router.push(`/admin/salles/${1}`)} 
+                                        className="bg-blue-500  px-3 mx-1 rounded-[3px]"
                                     >
-                                        Détails
+                                        <i className={`fa-solid fa-bars text-white`}></i>
                                     </button>
-                                    <button 
-                                        onClick={() => router.push(`/directions/${id}/salles/${item?.id_room}`)}  
-                                        className="bg-green-500 hover:bg-green-600 hover:active:bg-green-500 text-white px-3 py-1.5 rounded-[5px]"
+                                    <button
+                                        className="bg-green-500  px-3 mx-1 rounded-[3px]"
                                     >
-                                        Modifier
+                                        <i className={`fa-solid fa-edit text-white`}></i>
                                     </button>
-                                    <button 
-                                        onClick={() => router.push(`/directions/${id}/salles/${item?.id_room}`)}  
-                                        className="bg-red-500 hover:bg-red-600 hover:active:bg-red-500 text-white px-3 py-1.5 rounded-[5px]"
-                                    >
-                                        Supprimer
+                                    <button className="bg-red-500  px-3 mx-1 rounded-[3px]">
+                                        <i className={`fa-solid fa-trash-can text-white`}></i>
                                     </button>
-                                </div>
-                            </div>
-                        </div>
+                                </td>
+                            </tr>
 
-                    ))
-                }
+                        )))}
+                    </tbody>
+
+                </table>
+
             </div>
+
         </section>
     )
 }
