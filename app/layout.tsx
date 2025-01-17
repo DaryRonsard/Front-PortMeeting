@@ -1,7 +1,7 @@
 
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import {NextUIProvider} from "@nextui-org/react";
+import {NextUIProvider} from "@nextui-org/react"; 
 
 export const metadata: Metadata = {
   title: "Meeting",
