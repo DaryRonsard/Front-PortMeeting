@@ -1,6 +1,7 @@
 
 import "@/styles/globals.css";
 import type { Metadata } from "next";
+import {NextUIProvider} from "@nextui-org/react";
 
 export const metadata: Metadata = {
   title: "Meeting",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body>
-        {children}
+        <NextUIProvider>
+          {children}
+        </NextUIProvider>
       </body>
     </html>
   );

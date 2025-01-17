@@ -4,19 +4,35 @@ import apiClient from '@/utils/api-client'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+  useDraggable,
+} from "@nextui-org/react";
+
 
 
 export default function Body() {
 
     const router = useRouter()
-
+    
     useEffect(() => {
         const loading = async () => {
-            const response = await apiClient.get("http://localhost:8000/accounts/")
-            console.log(response.data)
+            // const response = await apiClient.get("http://localhost:8000/accounts/")
+            // console.log(response.data)
         }
         // loading()
     },[])
+
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const targetRef:any = React.useRef(null);
+    const {moveProps} = useDraggable({targetRef, canOverflow: true, isDisabled: !isOpen});
+
 
     return (
         <section className="pl-[300px]">
@@ -24,6 +40,36 @@ export default function Body() {
             <div className="mb-7">
                 <h3 className="text-lg">Bienvenue Monsieur <span className="text-blue-600 font-medium">Hien Dary</span></h3>
             </div>
+
+            <>
+                {/* <Button onPress={onOpen}>Open Modal</Button>
+                <Modal ref={targetRef} isOpen={isOpen} onOpenChange={onOpenChange}>
+                    <ModalContent>
+                    {(onClose) => (
+                        <>
+                        <ModalHeader {...moveProps} className="flex flex-col gap-1">
+                            Modal Title
+                        </ModalHeader>
+                        <ModalBody>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
+                            risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
+                            quam.
+                            </p>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="danger" variant="light" onPress={onClose}>
+                            Close
+                            </Button>
+                            <Button color="primary" onPress={onClose}>
+                            Action
+                            </Button>
+                        </ModalFooter>
+                        </>
+                    )}
+                    </ModalContent>
+                </Modal> */}
+            </>
 
             {/* <div className="flex flex-col items-center gap-2 lg:flex-row"> */}
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -60,11 +106,7 @@ export default function Body() {
 
             <div className="h-[430px] rounded-md bg-white border-2 mt-3"></div>
 
-            {/* <div className="bg-gradient-to-b from-[#ddeef5] to-gray-100 p-5 rounded-xl drop-shadow-md mt-4">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem unde, aliquid molestias rerum, nihil eum corporis fuga sapiente atque nemo commodi. Ullam doloremque a accusantium! Possimus asperiores impedit autem earum! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci ipsum minus esse soluta ex sequi odio voluptatum. Fugiat aperiam autem mollitia libero corrupti aliquid sapiente consectetur architecto quidem voluptatum. Nostrum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure omnis tempore provident officiis aperiam expedita assumenda mollitia tenetur rerum quaerat in eligendi non harum modi, dolore totam, alias temporibus. Corrupti.
-                    Assumenda magni ipsum ratione dolor quis nobis dolore impedit. Atque officia rem et fugit neque consequatur esse accusamus nulla labore autem repellendus adipisci asperiores, perferendis amet eligendi placeat numquam temporibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus aliquid, perferendis minus libero culpa dicta beatae quisquam nostrum voluptates consectetur minima maiores, quaerat possimus quo vero alias tempore repudiandae maxime!
-                    Assumenda voluptates ab, cupiditate placeat mollitia necessitatibus voluptatum. Inventore temporibus nesciunt fuga, ullam laboriosam veritatis molestiae Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis error esse eveniet earum ab. Distinctio nobis minus cum saepe dolores praesentium iusto vero, ipsam odit facilis iure asperiores, sapiente dignissimos.</p>
-            </div> */}
+            
 
         </section>
     )

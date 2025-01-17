@@ -8,7 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 export default async function Dashboard() {
   return (
     <>
-      <main className="min-h-screen pt-[20px] pr-3 pb-3 bg-[#f8f8f6]">
+      <main className="min-h-screen pt-[20px] pr-5 pb-3 bg-[#f8f8f6]">
         <Body />
       </main>
     </>

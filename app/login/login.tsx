@@ -65,7 +65,7 @@ export default function loginPage() {
           secure:true,
           sameSite:"lax"
         })
-        router.push("/dashboard") // Navigation vers la page (Dashboard)
+        router.push("/user/dashboard") // Navigation vers la page (Dashboard)
       }
       else
       {

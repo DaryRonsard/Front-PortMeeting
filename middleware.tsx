@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
             }
             
             // Accès non autorisé pour les utilisateurs non authentifié
-            if (url.pathname.startsWith('/dashboard') || url.pathname.startsWith('/user') || url.pathname.startsWith('/admin')) {
+            if (url.pathname.startsWith('/super-admin') || url.pathname.startsWith('/user') || url.pathname.startsWith('/admin') ) {
                 url.pathname = '/home';
                 return NextResponse.redirect(url);
             }
@@ -32,12 +32,51 @@ export async function middleware(request: NextRequest) {
         else 
         {
 
-            const decoded = jwtDecode(accessToken)
-            // console.log(decoded)
+            const decoded:any = jwtDecode(accessToken)
+            // console.log(decoded);
 
-            if (url.pathname === '/login' || url.pathname == "/home") {
-                url.pathname = "/dashboard";
-                return NextResponse.redirect(url);
+            if(url.pathname === '/login' || url.pathname == "/home") 
+            {
+            
+                /*
+                    if(decoded.role == "user")
+                    {
+                        url.pathname = "/user/dashboard"
+                        return NextResponse.redirect(url);
+                    }
+                    else if(decoded.role == "admin")
+                    {
+                        url.pathname = "/admin/dashboard"
+                        return NextResponse.redirect(url);
+                    }
+                    else if(decoded.role == "super_admin")
+                    {
+                        url.pathname = "/super-admin/dashboard"
+                        return NextResponse.redirect(url);
+                    }
+                */
+
+                if(decoded)
+                {
+                    switch(decoded?.role)
+                    {
+                        case "user":
+                            url.pathname = "/user/dashboard"
+                        break;
+                        case "super_admin":
+                            // url.pathname = "/super-admin/dashboard"
+                            // url.pathname = "/admin/dashboard"
+                            url.pathname = "/user/dashboard"
+                        break;
+                        case "admin":
+                            url.pathname = "/admin/dashboard"
+                        break;
+                    }
+
+                    return NextResponse.redirect(url);
+
+                }
+                
             }
             
             return NextResponse.next();
@@ -53,10 +92,9 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         '/home:path*', 
-        '/dashboard:path*', 
-        '/directions/:path*', 
-        '/chat/:path*', 
-        '/video/:path*', 
+        '/user:path*', 
+        '/admin/:path*', 
+        '/super-admin/:path*', 
         // '/user/:path*', // User protected routes
         // '/admin/:path*', // Admin protected routes
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'

@@ -4,6 +4,8 @@ import apiClient, { apiBaseURL, imageURL } from '@/utils/api-client';
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Loader from '@/components/loader';
+import { destroyCookie } from 'nookies';
+import { useRouter } from 'next/navigation';
 
 
 export default function Body() {
@@ -21,7 +23,7 @@ export default function Body() {
         } 
         catch (error) 
         {
-            console.log("Erreur survenu au niveau du serveur",error);
+            console.log("Erreur survenu au niveau du serveur (directions)");
         }
         finally
         {
@@ -55,7 +57,7 @@ export default function Body() {
                     {
                         directionsList.map((item:any,index:number) => (
 
-                            <Link href={`/directions/${item?.id || 1}/salles`}
+                            <Link href={`/user/directions/${item?.id || 1}/salles`}
                                 key={index} 
                                 className="grid-item flex flex-col justify-between p-3 bg-white rounded-md shadow-md"
                             >

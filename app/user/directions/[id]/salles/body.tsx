@@ -127,7 +127,7 @@ export default function Body() {
                                     </div>
                                     <div className="flex flex-col gap-1">
                                         <button 
-                                            onClick={() => router.push(`/directions/${id}/salles/${room?.id}`)}  
+                                            onClick={() => router.push(`/user/directions/${id}/salles/${room?.id}`)}  
                                             className="bg-blue-500 hover:bg-blue-600 hover:active:bg-blue-500 text-white px-3 py-1.5 rounded-[5px]"
                                         >
                                             Détails

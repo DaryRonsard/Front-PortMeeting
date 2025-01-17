@@ -29,7 +29,7 @@ export default function Body() {
 
 
     return (
-        <section className="pl-[300px]">
+        <section className="pl-[285px]">
             <div className="flex items-center justify-between p-1 px-1 mb-5">
                 <h3 className="font-medium text-xl text-blue-500">Liste des salles (6)</h3>
                 <button className="flex items-center gap-x-1 bg-green-500 rounded-md px-3 py-1 text-white">
@@ -53,7 +53,10 @@ export default function Body() {
                                 Localisation
                             </th>
                             <th className="text-center font-medium border-gray-400 border-r">
-                                Capacite
+                                Equipéments
+                            </th>
+                            <th className="text-center font-medium border-gray-400 border-r">
+                                Capacité
                             </th>
                             <th className="text-center font-medium border-gray-400 border-r">
                                 Direction
@@ -65,7 +68,7 @@ export default function Body() {
                     </thead>
 
                     <tbody>
-                        {Array.from([1,2,3,5,6].map((_,index:number) => (
+                        {Array.from([1,2,3,5,6,7].map((_,index:number) => (
                             <tr 
                                 key={index} 
                                 className={`${index % 2 == 0 ? "bg-blue-200" : "bg-white"} h-[40px]`}
@@ -73,23 +76,46 @@ export default function Body() {
                                 <td className="border-gray-400 border-r">{++index}</td>
                                 <td className="border-gray-400 border-r">Salle de reunion DG</td>
                                 <td className="border-gray-400 border-r">Nouvelle Direction 5 ieme etage</td>
+                                <td className="border-gray-400 border-r">
+                                    <div className="flex justify-center gap-2">
+                                        <i className="fa-solid fa-video text-red-500"></i>
+                                        <i className="fa-solid fa-tv text-green-500"></i>
+                                        <i className="fa-solid fa-mobile-screen text-blue-500"></i>
+                                        <i className="fa-solid fa-wifi text-blue-500"></i>
+                                        <i className="fa-solid fa-microphone text-gray-500"></i>
+                                    </div>
+                                </td>
                                 <td className="border-gray-400 border-r">5</td>
                                 <td className="border-gray-400 border-r">DG</td>
                                 <td className="">
-                                    <button 
-                                        onClick={() => router.push(`/admin/salles/${1}`)} 
-                                        className="bg-blue-500  px-3 mx-1 rounded-[3px]"
-                                    >
-                                        <i className={`fa-solid fa-bars text-white`}></i>
-                                    </button>
-                                    <button
-                                        className="bg-green-500  px-3 mx-1 rounded-[3px]"
-                                    >
-                                        <i className={`fa-solid fa-edit text-white`}></i>
-                                    </button>
-                                    <button className="bg-red-500  px-3 mx-1 rounded-[3px]">
-                                        <i className={`fa-solid fa-trash-can text-white`}></i>
-                                    </button>
+                                    <div className="flex justify-center items-center gap-1">
+                                        <button 
+                                            title='aperçu'
+                                            onClick={() => router.push(`/admin/salles/${1}`)} 
+                                            className="bg-blue-500  px-3 mx-1 rounded-[3px]"
+                                        >
+                                            <i className={`fa-solid fa-eye text-white`}></i>
+                                        </button>
+                                        <button 
+                                            title='plage horaires'
+                                            onClick={() => router.push(`/admin/salles/${1}/plage-horaires`)} 
+                                            className="bg-blue-500  px-3 mx-1 rounded-[3px]"
+                                        >
+                                            <i className={`fa-solid fa-clock text-white`}></i>
+                                        </button>
+                                        <button
+                                            title='éditer'
+                                            className="bg-green-500  px-3 mx-1 rounded-[3px]"
+                                        >
+                                            <i className={`fa-solid fa-edit text-white`}></i>
+                                        </button>
+                                        <button 
+                                            title='supprimer'
+                                            className="bg-red-500  px-3 mx-1 rounded-[3px]"
+                                        >
+                                            <i className={`fa-solid fa-trash-can text-white`}></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
 

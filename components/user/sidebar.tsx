@@ -17,8 +17,8 @@ type sideBarType = {
 
 export default function SideBar(props:sideBarType) {
         
+
     const router = useRouter()
-    
     const pathname = usePathname()
 
     const onLogout = async () => {
@@ -45,26 +45,26 @@ export default function SideBar(props:sideBarType) {
                 <div className="h-full">
                     <ul className="list-none py-3 px-2">
                         <li className="my-1">
-                            <Link href="/dashboard" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/dashboard") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"} `}>
-                                <i className={`fa-solid fa-gauge text-[16px] py-[7px] px-[7px] rounded-full ${pathname.startsWith("/dashboard") ? " bg-[#dfbd08e8] text-white " : "text-white bg-[#dfbd08e8]" }`}></i>
+                            <Link href="/user/dashboard" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/user/dashboard") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"} `}>
+                                <i className={`fa-solid fa-gauge text-[16px] py-[7px] px-[7px] rounded-full ${pathname.startsWith("/user/dashboard") ? " bg-[#dfbd08e8] text-white " : "text-white bg-[#dfbd08e8]" }`}></i>
                                 Tableau de bord
                             </Link>
                         </li>
                         <li className="my-1">
-                            <Link href="/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/directions") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
-                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/directions") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
+                            <Link href="/user/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/user/directions") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/user/directions") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
                                 Directions
                             </Link>
                         </li>
                         <li className="my-1">
-                            <Link href="/reservations" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/reservations") ? "bg-[#ebf5fa] text-blue-500 font-medium" : "text-gray-800"}`}>
+                            <Link href="/user/reservations" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/user/reservations") ? "bg-[#ebf5fa] text-blue-500 font-medium" : "text-gray-800"}`}>
                                 <i className={`fa-solid fa-calendar-days text-[15.5px] py-[7px] px-[8px] rounded-full ${pathname.startsWith("/reservations") ? " bg-[#74c042] text-white " : "text-white bg-[#74c042]" }`}></i>
                                 Réservations
                             </Link> 
                         </li>
                         <li className="my-1">
-                            <Link href="/chat" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/chat") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
-                                <i className={`fa-solid fa-message text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full ${pathname.startsWith("/chat") ? " bg-[#3182c7] text-white " : "text-white bg-[#3182c7] pt-2" }`}></i>
+                            <Link href="/user/chat" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/user/chat") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-message text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full ${pathname.startsWith("/user/chat") ? " bg-[#3182c7] text-white " : "text-white bg-[#3182c7] pt-2" }`}></i>
                                 Chat
                                 <span 
                                     style={{fontSize:"14px"}}
@@ -75,8 +75,8 @@ export default function SideBar(props:sideBarType) {
                             </Link>
                         </li>
                         <li className="my-1">
-                            <Link href="/video" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/video") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
-                                <i className={`fa-solid fa-video text-[15.3px] text-gray-500 py-[7px] px-[6px] rounded-full ${pathname.startsWith("/video") ? " bg-[#c81f27] text-white " : "text-white bg-[#c81f27]" }`}></i>
+                            <Link href="/user/video" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/user/video") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
+                                <i className={`fa-solid fa-video text-[15.3px] text-gray-500 py-[7px] px-[6px] rounded-full ${pathname.startsWith("/user/video") ? " bg-[#c81f27] text-white " : "text-white bg-[#c81f27]" }`}></i>
                                 Vidéo conférence
                             </Link>
                         </li>

@@ -14,13 +14,19 @@ export default function Body() {
     const {id} = useParams()
 
 
-    const [roomsList,setRoomsList] = useState<any>([])
+    const [roomInfo,setRoomInfo] = useState<any>([])
 
     const loadingData = async () => {
-        // const response = await apiClient.get(`${apiBaseURL}/api/V1/rooms/rooms/${id}`)
-        const response = await apiClient.get(`${apiBaseURL}/api/V1/rooms/rooms/`)
-        setRoomsList(response.data?.length > 0 ? response.data : [])
-        console.log(response.data);
+
+        try {
+            const response = await apiClient.get(`${apiBaseURL}/api/V1/rooms/rooms/${id}/`)
+            // const response = await apiClient.get(`${apiBaseURL}/api/V1/rooms/rooms/`)
+            setRoomInfo(response.data || [])
+            console.log(response.data);   
+        } 
+        catch (error) {
+            console.log("Erreur survenu ",error);
+        }
     }
 
     useEffect(() => {
@@ -35,7 +41,8 @@ export default function Body() {
                     <button onClick={() => history.back()}>
                         <i className="fa-solid fa-arrow-left text-blue-500"></i> 
                     </button>
-                    Nouvelle direction 5 ieme étage
+                    {/* Nouvelle direction 5 ieme étage */}
+                    {roomInfo && roomInfo?.name}
                 </h3>
             </div>
 
@@ -45,7 +52,7 @@ export default function Body() {
 
                 <div className="image-wrapper w-full">
                     <img 
-                        src="/images/rooms/preparer-sa-salle.JPG" 
+                        src={`${roomInfo?.image_principale || "/images/rooms/preparer-sa-salle.JPG"}`} 
                         alt="room-picture" 
                         className="w-full border-[1.5px] border-blue-500"
                     />
@@ -56,31 +63,24 @@ export default function Body() {
                         </button>
                     </div>
                     <div className="input-container w-full mt-4">
-                        <button className="w-full flex items-center justify-center gap-x-1 bg-green-500 rounded-md px-3 py-[8px] text-white ">
-                            {/* <i className="fa-solid fa-plus text-white pointer-events-none"></i> */}
+                        <button className="w-full flex items-center justify-center gap-x-1 bg-blue-500 rounded-md px-3 py-[8px] text-white ">
+                            <i className="fa-solid fa-plus text-white pointer-events-none"></i>
                             Insérer d'autres images
                         </button>
                     </div>
 
                     <div className="grid-image grid grid-cols-5 gap-2 w-full mt-4">
-                        <div className="image-container "> 
-                            <img src="/images/rooms/preparer-sa-salle.JPG" 
-                                alt="room-picture" 
-                                className="w-full h-full rounded-[3px] border border-blue-500"
-                            />
-                        </div>
-                        <div className="image-container "> 
-                            <img src="/images/rooms/preparer-sa-salle.JPG" 
-                                alt="room-picture" 
-                                className="w-full h-full rounded-[3px] border border-blue-500"
-                            />
-                        </div>
-                        <div className="image-container "> 
-                            <img src="/images/rooms/preparer-sa-salle.JPG" 
-                                alt="room-picture" 
-                                className="w-full h-full rounded-[3px] border border-blue-500"
-                            />
-                        </div>
+                        {Array.from([1,2,3,4,5,6]).map((_,index:number) => (
+                            <div key={index} className="relative image-container "> 
+                                <button className="absolute flex items-center justify-center top-1 right-1 rounded-[50px] bg-red-500 h-[20px] w-[20px] border">
+                                    <i className="fa-solid fa-trash-can text-white pointer-events-none text-[10px]"></i>
+                                </button>
+                                <img src="/images/rooms/preparer-sa-salle.JPG" 
+                                    alt="room-picture" 
+                                    className="w-full h-full rounded-[3px] border border-blue-500 cursor-pointer"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
 
@@ -98,6 +98,7 @@ export default function Body() {
                             id="" 
                             rows={2}
                             // cols={4}
+                            value={roomInfo?.name}
                             className="w-full border border-blue-500 outline-none rounded-[3px] p-1"
                         ></textarea>
                     </div>
@@ -107,6 +108,7 @@ export default function Body() {
                             name="" 
                             id="" 
                             rows={4}
+                            value={roomInfo?.localisation}
                             className="w-full border border-blue-500 outline-none rounded-[3px] p-1"
                         ></textarea>
                     </div>
@@ -116,6 +118,7 @@ export default function Body() {
                             type="number" 
                             name="" 
                             id="" 
+                            value={roomInfo?.capacite}
                             className="w-full border border-blue-500 outline-none rounded-[3px] p-1"
                         />
                     </div>

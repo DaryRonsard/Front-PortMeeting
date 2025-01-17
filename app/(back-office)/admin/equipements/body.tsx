@@ -14,13 +14,18 @@ export default function Body() {
     const {id} = useParams()
 
 
-    const [roomsList,setRoomsList] = useState<any>([])
+    const [equipmentList,setEquipmentList] = useState<any>([
+        {id:1,name:"projecteur",etat:"disponible",status:1},
+        {id:1,name:"micro",etat:"disponible",status:1},
+        {id:1,name:"écran intéractif",etat:"disponible",status:1},
+        {id:1,name:"tablette",etat:"disponible",status:1},
+        {id:1,name:"wifi",etat:"disponible",status:1},
+    ])
 
     const loadingData = async () => {
-        // const response = await apiClient.get(`${apiBaseURL}/api/V1/rooms/rooms/${id}`)
-        const response = await apiClient.get(`${apiBaseURL}/api/V1/rooms/rooms/`)
-        setRoomsList(response.data?.length > 0 ? response.data : [])
-        console.log(response.data);
+        // const response = await apiClient.get(`${apiBaseURL}/api/V1/rooms/rooms/`)
+        // setRoomsList(response.data?.length > 0 ? response.data : [])
+        // console.log(response.data);
     }
 
     useEffect(() => {
@@ -62,30 +67,26 @@ export default function Body() {
                     </thead>
         
                     <tbody>
-                        {Array.from([1,2,3,5].map((_,index:number) => (
+                        {equipmentList.map((item:any,index:number) => (
                             <tr 
                                 key={index} 
                                 className={`${index % 2 == 0 ? "bg-blue-200" : "bg-white"} h-[40px]`}
                             >
                                 <td className="border-gray-400 border-r">{++index}</td>
-                                <td className="border-gray-400 border-r">Projecteur</td>
-                                <td className="border-gray-400 border-r">Disponible</td>
-                                <td className="border-gray-400 border-r">1</td>
+                                <td className="border-gray-400 border-r">{item.name}</td>
+                                <td className="border-gray-400 border-r">{item.etat}</td>
+                                <td className="border-gray-400 border-r">{item.status}</td>
                                 <td className="">
-                                    <button className="bg-blue-500  px-3 mx-1 rounded-[3px]">
-                                        <i className={`fa-solid fa-bars text-white`}></i>
-                                    </button>
                                     <button className="bg-green-500  px-3 mx-1 rounded-[3px]">
                                         <i className={`fa-solid fa-edit text-white`}></i>
                                     </button>
                                     <button className="bg-red-500  px-3 mx-1 rounded-[3px]">
-                                        {/* <i class="fa-solid fa-trash-can"></i> */}
                                         <i className={`fa-solid fa-trash-can text-white`}></i>
                                     </button>
                                 </td>
                             </tr>
 
-                        )))}
+                        ))}
                     </tbody>
 
                 </table>

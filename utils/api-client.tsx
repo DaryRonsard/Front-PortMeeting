@@ -63,7 +63,8 @@ apiClient.interceptors.response.use(
 
             const response = await apiClient.post("http://localhost:8000/token/refresh/",{refresh:refresh_token});
 
-            if (response.status == 200) {
+            if(response.status == 200) 
+            {
               console.log("Access Token refreshed successfully!");
               localStorage.setItem("access_token", response?.data?.access);
               localStorage.setItem("refresh_token", response?.data?.refresh);
@@ -87,30 +88,26 @@ apiClient.interceptors.response.use(
           }
           else
           {
-            const router = useRouter()
+            console.log("logout successfully");
             destroyCookie(null,"access_token")
             destroyCookie(null,"refresh_token")
             localStorage.removeItem("access_token")
             localStorage.removeItem("refresh_token")
-            router.replace("/home")
-            // window.location.reload()
-            
+            window.location.reload()
           }
 
         } 
         catch (err) 
         {
-          const router = useRouter()
-          console.error("Token refresh failed:", err);
+          console.error("Token refresh failed");
           processQueue(err, null);
           destroyCookie(null,"access_token")
           destroyCookie(null,"refresh_token")
           localStorage.removeItem("access_token")
           localStorage.removeItem("refresh_token")
+          // window.location.reload();
           // const response = await apiClient.post("http://localhost:8000/api/logout");
           // console.log(response)
-          // router.replace("/home")
-          window.location.href = "/home";
         } 
         finally {
           isRefreshing = false;

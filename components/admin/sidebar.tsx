@@ -45,7 +45,10 @@ export default function SideBar(props:sideBarType) {
                     <ul className="list-none py-3 px-2">
                         <li className="my-1">
                             <Link href="/admin/dashboard" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/dashboard") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"} `}>
-                                <i className={`fa-solid fa-gauge text-[16px] py-[7px] px-[7px] rounded-full ${pathname.startsWith("/admin/dashboard") ? " bg-[#dfbd08e8] text-white " : "text-white bg-[#dfbd08e8]" }`}></i>
+                                <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#dfbd08e8] text-white " : "text-white bg-[#dfbd08e8]" }`}>
+                                    <i className={`fa-solid fa-gauge`}></i>
+                                </span>
+                                {/* <i className={`fa-solid fa-gauge text-[16px] py-[7px] px-[7px] rounded-full ${pathname.startsWith("/admin/dashboard") ? " bg-[#dfbd08e8] text-white " : "text-white bg-[#dfbd08e8]" }`}></i> */}
                                 Tableau de bord
                             </Link>
                         </li>
@@ -57,25 +60,37 @@ export default function SideBar(props:sideBarType) {
                         </li> */}
                         <li className="my-1">
                             <Link href="/admin/salles" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/salles") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
-                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
+                                <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}>
+                                    <i className={`fa-solid fa-door-open`}></i>
+                                </span>
+                                {/* <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i> */}
                                 Salles
                             </Link>
                         </li>
                         <li className="my-1">
                             <Link href="/admin/equipements" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/equipements") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
-                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/equipements") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
+                                <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full ${pathname.startsWith("/admin/equipements") ? " bg-[#14a4e8] text-white " : "text-white bg-[#14a4e8]" }`}>
+                                    <i className={`fa-solid fa-toolbox`}></i>
+                                </span>
+                                {/* <i className={`fa-solid fa-toolbox text-[15.3px] py-[7px] px-[7px] rounded-full ${pathname.startsWith("/admin/equipements") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i> */}
                                 Equipements
                             </Link>
                         </li>
                         <li className="my-1">
                             <Link href="/admin/reservations" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/reservations") ? "bg-[#ebf5fa] text-blue-500 font-medium" : "text-white"}`}>
-                                <i className={`fa-solid fa-calendar-days text-[15.5px] py-[7px] px-[8px] rounded-full ${pathname.startsWith("/admin/reservations") ? " bg-[#74c042] text-white " : "text-white bg-[#74c042]" }`}></i>
+                                <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#74c042] text-white " : "text-white bg-[#74c042]" }`}>
+                                    <i className={`fa-solid fa-calendar-days`}></i>
+                                </span>
+                                {/* <i className={`fa-solid fa-calendar-days text-[15.5px] py-[7px] px-[8px] rounded-full ${pathname.startsWith("/admin/reservations") ? " bg-[#74c042] text-white " : "text-white bg-[#74c042]" }`}></i> */}
                                 Réservations
                             </Link> 
                         </li>
                         <li className="my-1">
                             <Link href="/admin/chat" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/chat") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
-                                <i className={`fa-solid fa-message text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full ${pathname.startsWith("/admin/chat") ? " bg-[#3182c7] text-white " : "text-white bg-[#3182c7] pt-2" }`}></i>
+                                <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#3182c7] text-white " : "text-white bg-[#3182c7]" }`}>
+                                    <i className={`fa-solid fa-message`}></i>
+                                </span>
+                                {/* <i className={`fa-solid fa-message text-[15.3px]  text-gray-500 py-[7px] px-[7px] rounded-full ${pathname.startsWith("/admin/chat") ? " bg-[#3182c7] text-white " : "text-white bg-[#3182c7] pt-2" }`}></i> */}
                                 Chat
                                 <span 
                                     style={{fontSize:"14px"}}
@@ -87,7 +102,10 @@ export default function SideBar(props:sideBarType) {
                         </li>
                         <li className="my-1">
                             <Link href="/admin/video" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/video") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
-                                <i className={`fa-solid fa-video text-[15.3px] text-gray-500 py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/video") ? " bg-[#c81f27] text-white " : "text-white bg-[#c81f27]" }`}></i>
+                                <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#c81f27] text-white " : "text-white bg-[#c81f27]" }`}>
+                                    <i className={`fa-solid fa-video `}></i>
+                                </span>
+                                {/* <i className={`fa-solid fa-video text-[15.3px] text-gray-500 py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/video") ? " bg-[#c81f27] text-white " : "text-white bg-[#c81f27]" }`}></i> */}
                                 Vidéo conférence
                             </Link>
                         </li>
