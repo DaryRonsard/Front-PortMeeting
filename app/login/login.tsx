@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { login } from '@/utils/handlerApi'
 import { setCookie } from 'nookies'
+import { jwtDecode } from 'jwt-decode'
 
 
 
@@ -65,7 +66,26 @@ export default function loginPage() {
           secure:true,
           sameSite:"lax"
         })
-        router.push("/user/dashboard") // Navigation vers la page (Dashboard)
+
+        const token_decode:any =  response.access ? jwtDecode(response.access): null
+
+        if(token_decode)
+        {
+          switch(token_decode.role)
+          {
+            case "employe":
+              return router.replace("/user/dashboard")
+            break;
+            case "super_admin":
+              return router.replace("/super-admin/dashboard")
+            break;
+            case "secretaire":
+              return router.replace("/admin/dashboard")
+            break;
+          }
+
+        }
+        
       }
       else
       {

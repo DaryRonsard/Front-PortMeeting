@@ -2,7 +2,6 @@
 
 import apiClient, { apiBaseURL } from '@/utils/api-client';
 import React, { useEffect, useState } from 'react'
-import { directionsList } from '@/utils/directions-infos'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation';
 
@@ -15,6 +14,34 @@ export default function Body() {
 
 
     const [roomInfo,setRoomInfo] = useState<any>([])
+    const [equipment,setEquipment] = useState<string | null>("")
+    const [equipementList,setEquipmentList] = useState<any>([])
+
+
+    const onAddEquipement = async () => {
+
+        // console.log(equipment);
+
+        if(equipment != "")
+        {
+            if(equipementList.length == 0)
+            {
+                setEquipmentList([equipment])
+            }
+            else
+            {
+                equipementList.includes(equipment) ? 
+                alert("Désolé, vous avez déjà ajouté cet équipement") : 
+                setEquipmentList([...equipementList,equipment])
+            }
+        }
+
+    }
+
+    const onDeleteEquipment = async (equipment_selected:string) => {
+        equipementList.includes(equipment_selected) ? 
+        setEquipmentList(equipementList.filter((equipment:any) => equipment != equipment_selected)) : null
+    }
 
     const loadingData = async () => {
 
@@ -54,27 +81,12 @@ export default function Body() {
                     <img 
                         src={`${roomInfo?.image_principale || "/images/rooms/preparer-sa-salle.JPG"}`} 
                         alt="room-picture" 
-                        className="w-full border-[1.5px] border-blue-500"
+                        className="w-full h-[250px] border-[1.5px] border-blue-500"
                     />
-                    <div className="input-container w-full mt-2">
-                        <button className="w-full flex items-center justify-center gap-x-1 bg-green-500 rounded-md px-3 py-[8px] text-white ">
-                            {/* <i className="fa-solid fa-plus text-white pointer-events-none"></i> */}
-                            Image principale
-                        </button>
-                    </div>
-                    <div className="input-container w-full mt-4">
-                        <button className="w-full flex items-center justify-center gap-x-1 bg-blue-500 rounded-md px-3 py-[8px] text-white ">
-                            <i className="fa-solid fa-plus text-white pointer-events-none"></i>
-                            Insérer d'autres images
-                        </button>
-                    </div>
 
-                    <div className="grid-image grid grid-cols-5 gap-2 w-full mt-4">
-                        {Array.from([1,2,3,4,5,6]).map((_,index:number) => (
+                    <div className="grid-image grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6  gap-2 w-full mt-4">
+                        {Array.from([1,2,3]).map((_,index:number) => (
                             <div key={index} className="relative image-container "> 
-                                <button className="absolute flex items-center justify-center top-1 right-1 rounded-[50px] bg-red-500 h-[20px] w-[20px] border">
-                                    <i className="fa-solid fa-trash-can text-white pointer-events-none text-[10px]"></i>
-                                </button>
                                 <img src="/images/rooms/preparer-sa-salle.JPG" 
                                     alt="room-picture" 
                                     className="w-full h-full rounded-[3px] border border-blue-500 cursor-pointer"
@@ -86,66 +98,66 @@ export default function Body() {
 
                 <div className="info-wrapper  w-full">
                     <div className="input-container w-full">
-                        <p>Nom de la salle</p>
-                        {/* <input 
-                            type="text" 
-                            name="" 
-                            id="" 
-                            className="w-full border border-blue-500 outline-none rounded-[3px] p-1"
-                        /> */}
-                        <textarea 
-                            name="" 
-                            id="" 
-                            rows={2}
-                            // cols={4}
-                            value={roomInfo?.name}
-                            className="w-full border border-blue-500 outline-none rounded-[3px] p-1"
-                        ></textarea>
+                        <p className="text-lg text-blue-500 font-medium">Nom de la salle</p>
+                        <h3 className="">{roomInfo?.name}</h3>
                     </div>
                     <div className="input-container w-full">
-                        <p>Localisation</p>
-                        <textarea 
-                            name="" 
-                            id="" 
-                            rows={4}
-                            value={roomInfo?.localisation}
-                            className="w-full border border-blue-500 outline-none rounded-[3px] p-1"
-                        ></textarea>
+                        <p className="text-lg text-blue-500 font-medium">Localisation</p>
+                        <h3 className="">{roomInfo?.localisation}</h3>
                     </div>
                     <div className="input-container w-full">
-                        <p>Capacité</p>
-                        <input 
-                            type="number" 
-                            name="" 
-                            id="" 
-                            value={roomInfo?.capacite}
-                            className="w-full border border-blue-500 outline-none rounded-[3px] p-1"
-                        />
+                        <p className="text-lg text-blue-500 font-medium">Capacité</p>
+                        <h3 className="">{roomInfo?.capacite}</h3>
                     </div>
                     <div className="input-container w-full mt-2">
-                        <p>Directions</p>
-                        <select 
-                            name="" 
-                            id="" 
-                            className="w-full border border-blue-500 outline-none rounded-[3px] p-1"
-                        >
-                            <option value="">DG</option>
-                            <option value="">DSIN</option>
-                            <option value="">DOMSE</option>
-                            <option value="">DDP</option>
-                            <option value="">DIMO</option>
-                            <option value="">DAAJC</option>
-                            <option value="">DCAQ</option>
-                            <option value="">DFC</option>
-                            <option value="">DL</option>
-                            <option value="">TP</option>
-                        </select>
+                        <p className="text-lg text-blue-500 font-medium">Directions</p>
+                        <h3 className="">{roomInfo?.direction_details?.name}</h3>
                     </div>
-                    <div className="input-container w-full mt-4">
-                        <button className="w-full flex items-center justify-center gap-x-1 bg-green-500 rounded-md px-3 py-[8px] text-white ">
-                            {/* <i className="fa-solid fa-plus text-white pointer-events-none"></i> */}
-                            Enregistrer
-                        </button>
+                    <div className="input-container w-full mt-2">
+                        <p className="text-lg text-blue-500 font-medium">Equipements</p>
+                        <div className="grid grid-cols-5 gap-2 mt-2">
+                            {roomInfo?.room_equipments?.length > 0 &&
+                                roomInfo.room_equipments.map((equipment:any,index:number) => (
+                                    equipment?.equipment_details?.name == "projecteur" ?
+                                        <button
+                                            key={index}
+                                            className="bg-gray-200 rounded-[3px] p-1"
+                                        >
+                                            <i className="fa-solid fa-video text-red-500"></i>
+                                        </button>
+                                    : equipment?.equipment_details?.name == "écran intéractif" ?
+                                        <button
+                                            key={index} 
+                                            className="bg-gray-200 rounded-[3px] p-1"
+                                        >
+                                            <i className="fa-solid fa-tv text-green-500"></i>
+                                        </button>
+                                    : equipment?.equipment_details?.name == "micro" ?
+                                        <button
+                                            key={index}
+                                            className="bg-gray-200 rounded-[3px] p-1"
+                                        >
+                                            <i className="fa-solid fa-microphone text-gray-500"></i>
+                                        </button> 
+                                    : equipment?.equipment_details?.name == "wifi" ?
+                                        <button
+                                            key={index}
+                                            className="bg-gray-200 rounded-[3px] p-1"
+                                        >
+                                            <i className="fa-solid fa-wifi text-blue-500"></i>
+                                        </button>
+                                    : equipment?.equipment_details?.name == "tablette" &&
+                                        <button
+                                            key={index}
+                                            className="bg-gray-200 rounded-[3px] p-1"
+                                        >
+                                            <i className="fa-solid fa-mobile-screen text-blue-500"></i>
+                                        </button>
+                                ))
+                            }
+                            
+                        </div>
+
                     </div>
                 </div>
 

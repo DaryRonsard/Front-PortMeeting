@@ -32,7 +32,6 @@ export default function SideBar(props:sideBarType) {
 
     <aside className={`fixed z-20 top-0 left-0 h-full w-full max-w-[270px]`}>
 
-        {/* <div className="h-full flex flex-col bg-[#ffffff] rounded-sm border-r-[0.2px] border-gray-200 py-3"> */}
         <div className="h-full flex flex-col bg-[#d62727] rounded-sm border-r-[0.2px] border-gray-200 py-3">
 
             <div className="flex items-center gap-x-2 mb-2 px-3 pb-2 ">
@@ -69,7 +68,7 @@ export default function SideBar(props:sideBarType) {
                         </li>
                         <li className="my-1">
                             <Link href="/super-admin/equipements" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/super-admin/equipements") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
-                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/super-admin/equipements") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
+                                <i className={`fa-solid fa-toolbox text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/super-admin/equipements") ? " bg-[#14a4e8] text-white " : "text-white bg-[#14a4e8]" }`}></i>
                                 Equipements
                             </Link>
                         </li>

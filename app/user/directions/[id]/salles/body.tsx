@@ -22,9 +22,11 @@ export default function Body() {
     const loadingData = async () => {
         try 
         {
-            const response = await apiClient.get(`${apiBaseURL}/directions/${id}/rooms/`)
-            setRoomsList(response.data?.length > 0 ? response.data : [])
-            console.log(response.data);
+            const [roomData] = await Promise.all([
+                (await apiClient.get(`${apiBaseURL}/directions/${id}/rooms/`)).data
+            ])
+            setRoomsList(roomData)
+            console.log(roomData);
         } 
         catch (error) {
             console.log("Un problème est survenu au niveau du serveur ",error);
@@ -48,7 +50,7 @@ export default function Body() {
                     <button onClick={() => history.back()}>
                         <i className="fa-solid fa-arrow-left text-blue-500"></i> 
                     </button>
-                    Salles de réunion ({directionsList.find((item:any) => item?.id == id)?.name})
+                    Salles de réunion {!loading && roomsList?.length > 0 && `(${roomsList[0]?.direction_details?.name})` }
                 </h3>
             </div>
 
@@ -57,7 +59,6 @@ export default function Body() {
                     <Loader/>
                 </div>
             }
-
 
             {!loading && roomsList && roomsList.length > 0 &&
 
@@ -75,12 +76,12 @@ export default function Body() {
                                     {index == 0 ?
                                         <img src={room?.image || "/images/rooms/warwick-geneva-rigi-cervin.JPG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                     : index == 1 ?
-
                                         <img src={room?.image || "/images/rooms/preparer-sa-salle.JPG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
-                                    :
-                                        <img src={room?.image || "/images/rooms/preparer-sa-salle.JPG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                    : index == 2 ?
+                                        <img src={room?.image || "/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.JPG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                    : 
+                                        <img src={room?.image || "/images/rooms/photo-espace-reunion-salon-table-ovale-les-trois-colonnes-hotel-kyriad-14237853bef5c3853a7e7dd18c5e291b.JPEG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                     }
-                                   
                                 </div>
                                 <div className="my-1 w-full flex flex-col justify-between gap-y-3">
                                     <div className="relative">
@@ -91,38 +92,30 @@ export default function Body() {
                                             <div className="flex items-center gap-x-2 my-1">
                                                 <i className="fa-solid fa-users text-blue-500"></i>
                                                 <span className="text-blue-600">
-                                                    {room?.capacite && room?.capacite > 1 ? ` ${room?.capacite} Participants` : `${room?.capacite} Participant`}
+                                                    {room?.capacite > 1 ? ` ${room?.capacite} Participants` : `${room?.capacite} Participant`}
                                                 </span>
                                             </div>
                                             <div className="flex items-center gap-x-2 my-1">
-                                                {room?.equipment_details && room?.equipment_details?.length > 0 && 
-                                                    room?.equipment_details.map((equipment:any,index:number) => (
-                                                        equipment?.name == "projecteur" ? 
+                                                {room?.room_equipments?.length > 0 && 
+                                                
+                                                    room?.room_equipments.map((equipment:any,index:number) => (
+                                                        equipment?.equipment_details?.name == "projecteur" ? 
                                                             <i className="fa-solid fa-video text-red-500" key={index}></i>
                                                         :
-                                                        equipment.name == "écran intéractif" ? 
+                                                        equipment?.equipment_details?.name == "écran intéractif" ? 
                                                             <i className="fa-solid fa-tv text-green-500" key={index}></i>
                                                         :
-                                                        equipment?.name == "tablette" ? 
+                                                        equipment?.equipment_details?.name == "tablette" ? 
                                                             <i className="fa-solid fa-mobile-screen text-blue-500" key={index}></i>
                                                         :
-                                                        equipment?.name == "wifi" ? 
+                                                        equipment?.equipment_details?.name == "wifi" ? 
                                                             <i className="fa-solid fa-wifi text-blue-500" key={index}></i>
                                                         :
-                                                        equipment?.name == "micro" &&
+                                                        equipment?.equipment_details?.name == "micro" &&
                                                             <i className="fa-solid fa-microphone text-gray-500" key={index}></i>
                                                     ))
                                                 }
-                                                
                                             </div>
-                                            {/* <div className="flex items-center gap-x-2 my-1">
-                                                <i className="fa-solid fa-tv text-green-500"></i>
-                                                <span className="text-gray-600">Écran</span>
-                                            </div>
-                                            <div className="flex items-center gap-x-2 my-1">
-                                                <i className="fa-solid fa-mobile-screen text-blue-500"></i>
-                                                <span className="text-gray-600">Tablette</span>
-                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-1">
@@ -139,8 +132,14 @@ export default function Body() {
                         ))
                     }
                 </div>
-
             }
+            
+            {!loading && roomsList?.length == 0 &&
+                <h3 className="font-medium text-red-500 text-center text-lg my-8">
+                    Aucun résultat trouvé !
+                </h3>
+            }
+
         </section>
     )
 }

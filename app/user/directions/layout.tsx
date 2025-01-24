@@ -1,3 +1,4 @@
+import LeftSideBar from '@/components/global_sidebar';
 import Sidebar from '@/components/user/sidebar';
 import { jwtDecode } from 'jwt-decode';
 import type { Metadata } from "next";
@@ -13,15 +14,26 @@ export const metadata: Metadata = {
 export default async function DirectionsLayout({ children }: { children: React.ReactNode }) {
 
   const cookie:any = await cookies()
-  const decode:any = cookie?.get("access_token")?.value ? await jwtDecode(cookie?.get("access_token")?.value) : null
-  
-  const  username = decode ? decode?.username : null
-  const  email = decode ? decode?.email : null
+  const decode:any = cookie?.get("access_token")?.value ? jwtDecode(cookie?.get("access_token")?.value) : null
+  const  username = decode?.username || null
+  const  user_role = decode?.role || null
+  const  email = decode?.email || null
+  const  user_profil = decode?.avatar || null
+  const  last_name = decode?.last_name || null
+  const  first_name = decode?.first_name || null
+
   // console.log(decode);
 
   return (
     <div className="app">
-      <Sidebar username={username} email={email}/>
+      <LeftSideBar 
+        user_role={user_role}
+        username={username} 
+        email={email}
+        user_profil={user_profil}
+        first_name={first_name}
+        last_name={last_name}
+      />
       <ToastContainer/>
       {children}
     </div>

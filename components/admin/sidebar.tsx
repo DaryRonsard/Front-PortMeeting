@@ -9,7 +9,8 @@ import React from 'react'
 
 
 type sideBarType = {
-    location?:string
+    location?:string,
+    user_role?:string
 }
 
 
@@ -26,14 +27,13 @@ export default function SideBar(props:sideBarType) {
         localStorage.removeItem("refresh_token")
         return router.push("/home")
     }
-
-
+    
+   
   return (
 
     <aside className={`fixed z-20 top-0 left-0 h-full w-full max-w-[270px]`}>
 
-        {/* <div className="h-full flex flex-col bg-[#ffffff] rounded-sm border-r-[0.2px] border-gray-200 py-3"> */}
-        <div className="h-full flex flex-col bg-[#11538c] rounded-sm border-r-[0.2px] border-gray-200 py-3">
+        <div className="h-full flex flex-col bg-[#11538c] border-r-[0.2px] border-gray-200 py-3">
 
             <div className="flex items-center gap-x-2 mb-2 px-3 pb-2 ">
                 <img src="/images/meeting-logo-1.png" alt="logo" width={50}/>
@@ -52,12 +52,6 @@ export default function SideBar(props:sideBarType) {
                                 Tableau de bord
                             </Link>
                         </li>
-                        {/* <li className="my-1">
-                            <Link href="/admin/directions" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/directions") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
-                                <i className={`fa-solid fa-door-open text-[15.3px] py-[7px] px-[6px] rounded-full ${pathname.startsWith("/admin/directions") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}></i>
-                                Directions
-                            </Link>
-                        </li> */}
                         <li className="my-1">
                             <Link href="/admin/salles" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/salles") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
                                 <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full ${pathname.startsWith("/admin/salles") ? " bg-[#f4991b] text-white " : "text-white bg-[#f4991b]" }`}>

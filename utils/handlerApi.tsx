@@ -9,7 +9,11 @@ export async function login(form:{pseudo:string,password:string}){
     try 
     {
         // DJANGO API
-        const data = {username: form.pseudo, password: form.password}
+        const data = {
+            username:form.pseudo, 
+            password: form.password
+        }
+        
         const response = await axios.post("http://localhost:8000/generate_token/",data) 
 
         // console.log(response.data)

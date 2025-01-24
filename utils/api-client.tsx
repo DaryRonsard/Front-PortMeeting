@@ -3,12 +3,12 @@ import { useRouter } from "next/navigation";
 import { destroyCookie, setCookie } from "nookies";
 
 
-export const apiBaseURL = "http://localhost:8000/"
+export const apiBaseURL = "http://localhost:8000"
 export const imageURL = "https://res.cloudinary.com/dqwr1xunf"
 
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:8000/",
+  baseURL: "http://localhost:8000",
   // headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}`},
   // withCredentials:true // Accès au cookie généré par le serveur (accessToken)
 });
@@ -25,8 +25,8 @@ apiClient.interceptors.request.use(
 );
 
 
-let isRefreshing = false;
-let failedQueue: any[] = [];
+let isRefreshing:boolean = false;
+let failedQueue:any[] = [];
 
 const processQueue = (error:any,token = null) => {
   failedQueue.forEach((prom) => {
@@ -44,19 +44,20 @@ apiClient.interceptors.response.use(
   async (response) => response,
   async (error) => {
 
-    if(error.response.status === 401) 
+    if(error.response.status == 401) 
     {
 
       const originalRequest = error.config;
 
       if(!isRefreshing) 
       {
+
         isRefreshing = true;
 
         try 
         {
 
-          const refresh_token = localStorage.getItem("refresh_token");
+          const refresh_token = localStorage.getItem("refresh_token") || null;
 
           if(refresh_token)
           {
@@ -65,9 +66,12 @@ apiClient.interceptors.response.use(
 
             if(response.status == 200) 
             {
-              console.log("Access Token refreshed successfully!");
+
+              console.log("Access Token refresh successfully!");
+
               localStorage.setItem("access_token", response?.data?.access);
               localStorage.setItem("refresh_token", response?.data?.refresh);
+
               setCookie(null,"access_token",response.data?.access,{
                 path:"/",
                 // httpOnly:false,
@@ -80,17 +84,21 @@ apiClient.interceptors.response.use(
                 // httpOnly:false,
                 secure:true,
                 sameSite:"lax"
+                // maxAge:3600
               })
+
               apiClient.defaults.headers.common["Authorization"] = `Bearer ${response.data?.access}`;
+
               processQueue(null,response.data?.access);
+              
             }
 
           }
           else
           {
-            console.log("logout successfully");
-            destroyCookie(null,"access_token")
-            destroyCookie(null,"refresh_token")
+            console.log("refresh token not exist !");
+            destroyCookie(null,"access_token",{path:"/"})
+            destroyCookie(null,"refresh_token",{path:"/"})
             localStorage.removeItem("access_token")
             localStorage.removeItem("refresh_token")
             window.location.reload()
@@ -99,19 +107,21 @@ apiClient.interceptors.response.use(
         } 
         catch (err) 
         {
-          console.error("Token refresh failed");
-          processQueue(err, null);
-          destroyCookie(null,"access_token")
-          destroyCookie(null,"refresh_token")
-          localStorage.removeItem("access_token")
-          localStorage.removeItem("refresh_token")
-          // window.location.reload();
-          // const response = await apiClient.post("http://localhost:8000/api/logout");
-          // console.log(response)
+          processQueue(err,null);
         } 
         finally {
           isRefreshing = false;
         }
+
+      }
+      else
+      {
+        console.log("refresh token invalid !");
+        destroyCookie(null,"access_token",{path:"/"})
+        destroyCookie(null,"refresh_token",{path:"/"})
+        localStorage.removeItem("access_token")
+        localStorage.removeItem("refresh_token")
+        window.location.reload();
       }
 
       return new Promise((resolve, reject) => {
@@ -123,11 +133,14 @@ apiClient.interceptors.response.use(
           reject: (err:any) => reject(err),
         });
       });
+
     }
 
     return Promise.reject(error);
+
   }
-);
+
+)
 
 
 

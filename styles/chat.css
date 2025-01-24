@@ -1,0 +1,31 @@
+
+/* Message Box */
+div.message-box-wrapper div.chat-message::-webkit-scrollbar{
+    width:0px;
+}
+
+div.message-box-wrapper div.chat-message::-webkit-scrollbar-thumb{
+    background: rgb(40, 134, 211);
+    border-radius:50px;
+}
+
+div.message-box-wrapper div.chat-message::-webkit-scrollbar-track{
+    background: rgb(209 213 219);
+}
+
+
+/* User List Wrapper (chat) */
+div.user-list-wrapper div.user-list-container::-webkit-scrollbar{
+    width:0px;
+}
+
+div.user-list-wrapper div.user-list-container::-webkit-scrollbar-thumb{
+    background: rgb(40, 134, 211);
+    border-radius:50px;
+}
+
+div.user-list-wrapper div.user-list-container::-webkit-scrollbar-track{
+    background: rgb(209 213 219);
+}
+
+

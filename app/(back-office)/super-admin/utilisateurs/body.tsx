@@ -11,11 +11,11 @@ export default function Body() {
     const router = useRouter()
 
     const userList = [
-        {id:1,nom:"Abibu",prenom:"Ali Olarewaju",direction:"DOMSE",role:"Utilisateur"},
-        {id:1,nom:"Kouadio",prenom:"Madeleine",direction:"DSIN",role:"Administrateur"},
-        {id:1,nom:"Koné",prenom:"Aminata",direction:"DSIN",role:"Administrateur"},
-        {id:1,nom:"Ouattara",prenom:"Drissa",direction:"DSIN",role:"Utilisateur"},
-        {id:1,nom:"Ouattara",prenom:"Delemouzié",direction:"DSIN",role:"Utilisateur"},
+        {id:1,nom:"Abibu",prenom:"Ali Olarewaju",username:"abibuali2025",direction:"DOMSE",role:"Utilisateur"},
+        {id:1,nom:"Kouadio",prenom:"Madeleine",username:"kouadio2025",direction:"DSIN",role:"Administrateur"},
+        {id:1,nom:"Koné",prenom:"Aminata",username:"kone2025",direction:"DSIN",role:"Administrateur"},
+        {id:1,nom:"Ouattara",prenom:"Drissa",username:"ouattara2025",direction:"DSIN",role:"Utilisateur"},
+        {id:1,nom:"Ouattara",prenom:"Delemouzié",username:"delemouzie2025",direction:"DSIN",role:"Utilisateur"},
     ]
 
 
@@ -45,6 +45,9 @@ export default function Body() {
                             <th className="text-center font-medium border-gray-400 border-r"> 
                                 Prénom
                             </th>
+                            <th className="text-center font-medium border-gray-400 border-r"> 
+                                Pseudo
+                            </th>
                             <th className="text-center font-medium border-gray-400 border-r">
                                 Direction
                             </th>
@@ -66,11 +69,12 @@ export default function Body() {
                                 <td className="border-gray-400 border-r">{++index}</td>
                                 <td className="border-gray-400 border-r">{item.nom}</td>
                                 <td className="border-gray-400 border-r">{item.prenom}</td>
+                                <td className="border-gray-400 border-r">{item.username}</td>
                                 <td className="border-gray-400 border-r">{item.direction}</td>
                                 <td className="border-gray-400 border-r">{item.role}</td>
                                 <td className="">
                                     <button className="bg-blue-500  px-3 mx-1 rounded-[3px]">
-                                        <i className={`fa-solid fa-bars text-white`}></i>
+                                        <i className={`fa-solid fa-eye text-white`}></i>
                                     </button>
                                     <button className="bg-green-500  px-3 mx-1 rounded-[3px]">
                                         <i className={`fa-solid fa-edit text-white`}></i>

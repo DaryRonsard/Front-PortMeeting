@@ -1,7 +1,6 @@
 
 "use client"
 
-import { logout } from '@/utils/handlerApi'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { destroyCookie } from 'nookies'
@@ -21,12 +20,12 @@ export default function SideBar(props:sideBarType) {
     const router = useRouter()
     const pathname = usePathname()
 
-    const onLogout = async () => {
-        destroyCookie(null,"access_token")
-        destroyCookie(null,"refresh_token")
-        localStorage.removeItem("access_token")
+    const onLogout =  () => {
+        localStorage.removeItem("access_token",)
         localStorage.removeItem("refresh_token")
-        return router.push("/home")
+        destroyCookie(null,"access_token",{path:"/"})
+        destroyCookie(null,"refresh_token",{path:"/"})
+        router.replace("/home")
     }
 
 
@@ -83,27 +82,6 @@ export default function SideBar(props:sideBarType) {
                     </ul>
                 </div>
 
-                {/* <div className="px-2">
-                    <button className="w-full flex items-center gap-x-2 px-1 py-1  hover:bg-gray-200 rounded-[5px]">
-                        <div className="relative rounded-full w-[40px] h-[40px]">
-                            <img 
-                                src="/images/sofware-enginer.jpg" alt="avatar" 
-                                className="w-full h-full rounded-full border-2 border-blue-300 cursor-pointer"
-                                id="user-profil"
-                            />
-                        </div>
-                        <span>Hien Dary</span>
-                    </button>
-                    <div className="mt-3 mb-1">
-                        <button onClick={onLogout}  className="group flex items-center gap-x-2 w-full text-left font-medium text-red-500 py-[10px] px-3 rounded-[5px] bg-red-500 hover:bg-[#e03f3f] hover:active:bg-red-500  hover:text-white">
-                            <i className="group-hover:text-white fa-solid fa-right-from-bracket text-white"></i>
-                            <span className="text-white">Se déconnecter</span>
-                        </button>
-                    </div>
-                </div> */}
-
-                {/* <div className="border-t-[1.55px] flex items-center justify-between gap-3 px-2 hover:bg-[#f0f0ef]"> */}
-
                 <div className="border-t-[1.55px] flex items-center justify-between gap-3 px-2">
                     <button className="w-full py-1">
                         <div className="flex items-center">
@@ -115,15 +93,13 @@ export default function SideBar(props:sideBarType) {
                                 />
                             </div>
                             <div className="w-full max-w-[150px] text-center">
-                                {/* <p className="overflow-hidden text-ellipsis text-nowrap text-gray-800">Hien Dary</p> */}
-                                {/* <span className="overflow-hidden text-ellipsis text-sm text-gray-600">hiendary@gmail.com</span> */}
                                 <p className="overflow-hidden text-ellipsis text-nowrap text-gray-800">Utilisateur</p>
                                 <span className="overflow-hidden text-ellipsis text-sm text-gray-600">{props?.email || "hiendary@gmail.com"}</span>
                             </div>
                         </div>
                     </button>
                     <button 
-                        onClick={onLogout}
+                        onClick={() => onLogout()}
                         className="group flex items-center justify-center py-[5px] px-3 rounded-[3px] "
                     >
                         <i className="group-hover:text-[#d23b3b] fa-solid fa-right-from-bracket text-[#eb0d0dc2] text-lg">

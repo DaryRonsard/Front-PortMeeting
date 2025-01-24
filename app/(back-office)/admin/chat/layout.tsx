@@ -1,13 +1,12 @@
-import Sidebar from '@/components/admin/sidebar';
 import LeftSideBar from '@/components/global_sidebar';
+import Sidebar from '@/components/super-admin/sidebar';
 import { jwtDecode } from 'jwt-decode';
 import type { Metadata } from "next";
 import { cookies } from 'next/headers';
-import { ToastContainer } from 'react-toastify';
 
 
 export const metadata: Metadata = {
-  title: "Salles",
+  title: "Chat",
   description: "Gestion des salles de réunion",
 };
 
@@ -22,10 +21,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const  last_name = decode?.last_name || null
   const  first_name = decode?.first_name || null
 
+
   return (
     <div className="app">
       <LeftSideBar 
-        user_role={user_role}
+        user_role={user_role} 
         username={username}
         email={email}
         first_name={first_name}
@@ -33,7 +33,6 @@ export default async function DashboardLayout({ children }: { children: React.Re
         user_profil={user_profil}
       />
       {children}
-      <ToastContainer/>
     </div>
   );
 }
