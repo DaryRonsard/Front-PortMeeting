@@ -55,7 +55,7 @@ export default function Body(props:dashboardProps) {
         <section className="pl-[300px]">
 
             <div className="mb-5">
-                <h3 className="text-lg">Bienvenue Monsieur <span className="text-blue-600 font-medium">{props?.first_name || "Hien"} {props?.last_name || "Dary"}</span></h3>
+                <h3 className="text-lg">Bienvenue Monsieur <span className="text-blue-600 font-medium">{props?.first_name || "Abibu"} {props?.last_name || "Ali"}</span></h3>
                 {/* <h3 className="text-lg">Bienvenue Monsieur <span className="text-blue-600 font-medium">{props?.email}</span></h3> */}
             </div>
 
