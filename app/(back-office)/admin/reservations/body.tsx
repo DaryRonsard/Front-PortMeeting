@@ -139,7 +139,7 @@ export default function Body() {
     const onCancelBooking = async (booking_id:string|number) =>  {
 
         const result = await Swal.fire({
-            title: "Êtes-vous sûr de vouloir annuler cette réservation ?",
+            title: "Êtes-vous sûr de vouloir rejeter cette réservation ?",
             text: "",
             icon: "warning",
             confirmButtonText: "Oui",
@@ -157,9 +157,9 @@ export default function Body() {
 
                 if(response.status == 200)
                 {
-                    setBookingsList(bookingsList.filter((booking:any) => booking.id != booking_id))
+                    setBookingsList(bookingsList.map((booking:any) => booking.id == booking_id ? {...booking,etat:"rejete"} : booking))
 
-                    toast.success(`Annulation réussie avec success !`, {
+                    toast.success(`Réservation rejetée avec success !`, {
                         position: "top-right",
                         autoClose:2500,
                         hideProgressBar: false,
@@ -261,63 +261,66 @@ export default function Body() {
                                 {bookingsList && bookingsList?.length > 0 &&
                                 
                                     bookingsList.map((booking:any,index:number) => (
-                                    <tr 
-                                        key={index} 
-                                        className={`${index % 2 == 0 ? "bg-blue-200" : "bg-white"} h-[40px]`}
-                                    >
-                                        <td className="border-gray-400 ">{++index}</td>
-                                        <td className="border-gray-400 ">
-                                            {booking?.user_details?.last_name} {booking?.user_details?.first_name}
-                                        </td>
-                                        <td className="border-gray-400 ">
-                                            {/* Nouvelle Direction 5 ieme etage */}
-                                            {booking?.salle_details?.localisation}
-                                        </td>
-                                        <td className="border-gray-400 ">
-                                            {/* 15/01/2025 */}
-                                            {new Date(booking?.date)?.toLocaleDateString("fr-Fr")}
-                                        </td>
-                                        <td className="border-gray-400 ">
-                                            {/* 08:00 - 10:00 */}
-                                            {/* <i className={`fa-solid fa-clock text-white`}></i> */}
-                                            {booking?.heure_debut.split(":")[0]+":"+booking?.heure_debut.split(":")[1]} -
-                                            {booking?.heure_fin.split(":")[0]+":"+booking?.heure_fin.split(":")[1]}
-                                        </td>
-                                        <td className="border-gray-400  w-[50px]">
-                                            {/* En attente */}
-                                            <i className={`${booking?.etat == "en_attente" ? "fa-solid fa-clock text-yellow-500" : booking?.etat == "validee" ? "fa-solid fa-check text-green-500" : "fa-solid fa-xmark text-red-500"}`}></i>
-                                        </td>
-                                        <td className="">
-                                            <div className="flex items-center justify-center gap-1">
-                                                <button 
-                                                    onClick={() => onShowBookingInfo(booking)} 
-                                                    className="bg-blue-500  px-3 mx-1 rounded-[3px] w-3 h-3"
-                                                >
-                                                    <i className={`fa-solid fa-eye text-white`}></i>
-                                                </button>
-                                                
-                                                {booking.etat == "en_attente" &&
-                                                    <>
-                                                        <button
-                                                            onClick={() => onValidBooking(booking)}
-                                                            className="bg-green-500  px-3 mx-1 rounded-[3px] w-3 h-3"
-                                                        >
-                                                            <i className={`fa-solid fa-check text-white`}></i>
-                                                        </button>
-                                                        
-                                                        <button 
-                                                            onClick={() => onCancelBooking(booking?.id)}
-                                                            className="bg-red-500  px-3 mx-1 rounded-[3px] w-3 h-3"
-                                                        >
-                                                            <i className={`fa-solid fa-xmark text-white`}></i>
-                                                        </button>
-                                                    </>
-                                                }
-                                            </div>
-                                        </td>
-                                    </tr>
 
-                                ))}
+                                        <tr 
+                                            key={index} 
+                                            className={`${index % 2 == 0 ? "bg-blue-200" : "bg-white"} h-[40px]`}
+                                        >
+                                            <td className="border-gray-400 ">{++index}</td>
+                                            <td className="border-gray-400 ">
+                                                {booking?.user_details?.last_name} {booking?.user_details?.first_name}
+                                            </td>
+                                            <td className="border-gray-400 ">
+                                                {/* Nouvelle Direction 5 ieme etage */}
+                                                {booking?.salle_details?.localisation}
+                                            </td>
+                                            <td className="border-gray-400 ">
+                                                {/* 15/01/2025 */}
+                                                {new Date(booking?.date)?.toLocaleDateString("fr-Fr")}
+                                            </td>
+                                            <td className="border-gray-400 ">
+                                                {/* 08:00 - 10:00 */}
+                                                {/* <i className={`fa-solid fa-clock text-white`}></i> */}
+                                                {booking?.heure_debut.split(":")[0]+":"+booking?.heure_debut.split(":")[1]} -
+                                                {booking?.heure_fin.split(":")[0]+":"+booking?.heure_fin.split(":")[1]}
+                                            </td>
+                                            <td className="border-gray-400  w-[50px]">
+                                                {/* En attente */}
+                                                <i className={`${booking?.etat == "en_attente" ? "fa-solid fa-clock text-yellow-500" : (booking?.etat == "validee" || booking?.etat == "libere") ? "fa-solid fa-check text-green-500" : booking?.etat == "annulee" ? "fa-solid fa-xmark text-red-500" : booking?.etat == "rejete" && "fa-solid fa-circle-exclamation text-[#b713aa]" }`}></i>
+                                            </td>
+                                            <td className="">
+                                                <div className="flex items-center gap-1">
+
+                                                    <button 
+                                                        onClick={() => onShowBookingInfo(booking)} 
+                                                        className="bg-blue-500 px-3 rounded-[3px] "
+                                                    >
+                                                        <i className={`fa-solid fa-eye text-white`}></i>
+                                                    </button>
+                                                    
+                                                    {booking.etat == "en_attente" &&
+                                                        <>
+                                                            <button
+                                                                onClick={() => onValidBooking(booking)}
+                                                                className="bg-green-500 px-3 rounded-[3px] "
+                                                            >
+                                                                <i className={`fa-solid fa-check text-white`}></i>
+                                                            </button>
+                                                            
+                                                            <button 
+                                                                onClick={() => onCancelBooking(booking?.id)}
+                                                                className="bg-red-500 px-3 rounded-[3px] "
+                                                            >
+                                                                <i className={`fa-solid fa-xmark text-white`}></i>
+                                                            </button>
+                                                        </>
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    )
+                                )}
                             </tbody>
 
                         </table>

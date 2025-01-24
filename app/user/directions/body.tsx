@@ -55,59 +55,59 @@ export default function Body() {
                 <div className="grid-wrapper grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-4 mt-4">
 
                     {
-                        directionsList.map((item:any,index:number) => (
+                        directionsList.map((direction:any,index:number) => (
 
-                            <Link href={`/user/directions/${item?.id || 1}/salles`}
+                            <Link href={`/user/directions/${direction?.id || 1}/salles`}
                                 key={index} 
                                 className="grid-item flex flex-col justify-between p-3 bg-white rounded-md shadow-md"
                             >
                                 <div className="img-container h-[190px] w-full">
                                     {/* <img src={ item?.images ? imageURL + `/${item?.images}` : "https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid"} alt="software-img" className="h-full w-full"/> */}
-                                    {item?.name == "DG" &&
-                                        <img src={"/images/directions/direction1.AVIF"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DG" &&
+                                        <img src={"/images/directions/direction1.avif"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DSIN" &&
-                                        <img src={"/images/directions/direction2.JPG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DSIN" &&
+                                        <img src={"/images/directions/direction2.jpg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DL" &&
-                                        <img src={"/images/directions/direction3.AVIF"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DL" &&
+                                        <img src={"/images/directions/direction3.avif"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DOMSE" &&
-                                        <img src={"/images/directions/direction4.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DOMSE" &&
+                                        <img src={"/images/directions/direction4.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DCMC" &&
-                                        <img src={"/images/directions/direction7.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DCMC" &&
+                                        <img src={"/images/directions/direction7.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DEESP" &&
-                                        <img src={"/images/directions/direction6.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DEESP" &&
+                                        <img src={"/images/directions/direction6.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DRH" &&
-                                        <img src={"/images/directions/direction8.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DRH" &&
+                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DDP" &&
-                                        <img src={"/images/directions/direction6.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DDP" &&
+                                        <img src={"/images/directions/direction6.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DAAJC" &&
-                                        <img src={"/images/directions/direction7.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DAAJC" &&
+                                        <img src={"/images/directions/direction7.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DFC" &&
-                                        <img src={"/images/directions/direction8.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DFC" &&
+                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DAGS" &&
-                                        <img src={"/images/directions/direction8.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DAGS" &&
+                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "TP" &&
-                                        <img src={"/images/directions/direction8.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "TP" &&
+                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DCAQ" &&
-                                        <img src={"/images/directions/direction8.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DCAQ" &&
+                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
-                                    {item?.name == "DIMO" &&
-                                        <img src={"/images/directions/direction8.JPEG"} alt="software-img" className="h-full w-full"/>
+                                    {direction?.name == "DIMO" &&
+                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                 </div>
                                 <div className="mt-2 px-2">
-                                    <h3 className="text-blue-500 font-medium overflow-hidden text-nowrap text-ellipsis">{item.name} ({item?.description})</h3>
+                                    <h3 className="text-blue-500 font-medium overflow-hidden text-nowrap text-ellipsis">{direction.name} ({direction?.description})</h3>
                                 </div>
                             </Link>
                         ))

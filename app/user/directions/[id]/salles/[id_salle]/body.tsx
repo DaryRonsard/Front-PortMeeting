@@ -307,14 +307,14 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
 
                             <div className="img-container h-[280px] ">
                                 
-                                {/* <img src={activeRoomImage || "/images/rooms/warwick-geneva-rigi-cervin.JPG"} alt="software-img" className="h-full rounded-md w-full object-cover"/> */}
+                                {/* <img src={activeRoomImage || "/images/rooms/warwick-geneva-rigi-cervin.jpg"} alt="software-img" className="h-full rounded-md w-full object-cover"/> */}
                                 
                                 {roomByDirectionList?.findIndex((room:any) => room.id == id_salle) == 0 ?
-                                    <img src={activeRoomImage || "/images/rooms/warwick-geneva-rigi-cervin.JPG"} alt="software-img" className="h-full rounded-md w-full object-cover"/>
+                                    <img src={activeRoomImage || "/images/rooms/warwick-geneva-rigi-cervin.jpg"} alt="software-img" className="h-full rounded-md w-full object-cover"/>
                                 : roomByDirectionList?.findIndex((room:any) => room.id == id_salle) == 1 ?
-                                    <img src={activeRoomImage || "/images/rooms/preparer-sa-salle.JPG"} alt="software-img" className="h-full rounded-md w-full object-cover"/>
+                                    <img src={activeRoomImage || "/images/rooms/preparer-sa-salle.jpg"} alt="software-img" className="h-full rounded-md w-full object-cover"/>
                                 : roomByDirectionList?.findIndex((room:any) => room.id == id_salle) == 2 ?
-                                    <img src={activeRoomImage || "/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.JPG"} alt="software-img" className="h-full rounded-md w-full object-cover"/>
+                                    <img src={activeRoomImage || "/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.jpg"} alt="software-img" className="h-full rounded-md w-full object-cover"/>
                                 :
                                     <img src={activeRoomImage || "/images/rooms/photo-espace-reunion-salon-table-ovale-les-trois-colonnes-hotel-kyriad-14237853bef5c3853a7e7dd18c5e291b.JPEG"} alt="software-img" className="h-full rounded-md w-full object-cover"/>
                                 }
@@ -346,20 +346,20 @@ export default function Body({id_direction,id_salle}:{id_direction?:string,id_sa
                                     <div
                                         key={index}
                                         className={`img-container w-[50px] h-[50px] border-[2px] ${index == 0 ? "border-blue-600" : ""}  rounded-md bg-orange-500 cursor-pointer`} 
-                                        style={{background:`url('/images/rooms/warwick-geneva-rigi-cervin.JPG') center/cover no-repeat`}}
+                                        style={{background:`url('/images/rooms/warwick-geneva-rigi-cervin.jpg') center/cover no-repeat`}}
                                     />
 
                                 : roomByDirectionList?.findIndex((room:any) => room.id == id_salle) == 1 ?
                                     <div
                                         key={index}
                                         className={`img-container w-[50px] h-[50px] border-[2px] ${index == 0 ? "border-blue-600" : ""}  rounded-md bg-orange-500 cursor-pointer`} 
-                                        style={{background:`url('/images/rooms/preparer-sa-salle.JPG') center/cover no-repeat`}}
+                                        style={{background:`url('/images/rooms/preparer-sa-salle.jpg') center/cover no-repeat`}}
                                     />
                                 : roomByDirectionList?.findIndex((room:any) => room.id == id_salle) == 2 ?
                                     <div
                                         key={index}
                                         className={`img-container w-[50px] h-[50px] border-[2px] ${index == 0 ? "border-blue-600" : ""}  rounded-md bg-orange-500 cursor-pointer`} 
-                                        style={{background:`url('/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.JPG') center/cover no-repeat`}}
+                                        style={{background:`url('/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.jpg') center/cover no-repeat`}}
                                     />
                                 :
                                     <div

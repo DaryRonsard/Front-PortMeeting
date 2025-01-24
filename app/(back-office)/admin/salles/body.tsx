@@ -50,6 +50,7 @@ export default function Body() {
                         theme: "light",
                         transition:Bounce,
                     });
+
                     setRoomsList(roomsList.filter((room:any) => room.id != room_id))
                     // loadingData()
                 }
@@ -169,81 +170,84 @@ export default function Body() {
 
                             <tbody>
                                 {roomsList && roomsList?.length > 0 && 
+
                                     roomsList.map((room:any,index:number) => (
-                                    <tr 
-                                        key={index} 
-                                        className={`${index % 2 == 0 ? "bg-blue-200" : "bg-white"} h-[40px]`}
-                                    >
-                                        <td className="border-gray-400  w-[50px]">{++index}</td>
-                                        <td className="border-gray-400 ">
-                                            {/* Salle de reunion DG */}
-                                            {room?.name}
-                                        </td>
-                                        <td className="border-gray-400 ">
-                                            {/* Nouvelle Direction 5 ieme etage */}
-                                            {room?.localisation}
-                                        </td>
-                                        <td className="border-gray-400 ">
-                                            <div className="flex justify-center gap-2">
-                                                {room?.equipment_details && room?.equipment_details?.length > 0 &&
+                                        
+                                        <tr 
+                                            key={index} 
+                                            className={`${index % 2 == 0 ? "bg-blue-200" : "bg-white"} h-[40px]`}
+                                        >
+                                            <td className="border-gray-400  w-[50px]">{++index}</td>
+                                            <td className="border-gray-400 ">
+                                                {/* Salle de reunion DG */}
+                                                {room?.name}
+                                            </td>
+                                            <td className="border-gray-400 ">
+                                                {/* Nouvelle Direction 5 ieme etage */}
+                                                {room?.localisation}
+                                            </td>
+                                            <td className="border-gray-400 ">
+                                                <div className="flex justify-center gap-2">
+                                                    {room?.equipment_details && room?.equipment_details?.length > 0 &&
 
-                                                    room?.equipment_details.map((equipment:any,index:number) => (
+                                                        room?.equipment_details.map((equipment:any,index:number) => (
 
-                                                        equipment?.name == "projecteur" ? 
-                                                            <i key={index} className="fa-solid fa-video text-red-500"></i>
-                                                        : equipment?.name == "écran intéractif" ? 
-                                                            <i key={index} className="fa-solid fa-tv text-green-500"></i>
-                                                        : equipment?.name == "tablette" ? 
-                                                            <i key={index} className="fa-solid fa-mobile-screen text-blue-500"></i>
-                                                        : equipment?.name == "wifi" ? 
-                                                            <i key={index} className="fa-solid fa-wifi text-blue-500"></i>
-                                                        : equipment?.name == "micro" &&
-                                                            <i key={index} className="fa-solid fa-microphone text-blue-500"></i> 
+                                                            equipment?.name == "projecteur" ? 
+                                                                <i key={index} className="fa-solid fa-video text-red-500"></i>
+                                                            : equipment?.name == "écran intéractif" ? 
+                                                                <i key={index} className="fa-solid fa-tv text-green-500"></i>
+                                                            : equipment?.name == "tablette" ? 
+                                                                <i key={index} className="fa-solid fa-mobile-screen text-blue-500"></i>
+                                                            : equipment?.name == "wifi" ? 
+                                                                <i key={index} className="fa-solid fa-wifi text-blue-500"></i>
+                                                            : equipment?.name == "micro" &&
+                                                                <i key={index} className="fa-solid fa-microphone text-blue-500"></i> 
 
-                                                    ))
-                                                    
-                                                }
-                                            </div>
-                                        </td>
-                                        <td className="border-gray-400 ">{room?.capacite}</td>
-                                        <td className="border-gray-400 ">
-                                            {room?.direction_details?.name}
-                                        </td>
-                                        <td className="">
-                                            <div className="flex justify-center items-center gap-1">
-                                                <button 
-                                                    title='aperçu'
-                                                    onClick={() => router.push(`/admin/salles/${room?.id}`)} 
-                                                    className="bg-blue-500 px-3 mx-1 rounded-[3px] w-3 h-3"
-                                                >
-                                                    <i className={`fa-solid fa-eye text-white`}></i>
-                                                </button>
-                                                <button 
-                                                    title='plage horaires'
-                                                    onClick={() => router.push(`/admin/salles/${room?.id}/plage-horaires`)} 
-                                                    className="bg-blue-500  px-3 mx-1 rounded-[3px] w-3 h-3"
-                                                >
-                                                    <i className={`fa-solid fa-clock text-white`}></i>
-                                                </button>
-                                                <button
-                                                    title='éditer'
-                                                    onClick={() => router.push(`/admin/salles/${room?.id}/edit`)} 
-                                                    className="bg-green-500  px-3 mx-1 rounded-[3px] w-3 h-3"
-                                                >
-                                                    <i className={`fa-solid fa-edit text-white`}></i>
-                                                </button>
-                                                <button 
-                                                    title='supprimer'
-                                                    onClick={() => onDeleteRoom(room?.id)}
-                                                    className="bg-red-500  px-3 mx-1 rounded-[3px]  w-3 h-3"
-                                                >
-                                                    <i className={`fa-solid fa-trash-can text-white`}></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                        ))
+                                                        
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td className="border-gray-400 ">{room?.capacite}</td>
+                                            <td className="border-gray-400 ">
+                                                {room?.direction_details?.name}
+                                            </td>
+                                            <td className="">
+                                                <div className="flex justify-center items-center gap-1">
+                                                    <button 
+                                                        title='aperçu'
+                                                        onClick={() => router.push(`/admin/salles/${room?.id}`)} 
+                                                        className="bg-blue-500 px-3 mx-1 rounded-[3px]"
+                                                    >
+                                                        <i className={`fa-solid fa-eye text-white`}></i>
+                                                    </button>
+                                                    <button 
+                                                        title='plage horaires'
+                                                        onClick={() => router.push(`/admin/salles/${room?.id}/plage-horaires`)} 
+                                                        className="bg-blue-500  px-3 mx-1 rounded-[3px]"
+                                                    >
+                                                        <i className={`fa-solid fa-clock text-white`}></i>
+                                                    </button>
+                                                    <button
+                                                        title='éditer'
+                                                        onClick={() => router.push(`/admin/salles/${room?.id}/edit`)} 
+                                                        className="bg-green-500  px-3 mx-1 rounded-[3px]"
+                                                    >
+                                                        <i className={`fa-solid fa-edit text-white`}></i>
+                                                    </button>
+                                                    <button 
+                                                        title='supprimer'
+                                                        onClick={() => onDeleteRoom(room?.id)}
+                                                        className="bg-red-500  px-3 mx-1 rounded-[3px]"
+                                                    >
+                                                        <i className={`fa-solid fa-trash-can text-white`}></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
 
-                                ))}
+                                    ))
+                                }
                             </tbody>
 
                         </table>

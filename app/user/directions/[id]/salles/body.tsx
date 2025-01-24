@@ -2,10 +2,6 @@
 
 import Loader from '@/components/loader'
 import apiClient, { apiBaseURL } from '@/utils/api-client'
-import { directionsList} from '@/utils/directions-infos'
-import {RoomsByDirectionList } from '@/utils/room-infos'
-import { RoomTools } from '@/utils/room-infos'
-import Link from 'next/link'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -41,7 +37,6 @@ export default function Body() {
     },[])
 
 
-
     return (
         <section className="pl-[300px]">
 
@@ -74,11 +69,11 @@ export default function Body() {
                             >
                                 <div className="relative img-container h-[175px] rounded-md overflow-hidden  group">
                                     {index == 0 ?
-                                        <img src={room?.image || "/images/rooms/warwick-geneva-rigi-cervin.JPG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                        <img src={room?.image || "/images/rooms/warwick-geneva-rigi-cervin.jpg"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                     : index == 1 ?
-                                        <img src={room?.image || "/images/rooms/preparer-sa-salle.JPG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                        <img src={room?.image || "/images/rooms/preparer-sa-salle.jpg"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                     : index == 2 ?
-                                        <img src={room?.image || "/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.JPG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                        <img src={room?.image || "/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.jpg"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                     : 
                                         <img src={room?.image || "/images/rooms/photo-espace-reunion-salon-table-ovale-les-trois-colonnes-hotel-kyriad-14237853bef5c3853a7e7dd18c5e291b.JPEG"} alt="room-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                     }
@@ -99,19 +94,19 @@ export default function Body() {
                                                 {room?.room_equipments?.length > 0 && 
                                                 
                                                     room?.room_equipments.map((equipment:any,index:number) => (
-                                                        equipment?.equipment_details?.name == "projecteur" ? 
+                                                        equipment?.equipment_details?.name == "projecteur" && equipment?.equipment_details?.status ? 
                                                             <i className="fa-solid fa-video text-red-500" key={index}></i>
                                                         :
-                                                        equipment?.equipment_details?.name == "écran intéractif" ? 
+                                                        equipment?.equipment_details?.name == "écran intéractif" && equipment?.equipment_details?.status ? 
                                                             <i className="fa-solid fa-tv text-green-500" key={index}></i>
                                                         :
-                                                        equipment?.equipment_details?.name == "tablette" ? 
+                                                        equipment?.equipment_details?.name == "tablette" && equipment?.equipment_details?.status ? 
                                                             <i className="fa-solid fa-mobile-screen text-blue-500" key={index}></i>
                                                         :
-                                                        equipment?.equipment_details?.name == "wifi" ? 
+                                                        equipment?.equipment_details?.name == "wifi" && equipment?.equipment_details?.status ? 
                                                             <i className="fa-solid fa-wifi text-blue-500" key={index}></i>
                                                         :
-                                                        equipment?.equipment_details?.name == "micro" &&
+                                                        equipment?.equipment_details?.name == "micro" && equipment?.equipment_details?.status &&
                                                             <i className="fa-solid fa-microphone text-gray-500" key={index}></i>
                                                     ))
                                                 }

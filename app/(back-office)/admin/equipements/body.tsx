@@ -29,7 +29,7 @@ export default function Body() {
     const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
     const targetRef:any = React.useRef(null);
     const { moveProps } = useDraggable({ targetRef, canOverflow: true, isDisabled: !isOpen });
-    
+
 
     const onAddEquipment = async (e:React.FormEvent) => {
 
@@ -256,13 +256,13 @@ export default function Body() {
                                     {/* <td className="border-gray-400 ">{equipment.etat}</td> */}
                                     <td className="">
                                         <button 
-                                            className="bg-green-500  px-3 mx-1 rounded-[3px] h-3 w-3"
+                                            className="bg-green-500  px-3 mx-1 rounded-[3px]"
                                         >
                                             <i className={`fa-solid fa-edit text-white`}></i>
                                         </button>
                                         <button 
                                             onClick={() => onDeleteEquipment(equipment.id)}
-                                            className="bg-red-500  px-3 mx-1 rounded-[3px] h-3 w-3"
+                                            className="bg-red-500  px-3 mx-1 rounded-[3px]"
                                         >
                                             <i className={`fa-solid fa-trash-can text-white`}></i>
                                         </button>

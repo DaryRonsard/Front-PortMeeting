@@ -41,7 +41,7 @@ export default function Body(props:dashboardProps) {
 
                     <div className="user-list-container pt-1 overflow-y-scroll">
 
-                        {Array.from([1,2,3,4,5,6,7,8,9,10]).map((_,index:number) => (
+                        {Array.from([1,2,3,4,5]).map((_,index:number) => (
 
                             <div 
                                 key={index}
@@ -50,7 +50,7 @@ export default function Body(props:dashboardProps) {
                                 <div 
                                     className="image-container h-[40px] w-[40px] overflow-hidden"
                                 >
-                                    <img src="/images/sofware-enginer.JPG" alt="user-image" 
+                                    <img src="/images/sofware-enginer.jpg" alt="user-image" 
                                         className="rounded-full border"
                                     />
                                 </div>
@@ -85,7 +85,7 @@ export default function Body(props:dashboardProps) {
 
                         <div className="top-profil-container flex items-center gap-2">
                             <div className="user-image-container h-[40px] w-[40px] overflow-hidden">
-                                <img src="/images/sofware-enginer.JPG" alt="user-image" 
+                                <img src="/images/sofware-enginer.jpg" alt="user-image" 
                                     className="rounded-full border"
                                 />
                             </div>

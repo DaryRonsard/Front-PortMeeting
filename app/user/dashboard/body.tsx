@@ -28,16 +28,30 @@ export default function Body(props:dashboardProps) {
     ];
 
     const [bookingsList,setBookingsList] = useState<any>([])
+    const [directionCount,setDirectionCount] = useState<number>(0)
+    const [bookingCancelCount,setBookingCancelCount] = useState<number>(0)
+    const [historyCount,setHistoryCount] = useState<any>(0)
+
 
     const loadingData = async () => {
 
         try 
         {
-            const [bookingsData] = await Promise.all([
-                (await apiClient.get(`${apiBaseURL}/api/V1/bookings/booking/`))?.data
+
+            const [directionCountData,dashboardInfo] = await Promise.all([
+                (await apiClient.get(`${apiBaseURL}/directions/`)).data,
+                (await apiClient.get(`${apiBaseURL}/api/V1/bookings/booking/user-history/`)).data
             ])
-            setBookingsList(bookingsData)
-            console.log(bookingsData);
+
+            console.log("Liste directions :",directionCountData)
+            console.log("Info Dashboard :",directionCountData)
+            console.log("Liste des réservations :",dashboardInfo.historique)
+
+            setDirectionCount(directionCountData.length)
+            setBookingCancelCount(dashboardInfo.total_annulees)
+            setHistoryCount(dashboardInfo.historique.length)
+            setBookingsList(dashboardInfo.historique)
+
         } 
         catch (error) {
             console.log("Le serveur a rencontré un problème");
@@ -68,16 +82,8 @@ export default function Body(props:dashboardProps) {
                         <i className="fa-solid fa-house text-white"></i>
                     </div>
                     <h3 className="text-center font-medium text-blue-500 mt-3 mb-3">Directions</h3>
-                    <p className="text-center font-medium bg-blue-500 text-white rounded-full py-1">14</p>
+                    <p className="text-center font-medium bg-blue-500 text-white rounded-full py-1">{directionCount}</p>
                 </button>
-
-                {/* <button className="item p-5 hover:border-green-400 transition-all duration-[0.4s] border-2 rounded-md bg-white w-full">
-                    <div className="flex items-center justify-center text-center p-2 rounded-full bg-green-500 w-[35px] h-[35px] mx-auto">
-                        <i className="fa-solid fa-hourglass-half text-white "></i>
-                    </div>
-                    <h3 className="text-center font-medium text-green-500 mt-3 mb-3">Réservations en cours</h3>
-                    <p className="text-center font-medium bg-green-500 text-white rounded-full py-1">5</p>
-                </button> */}
 
                 <button
                     onClick={() => router.push("/user/reservations")} 
@@ -86,7 +92,9 @@ export default function Body(props:dashboardProps) {
                         <i className="fa-solid fa-xmark text-white "></i>
                     </div>
                     <h3 className="text-center font-medium text-red-500 mt-3 mb-3">Réservations annulée</h3>
-                    <p className="text-center font-medium bg-red-500 text-white rounded-full py-1">2</p>
+                    <p className="text-center font-medium bg-red-500 text-white rounded-full py-1">
+                        {bookingCancelCount}
+                    </p>
                 </button>
 
                 <button
@@ -96,7 +104,9 @@ export default function Body(props:dashboardProps) {
                         <i className="fa-solid fa-clock-rotate-left text-white "></i>
                     </div>
                     <h3 className="text-center font-medium text-[#ef8314] mt-3 mb-3">Historiques</h3>
-                    <p className="text-center font-medium bg-[#ef8314] text-white rounded-full py-1">6</p>
+                    <p className="text-center font-medium bg-[#ef8314] text-white rounded-full py-1">
+                        {historyCount}
+                    </p>
                 </button>
 
             </div>
