@@ -158,7 +158,7 @@ export default function Body() {
 
                 <div className="image-wrapper w-full">
                     <img 
-                        src={`${roomInfo?.image_principale || "/images/rooms/preparer-sa-salle.JPG"}`} 
+                        src={`${roomInfo?.image_principale || "/images/rooms/preparer-sa-salle.jpg"}`} 
                         alt="room-picture" 
                         className="w-full h-[250px] border-[1.5px] border-blue-500"
                     />
@@ -193,7 +193,7 @@ export default function Body() {
                                 <button className="absolute flex items-center justify-center top-1 right-1 rounded-[50px] bg-red-500 h-[20px] w-[20px] border">
                                     <i className="fa-solid fa-trash-can text-white pointer-events-none text-[10px]"></i>
                                 </button>
-                                <img src="/images/rooms/preparer-sa-salle.JPG" 
+                                <img src="/images/rooms/preparer-sa-salle.jpg" 
                                     alt="room-picture" 
                                     className="w-full h-full rounded-[3px] border border-blue-500 cursor-pointer"
                                 />

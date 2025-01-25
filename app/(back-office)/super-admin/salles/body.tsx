@@ -50,11 +50,11 @@ export default function Body() {
                             <div className="relative img-container h-[175px] rounded-md overflow-hidden  group">
                                 {/* <img src={item?.images[0]?.name || ""} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/> */}
                                 {index == 0 ?
-                                    <img src={"/images/rooms/preparer-sa-salle.JPG"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                    <img src={"/images/rooms/preparer-sa-salle.jpg"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                 : index == 1 ? 
-                                    <img src={"/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.JPG"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                    <img src={"/images/rooms/pm_8909_58_58822-mmwv489e2p-16_9_xlarge.jpg"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                 :
-                                    <img src={"/images/rooms/preparer-sa-salle.JPG"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
+                                    <img src={"/images/rooms/preparer-sa-salle.jpg"} alt="software-img" className="h-full rounded-md w-full group-hover:scale-[1.1] transition-all duration-[0.5s]"/>
                                 }
                             </div>
                             <div className="my-1 w-full flex flex-col justify-between gap-y-3">

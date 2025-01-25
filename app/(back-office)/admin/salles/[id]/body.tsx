@@ -79,7 +79,7 @@ export default function Body() {
 
                 <div className="image-wrapper w-full">
                     <img 
-                        src={`${roomInfo?.image_principale || "/images/rooms/preparer-sa-salle.JPG"}`} 
+                        src={`${roomInfo?.image_principale || "/images/rooms/preparer-sa-salle.jpg"}`} 
                         alt="room-picture" 
                         className="w-full h-[250px] border-[1.5px] border-blue-500"
                     />
@@ -87,7 +87,7 @@ export default function Body() {
                     <div className="grid-image grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6  gap-2 w-full mt-4">
                         {Array.from([1,2,3]).map((_,index:number) => (
                             <div key={index} className="relative image-container "> 
-                                <img src="/images/rooms/preparer-sa-salle.JPG" 
+                                <img src="/images/rooms/preparer-sa-salle.jpg" 
                                     alt="room-picture" 
                                     className="w-full h-full rounded-[3px] border border-blue-500 cursor-pointer"
                                 />

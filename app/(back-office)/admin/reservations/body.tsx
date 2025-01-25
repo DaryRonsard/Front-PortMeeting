@@ -340,7 +340,7 @@ export default function Body() {
                                         <ModalBody>
                                             <div className="h-full">
                                                 <div className="img-container h-[180px] ">
-                                                    <img src={"/images/rooms/warwick-geneva-rigi-cervin.JPG"} alt="software-img" className="h-full rounded-md w-full"/>
+                                                    <img src={"/images/rooms/warwick-geneva-rigi-cervin.jpg"} alt="software-img" className="h-full rounded-md w-full"/>
                                                 </div>
                                                 <div className="name-container my-2">
                                                     <h3 className="text-blue-500 font-medium overflow-hidden text-nowrap text-ellipsis mt-1">
@@ -365,17 +365,17 @@ export default function Body() {
 
                                                     <div
                                                         className={`img-container w-[40px] h-[40px] border-[2px] border-blue-600  rounded-md bg-orange-500 cursor-pointer`} 
-                                                        style={{background:`url('/images/rooms/warwick-geneva-rigi-cervin.JPG') center/cover no-repeat`}}
+                                                        style={{background:`url('/images/rooms/warwick-geneva-rigi-cervin.jpg') center/cover no-repeat`}}
                                                     />
 
                                                     <div
                                                         className={`img-container w-[40px] h-[40px] rounded-md bg-orange-500 cursor-pointer`} 
-                                                        style={{background:`url('/images/rooms/warwick-geneva-rigi-cervin.JPG') center/cover no-repeat`}}
+                                                        style={{background:`url('/images/rooms/warwick-geneva-rigi-cervin.jpg') center/cover no-repeat`}}
                                                     />
 
                                                     <div
                                                         className={`img-container w-[40px] h-[40px] rounded-md bg-orange-500 cursor-pointer`} 
-                                                        style={{background:`url('/images/rooms/warwick-geneva-rigi-cervin.JPG') center/cover no-repeat`}}
+                                                        style={{background:`url('/images/rooms/warwick-geneva-rigi-cervin.jpg') center/cover no-repeat`}}
                                                     />
                                                 
                                                 </div>

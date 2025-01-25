@@ -83,14 +83,14 @@ const LeftSideBar = (props:sideBarType) => {
                                             </span> */}
                                         </Link>
                                     </li>
-                                    <li className="my-1">
+                                    {/* <li className="my-1">
                                         <Link href="/admin/video" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/admin/video") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-white"}`}>
                                             <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full bg-[#c81f27]`}>
                                                 <i className={`fa-solid fa-video text-white`}></i>
                                             </span>
                                             Vidéo conférence
                                         </Link>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
 
@@ -282,18 +282,14 @@ const LeftSideBar = (props:sideBarType) => {
                                             </span> */}
                                         </Link>
                                     </li>
-                                    <li className="my-1">
-                                        {/* <Link href="/user/video" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/user/video") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
-                                            <i className={`fa-solid fa-video text-[15.3px] text-gray-500 py-[7px] px-[6px] rounded-full ${pathname.startsWith("/user/video") ? " bg-[#c81f27] text-white " : "text-white bg-[#c81f27]"}`}></i>
-                                            Vidéo conférence
-                                        </Link> */}
+                                    {/* <li className="my-1">
                                         <Link href="/user/video" className={`flex items-center gap-x-2 p-2 text-center rounded-lg ${pathname.startsWith("/user/video") ? "bg-[#ebf5fa] text-blue-500 font-medium " : "text-gray-800"}`}>
                                             <span className={`h-[30px] w-[30px] flex items-center justify-center rounded-full bg-[#c81f27]`}>
                                                 <i className={`fa-solid fa-video py-[7px] px-[6px] rounded-full text-white`}></i>
                                             </span>
                                             Vidéo conférence
                                         </Link>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
 
