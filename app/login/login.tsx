@@ -126,7 +126,8 @@ export default function loginPage() {
         >
 
           <div className="mb-8">
-            <img src='/images/meeting-logo-1.png' width={100} height={100} className="block mx-auto" />
+            {/* <img src='/images/meeting-logo-1.png' width={100} height={100} className="block mx-auto" /> */}
+            <img src='/images/paa-logo.png' width={100} height={100} className="block mx-auto" />
           </div>
 
           <div className="input-container my-2">
