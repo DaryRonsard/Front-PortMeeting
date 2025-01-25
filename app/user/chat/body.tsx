@@ -41,7 +41,7 @@ export default function Body(props:dashboardProps) {
 
                     <div className="user-list-container pt-1 overflow-y-scroll">
 
-                        {Array.from([1,2,3,4,5]).map((_,index:number) => (
+                        {Array.from([1,2,3]).map((_,index:number) => (
 
                             <div 
                                 key={index}
@@ -57,13 +57,31 @@ export default function Body(props:dashboardProps) {
                                 <div className="flex-1">
                                     <div className="flex items-center justify-between">
                                         <h3 className="font-medium text-sm text-blue-500">
-                                            Direction (DSIN)
+                                            {index == 0 ?
+                                                "Direction (DSIN)"
+                                            : index == 1 ? 
+                                                "Direction (DL)"
+                                            : index == 2 ? 
+                                                "Direction (DG)"
+                                            :
+                                                "Direction (DOMSE)"
+                                            }
                                         </h3>
                                         {/* <span className="block text-end text-gray-400 text-sm">Aujourd'hui</span> */}
                                         {/* <span className="block text-end text-gray-400 text-sm">à l'instant</span> */}
                                         <span className="block text-end text-gray-400 text-sm">il y a 5 minutes</span>
                                     </div>
-                                    <h3 className="font-medium text-sm text-blue-500">Coulibaly Aminata</h3>
+                                    <h3 className="font-medium text-sm text-blue-500">
+                                        {index == 0 ?
+                                            "Coulibaly Aminata"
+                                        : index == 1 ? 
+                                            "Diaby Fanta"
+                                        : index == 2 ? 
+                                            "Ayepo Christelle "
+                                        :
+                                            "Brou Ornella"
+                                        }
+                                    </h3>
                                     <span className="text-sm">Nouveau message reçu</span>
                                 </div>
                             </div>
@@ -115,21 +133,29 @@ export default function Body(props:dashboardProps) {
 
                         <div className="chat-message overflow-y-scroll overscroll-contain pl-3 pr-4">
 
-                            {Array.from([1,2,3,4,5].map((_:any,index:number) => (
+                            {Array.from([1].map((_:any,index:number) => (
                                 <div key={index}>
 
                                     <div className="left-message-wrapper mr-auto w-full my-2 max-w-[300px]">
                                         <div className="left-message rounded-[8px] bg-gray-300 w-full py-2 px-2 mb-1">
-                                            <span className="text-black text-sm">Coucou !</span>
+                                            <span className="text-black text-sm">Bonjour comment allez-vous ?</span>
                                         </div>
                                         <span className="text-gray-300 text-sm">à l'instant</span>
                                     </div>
 
                                     <div className="right-message-wrapper ml-auto w-full my-2 max-w-[300px]">
                                         <div className="left-message rounded-[8px] bg-green-500 w-full py-2 px-2 mb-1">
-                                            <span className="block text-white  text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo vitae quod, ex tempora, eaque quaerat in optio unde, quae nisi eveniet enim dolorum hic delectus. Mollitia, quas esse! Architecto, accusamus.</span>
+                                            <span className="block text-white  text-sm">Je vais très bien merci et vous ?</span>
                                         </div>
                                         <span className="text-gray-300 text-sm float-end">à l'instant</span>
+                                    </div>
+
+                                    
+                                    <div className="left-message-wrapper mr-auto w-full my-2 max-w-[400px]">
+                                        <div className="left-message rounded-[8px] bg-gray-300 w-full py-2 px-2 mb-1">
+                                            <span className="text-black text-sm">Je vais également bien. Je me permet de vous contacter afin de vous informer que ma réservation pour la salle de réunion (Nouvelle Direction 5 ième étage) n'a apparement pas été prise en compte, puis-je savoir pourquoi ?</span>
+                                        </div>
+                                        <span className="text-gray-300 text-sm">à l'instant</span>
                                     </div>
                                     
                                 </div>

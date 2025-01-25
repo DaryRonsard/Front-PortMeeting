@@ -1,8 +1,8 @@
 "use client"
 
-import apiClient from '@/utils/api-client'
+import apiClient, { apiBaseURL } from '@/utils/api-client'
 import { useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 import { dashboardProps } from '@/utils/type'
@@ -11,11 +11,6 @@ import { dashboardProps } from '@/utils/type'
 export default function Body(props:dashboardProps) {
 
     const router = useRouter()
-
-    useEffect(() => {
-
-    }, [])
-
 
     const data = [
         { name: 'Janvier', reservations: 25 },
@@ -32,12 +27,46 @@ export default function Body(props:dashboardProps) {
         { name: 'Décembre', reservations: 200, },
     ];
 
+    const [directionCount,setDirectionCount] = useState<number>(0)
+    const [bookingPendingCount,setBookingPendingCount] = useState<number>(0)
+    const [bookingCancelCount,setBookingCancelCount] = useState<number>(0)
+
+    const loadingData = async () => {
+
+        try 
+        {
+
+            const [directionCountData,dashboardInfo] = await Promise.all([
+                (await apiClient.get(`${apiBaseURL}/directions/`)).data,
+                (await apiClient.get(`${apiBaseURL}/api/V1/bookings/booking/user-history/`)).data
+            ])
+
+            console.log("Liste directions :",directionCountData)
+            console.log("Info Dashboard :",directionCountData)
+            console.log("Liste des réservations :",dashboardInfo.historique)
+
+            setDirectionCount(directionCountData.length)
+            setBookingPendingCount(dashboardInfo.total_en_attente)
+            setBookingCancelCount(dashboardInfo.total_annulees)
+            // setHistoryCount(dashboardInfo.historique.length)
+            // setBookingsList(dashboardInfo.historique)
+
+        } 
+        catch (error) {
+            console.log("Le serveur a rencontré un problème");
+        }
+    }
+
+
+    useEffect(() => {
+        loadingData()
+    }, []);
 
     return (
         <section className="pl-[300px]">
 
             <div className="mb-5">
-                <h3 className="text-lg">Bienvenue Monsieur <span className="text-blue-600 font-medium">Hien Dary</span></h3>
+                <h3 className="text-lg">Bienvenue Monsieur <span className="text-blue-600 font-medium">{props?.first_name || "Hien"} {props?.last_name || "Dary"}</span></h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -49,7 +78,7 @@ export default function Body(props:dashboardProps) {
                         <i className="fa-solid fa-house text-white "></i>
                     </div>
                     <h3 className="text-center font-medium text-blue-500 mt-3 mb-3">Directions</h3>
-                    <p className="text-center font-medium bg-blue-500 text-white rounded-full py-1">10</p>
+                    <p className="text-center font-medium bg-blue-500 text-white rounded-full py-1">{directionCount}</p>
                 </button>
 
                 <button className="item p-5 hover:border-green-400 transition-all duration-[0.4s] border-2 rounded-md bg-white w-full">
@@ -57,7 +86,7 @@ export default function Body(props:dashboardProps) {
                         <i className="fa-solid fa-hourglass-half text-white "></i>
                     </div>
                     <h3 className="text-center font-medium text-green-500 mt-3 mb-3">Réservations en cours</h3>
-                    <p className="text-center font-medium bg-green-500 text-white rounded-full py-1">5</p>
+                    <p className="text-center font-medium bg-green-500 text-white rounded-full py-1">{bookingPendingCount}</p>
                 </button>
 
                 <button
@@ -67,7 +96,7 @@ export default function Body(props:dashboardProps) {
                         <i className="fa-solid fa-xmark text-white "></i>
                     </div>
                     <h3 className="text-center font-medium text-red-500 mt-3 mb-3">Réservations annulée</h3>
-                    <p className="text-center font-medium bg-red-500 text-white rounded-full py-1">2</p>
+                    <p className="text-center font-medium bg-red-500 text-white rounded-full py-1">{bookingCancelCount}</p>
                 </button>
 
             </div>
