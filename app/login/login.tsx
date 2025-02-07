@@ -106,7 +106,7 @@ export default function loginPage() {
 
 
   return (
-    <div className="flex justify-center items-center h-screen p-4" style={{background:"linear-gradient(37deg, rgb(35 147 195 / 95%), #00000003), url('/images/meeting-background.jpg') center/cover no-repeat"}}>
+    <div className="flex justify-center items-center h-screen p-4" style={{background:"linear-gradient(37deg, rgb(35 147 195 / 95%), #00000003), url('/images/meeting-room.jpeg') center/cover no-repeat"}}>
 
       {/* <div className="left-wrapper w-full hidden lg:flex pb-8" style={{ background: "url('/images/meeting-background.jpg') center/contain no-repeat" }} >
         <div className="px-3 py-2 self-end w-full">

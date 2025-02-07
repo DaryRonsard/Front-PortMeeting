@@ -14,7 +14,6 @@ export default function Body() {
     const [loading,setLoading] = useState<boolean>(true)
 
     const loadingData = async () => {
-
         try 
         {
             const response = await apiClient.get(`${apiBaseURL}/directions/`)
@@ -64,46 +63,46 @@ export default function Body() {
                                 <div className="img-container h-[190px] w-full">
                                     {/* <img src={ item?.images ? imageURL + `/${item?.images}` : "https://img.freepik.com/photos-gratuite/photographie-gros-plan-immeuble-grande-hauteur-mur-rideau_395237-271.jpg?semt=ais_hybrid"} alt="software-img" className="h-full w-full"/> */}
                                     {direction?.name == "DG" &&
-                                        <img src={"/images/directions/direction1.avif"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DSIN" &&
-                                        <img src={"/images/directions/direction2.jpg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-2.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DL" &&
-                                        <img src={"/images/directions/direction3.avif"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DOMSE" &&
-                                        <img src={"/images/directions/direction4.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-2.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DCMC" &&
-                                        <img src={"/images/directions/direction7.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DEESP" &&
-                                        <img src={"/images/directions/direction6.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-2.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DRH" &&
-                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DDP" &&
-                                        <img src={"/images/directions/direction6.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-2.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DAAJC" &&
-                                        <img src={"/images/directions/direction7.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DFC" &&
-                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DAGS" &&
-                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "TP" &&
-                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DCAQ" &&
-                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                     {direction?.name == "DIMO" &&
-                                        <img src={"/images/directions/direction8.jpeg"} alt="software-img" className="h-full w-full"/>
+                                        <img src={"/images/directions/direction-1.jpeg"} alt="software-img" className="h-full w-full"/>
                                     }
                                 </div>
                                 <div className="mt-2 px-2">

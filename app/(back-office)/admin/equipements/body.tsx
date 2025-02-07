@@ -1,10 +1,7 @@
 "use client"
 
 import apiClient, { apiBaseURL } from '@/utils/api-client';
-import React, { useEffect, useState } from 'react'
-import { directionsList } from '@/utils/directions-infos'
-import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react'
 import {
     Modal,
     ModalContent,
@@ -21,14 +18,18 @@ import Loader from '@/components/loader';
 
 
 export default function Body() {
-
+ 
     const [loading,setLoading] = useState<boolean>(true)
     const [equipmentInfo,setEquipmentInfo] = useState<any>({name:""})
     const [equipmentList,setEquipmentList] = useState<any>([])
     
-    const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
-    const targetRef:any = React.useRef(null);
-    const { moveProps } = useDraggable({ targetRef, canOverflow: true, isDisabled: !isOpen });
+    const {isOpen:addIsOpen,onOpen:addOnOpen,onOpenChange:addOnOpenChange,onClose:addOnClose} = useDisclosure();
+    const deleteTargetRef:any = useRef(null);
+    const { moveProps:moveDeleteProps} = useDraggable({targetRef:deleteTargetRef, canOverflow: true, isDisabled: !addIsOpen });
+    
+    const { isOpen:editIsOpen,onOpen:editOnOpen,onOpenChange:editOnOpenChange,onClose:editOnClose} = useDisclosure();
+    const editTargetRef:any = useRef(null);
+    const { moveProps:moveEditProps} = useDraggable({targetRef:editTargetRef,canOverflow: true, isDisabled: !editIsOpen });
 
 
     const onAddEquipment = async (e:React.FormEvent) => {
@@ -50,7 +51,7 @@ export default function Body() {
             {
                 loadingData()
                 setEquipmentInfo({...equipmentInfo,name:""})
-                onClose()
+                addOnClose()
                 toast.success(`Création réussie avec success !`, {
                     position: "top-right",
                     autoClose:2500,
@@ -166,6 +167,10 @@ export default function Body() {
         }
     }
 
+    const onEditEquipment = async (equipment:any) => {
+
+    }
+
     const loadingData = async () => {
         try 
         {
@@ -182,12 +187,11 @@ export default function Body() {
         {
             setLoading(false)
         }
-
     }
 
     useEffect(() => {
         loadingData()
-    }, [])
+    },[])
 
 
     return (
@@ -201,13 +205,14 @@ export default function Body() {
 
                 {!loading &&
                     <button 
-                        onClick={onOpen}
+                        onClick={addOnOpen}
                         className="flex items-center gap-x-1 bg-green-500 rounded-md px-3 py-1 text-white"
                     >
                         <i className="fa-solid fa-plus text-white pointer-events-none"></i>
                         Ajouter un équipement
                     </button>
                 }
+                
             </div>
 
             {loading && 
@@ -256,7 +261,8 @@ export default function Body() {
                                     {/* <td className="border-gray-400 ">{equipment.etat}</td> */}
                                     <td className="">
                                         <button 
-                                            className="bg-green-500  px-3 mx-1 rounded-[3px]"
+                                            onClick={() => onEditEquipment(equipment)}
+                                            className="bg-green-500 px-3 mx-1 rounded-[3px]"
                                         >
                                             <i className={`fa-solid fa-edit text-white`}></i>
                                         </button>
@@ -278,11 +284,11 @@ export default function Body() {
             
             }
 
-            <Modal ref={targetRef} isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal ref={deleteTargetRef} isOpen={addIsOpen} onOpenChange={addOnOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader {...moveProps} className="flex flex-col gap-1 pb-0 text-blue-500">
+                            <ModalHeader {...moveDeleteProps} className="flex flex-col gap-1 pb-0 text-blue-500">
                                 Ajouter un équipement
                             </ModalHeader>
 

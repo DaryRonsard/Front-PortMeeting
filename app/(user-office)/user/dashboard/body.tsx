@@ -23,7 +23,7 @@ export default function Body(props:dashboardProps) {
         { name: 'Août', reservations: 60 ,  },
         { name: 'Septembre', reservations: 80 ,},
         { name: 'Octobre', reservations: 65 , },
-        { name: 'Novembre', reservations: 100 , },
+        { name: 'Novembre', reservations: 125 , },
         { name: 'Décembre', reservations: 200 , },
     ];
 
